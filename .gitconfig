@@ -1,0 +1,8 @@
+[user]
+name = Max Netterberg
+email = max.netterberg@gmail.com
+[credential]
+helper = cache --timeout=7200
+[pager]
+branch = false
+diff = true

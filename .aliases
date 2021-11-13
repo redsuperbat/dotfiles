@@ -1,0 +1,24 @@
+# general
+alias l='ls -la'
+alias lsla='ls -la'
+alias lsl='ls -lh'
+alias mkcd='f() {mkdir "$1" && cd "$1"};f'
+alias reboot='echo "Rebooting in 10 seconds - abort with CTRL+C" && sleep 10 && reboot'
+
+# git specializations (also using oh-my-zsh git plugin aliases)
+alias gbac='git branch -a --contains'
+alias gbo='git branch --remote | grep -i origin/'
+alias gdelb='f() {git push --delete origin "$1" && git branch -D "$1"};f'
+alias gdn='git diff --name-only'
+alias gdnh='git diff --name-only HEAD'
+alias gdnh1='git diff --name-only HEAD HEAD~1'
+alias gdnh2='git diff --name-only HEAD HEAD~2'
+alias gdnh3='git diff --name-only HEAD HEAD~3'
+alias gl='git log --pretty=format:"* %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --date=relative'
+alias gpdel='git push --delete'
+alias gpl='git pull'
+alias gpo='git push --force origin "$(git_current_branch)"'
+alias gshn='git show --name-only'
+alias grbud='git rebase upstream/develop'
+# to override ghost script
+alias gs='git status'

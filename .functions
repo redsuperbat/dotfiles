@@ -1,0 +1,5 @@
+# this file is ment for functions
+
+example_func() {
+  echo "This is an example"
+}
