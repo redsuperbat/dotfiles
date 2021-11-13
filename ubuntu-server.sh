@@ -26,3 +26,13 @@ printf "docker-compose sucessfully installed! \n$(docker-compose --version)\n"
 
 # Autoremove unused packages
 sudo apt autoremove -y
+
+read -r -p "It is recommended to restart the computer after this install. Do you want to do it now? " response
+case "$response" in
+[yY][eE][sS] | [yY])
+  sudo reboot
+  ;;
+*)
+  # Do nothing
+  ;;
+esac
