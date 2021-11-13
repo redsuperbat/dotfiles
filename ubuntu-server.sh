@@ -12,10 +12,10 @@ sudo apt update
 sudo apt upgrade -y
 
 # Install docker
-sudo apt install docker.io
+sudo apt install -y docker.io
 sudo systemctl enable --now docker
 sudo usermod -aG docker $USER
-echo "Docker successfully installed! $(docker --version)"
+printf "Docker successfully installed! \n$(docker --version)\n"
 
 # Install docker-compose
 # Run this command to download the current stable release of Docker Compose:
