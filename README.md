@@ -3,5 +3,5 @@
 ## Installation 
 --Ubuntu server--
 ```shell
-sudo wget https://github.com/redsuperbat/dotfiles/ubuntu-server.sh | sh
+sudo wget https://raw.githubusercontent.com/redsuperbat/dotfiles/main/ubuntu-server.sh | sh
 ```
