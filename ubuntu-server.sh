@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Install oh-my-zsh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Fetch repo from github
+git clone https://github.com/redsuperbat/dotfiles ~/Versioned/dotfiles
 
 # Setup symlinks
-ln -ns ~/versioned/dotfiles/.aliases ~/.aliases
-ln -ns ~/versioned/dotfiles/.functions ~/.functions
-ln -ns ~/versioned/dotfiles/.gitconfig ~/.gitconfig
+ln -ns ~/Versioned/dotfiles/.aliases ~/.aliases
+ln -ns ~/Versioned/dotfiles/.functions ~/.functions
+ln -ns ~/Versioned/dotfiles/.gitconfig ~/.gitconfig
 
 sudo apt update
 sudo apt upgrade -y
