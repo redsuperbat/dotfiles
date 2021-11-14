@@ -13,9 +13,14 @@ else
   git clone https://github.com/redsuperbat/dotfiles ~/Versioned/dotfiles
 fi
 
-# Fetch repo from github
+# Move bash_profile to backup
 if [ -f ~/.bash_profile ]; then
   mv ~/.bash_profile ~/.bash_profile.bk
+fi
+
+# Move bashrc to backup
+if [ -f ~/.bashrc ]; then
+  mv ~/.bashrc ~/.bashrc.bk
 fi
 
 # Setup symlinks
