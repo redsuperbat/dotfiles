@@ -1,9 +1,11 @@
 # general
-alias l='ls -la'
 alias lsla='ls -la'
 alias lsl='ls -lh'
 alias mkcd='f() {mkdir "$1" && cd "$1"};f'
 alias reboot='echo "Rebooting in 10 seconds - abort with CTRL+C" && sleep 10 && reboot'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
 # git specializations (also using oh-my-zsh git plugin aliases)
 alias gbac='git branch -a --contains'
