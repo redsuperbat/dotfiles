@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function println() {
+  printf "$1\n"
+}
+
 # Fetch repo from github
 if [ -f ~/Versioned/dotfiles ]; then
   cd ~/Versioned/dotfiles
@@ -30,10 +34,10 @@ if [ ! -f /usr/bin/docker ]; then
   sudo apt install -y docker.io
   sudo systemctl enable --now docker
   sudo usermod -aG docker $USER
-  printf "Docker successfully installed! \n$(docker --version)\n"
+  println "Docker successfully installed! \n$(docker --version)\n"
   $REBOOT = true
 else
-  printf "Docker already installed."~
+  println "Docker already installed."
 fi
 
 # Install docker-compose
@@ -42,9 +46,9 @@ if [ ! -f /usr/local/bin/docker-compose ]; then
   sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   # Apply executable permissions to the binary
   sudo chmod +x /usr/local/bin/docker-compose
-  printf "docker-compose sucessfully installed! \n$(docker-compose --version)\n"
+  println "docker-compose sucessfully installed! \n$(docker-compose --version)"
 else
-  printf "docker-compose already installed."
+  println "docker-compose already installed."
 fi
 
 # Autoremove unused packages
