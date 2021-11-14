@@ -5,7 +5,7 @@ function println() {
 }
 
 # Fetch repo from github
-if [ -f ~/Versioned/dotfiles ]; then
+if [ -d ~/Versioned/dotfiles ]; then
   cd ~/Versioned/dotfiles
   git pull
   cd ~
