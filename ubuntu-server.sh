@@ -28,6 +28,7 @@ ln -ns ~/Versioned/dotfiles/.aliases ~/.aliases
 ln -ns ~/Versioned/dotfiles/.functions ~/.functions
 ln -ns ~/Versioned/dotfiles/.gitconfig ~/.gitconfig
 ln -ns ~/Versioned/dotfiles/.bash_profile ~/.bash_profile
+ln -ns ~/Versioned/dotfiles/.bash_profile ~/.bashrc
 
 sudo apt update
 sudo apt upgrade -y
