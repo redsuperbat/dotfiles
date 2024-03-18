@@ -9,7 +9,7 @@ BIN_DIR_arm64 = /opt/homebrew/bin
 BIN_DIR = $(BIN_DIR_$(shell uname -m))
 
 $(CONFIG_DIR):
-	mkdir $(CONFIG_DIR)
+	mkdir $(CONFIG_DIR) || true
 
 # Homebrew
 export HOMEBREW_NO_INSTALL_UPGRADE = 1

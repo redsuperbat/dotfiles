@@ -6,5 +6,5 @@ wezterm: $(WEZTERM)
 $(WEZTERM): $(BREW)
 	$(BREW) tap wez/wezterm
 	$(BREW) install --cask wez/wezterm/wezterm
-	ln -his $(PWD)/wezterm/.wezterm.lua $(HOME)/.wezterm.lua
+	ln -his $(PWD)/wezterm/wezterm.lua $(HOME)/.wezterm.lua
 	touch $(WEZTERM)
