@@ -1,5 +1,12 @@
 local wezterm = require("wezterm")
 
+-- Always open in full screen mode
+wezterm.on("update-status", function(window)
+	if not window:get_dimensions().is_full_screen then
+		window:toggle_fullscreen()
+	end
+end)
+
 local act = wezterm.action
 local config = {}
 -- Use config builder if available
@@ -15,7 +22,11 @@ local keybind = function(key, mod, action)
 end
 
 config.default_prog = {
-	"tmux",
+	"/opt/homebrew/bin/tmux",
+	"new-session",
+	"-A",
+	"-s",
+	"main",
 	"-c",
 	"~",
 }
@@ -25,6 +36,9 @@ config.window_padding = {
 	top = 30,
 	bottom = 0,
 }
+config.window_decorations = "NONE"
+config.enable_tab_bar = false
+config.term = "alacritty"
 
 -- Eu keyboards
 keybind("(", "ALT|SHIFT", act.SendString("{"))
