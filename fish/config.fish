@@ -24,6 +24,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # pnpm
 export PNPM_HOME="/Users/maxnetterberg/Library/pnpm"
 
+# Set default editor to neovim
+export EDITOR="nvim"
+
 # Prompt
 function fish_prompt
     set -l last_status $status
@@ -59,3 +62,4 @@ end
 # Aliases
 alias kc=kubectl
 alias gap="git add :/ -Ap"
+alias vim=nvim

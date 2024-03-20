@@ -4,7 +4,7 @@
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.ts*",
-  command = ":TSToolsRemoveUnusedImports",
+  command = ":TSToolsRemoveUnusedImports sync",
 })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "python" },

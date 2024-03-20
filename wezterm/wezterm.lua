@@ -44,7 +44,7 @@ config.term = "alacritty"
 keybind("(", "ALT|SHIFT", act.SendString("{"))
 keybind(")", "ALT|SHIFT", act.SendString("}"))
 keybind("/", "ALT|SHIFT", act.SendString("\\"))
-keybind("v", "LEADER", act.ActivateCopyMode)
+keybind("v", "ALT|SHIFT", act.ActivateCopyMode)
 
 -- Font size
 keybind("-", "CMD", act.DecreaseFontSize)
