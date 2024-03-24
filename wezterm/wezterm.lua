@@ -51,4 +51,7 @@ keybind("-", "CMD", act.DecreaseFontSize)
 keybind("+", "CMD", act.IncreaseFontSize)
 keybind("0", "CMD", act.ResetFontSize)
 
+-- Toggle fullscreen event
+keybind("e", "ALT|SHIFT", act.ToggleFullScreen)
+
 return config
