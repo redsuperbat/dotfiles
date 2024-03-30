@@ -26,7 +26,7 @@ return {
       mason_lspconfig.setup({
         -- list of servers for mason to install
         ensure_installed = {
-          "tsserver",
+          "typescript-language-server",
           "html",
           "cssls",
           "terraform-ls",
@@ -36,6 +36,8 @@ return {
           "typos-lsp",
           "json-lsp",
           "prisma-language-server",
+          "tailwindcss-language-server",
+          "emmet-language-server",
           "graphql",
           "emmet_ls",
           "marksman",
