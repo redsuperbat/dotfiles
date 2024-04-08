@@ -26,6 +26,7 @@ return {
           "javascript",
           "typescript",
           "tsx",
+          "vue",
           "terraform",
           "yaml",
           "html",
