@@ -51,17 +51,8 @@ return {
       end)
     end,
     opts = function()
-      local plugin = require("lazy.core.config").plugins["conform.nvim"]
-      if plugin.config ~= M.setup then
-        require("lazyvim.util").error({
-          "Don't set `plugin.config` for `conform.nvim`.\n",
-          "This will break **LazyVim** formatting.\n",
-          "Please refer to the docs at https://www.lazyvim.org/plugins/formatting",
-        }, { title = "LazyVim" })
-      end
       ---@class ConformOpts
       local opts = {
-        -- LazyVim will use these options when formatting with the conform.nvim formatter
         format = {
           timeout_ms = 3000,
           async = false, -- not recommended to change
@@ -73,6 +64,22 @@ return {
           lua = { "stylua" },
           fish = { "fish_indent" },
           sh = { "shfmt" },
+          javascript = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescript = { "prettier" },
+          typescriptreact = { "prettier" },
+          vue = { "prettier" },
+          css = { "prettier" },
+          scss = { "prettier" },
+          less = { "prettier" },
+          html = { "prettier" },
+          json = { "prettier" },
+          jsonc = { "prettier" },
+          yaml = { "prettier" },
+          markdown = { "prettier" },
+          ["markdown.mdx"] = { "prettier" },
+          graphql = { "prettier" },
+          handlebars = { "prettier" },
         },
         -- The options you set here will be merged with the builtin formatters.
         -- You can also define any custom formatters here.
