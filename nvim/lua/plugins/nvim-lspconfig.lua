@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  event = "LazyFile",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = {
     { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
     { "folke/neodev.nvim", opts = {} },
@@ -25,10 +25,10 @@ return {
       severity_sort = true,
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = LazyVim.config.icons.diagnostics.Error,
-          [vim.diagnostic.severity.WARN] = LazyVim.config.icons.diagnostics.Warn,
-          [vim.diagnostic.severity.HINT] = LazyVim.config.icons.diagnostics.Hint,
-          [vim.diagnostic.severity.INFO] = LazyVim.config.icons.diagnostics.Info,
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.HINT] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
         },
       },
     },
@@ -125,15 +125,6 @@ return {
       end
     end
 
-    -- inlay hints
-    if opts.inlay_hints.enabled then
-      LazyVim.lsp.on_attach(function(client, buffer)
-        if client.supports_method("textDocument/inlayHint") then
-          LazyVim.toggle.inlay_hints(buffer, true)
-        end
-      end)
-    end
-
     -- code lens
     if opts.codelens.enabled and vim.lsp.codelens then
       LazyVim.lsp.on_attach(function(client, buffer)
@@ -211,14 +202,6 @@ return {
 
     if have_mason then
       mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
-    end
-
-    if LazyVim.lsp.get_config("denols") and LazyVim.lsp.get_config("tsserver") then
-      local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-      LazyVim.lsp.disable("tsserver", is_deno)
-      LazyVim.lsp.disable("denols", function(root_dir)
-        return not is_deno(root_dir)
-      end)
     end
   end,
 }
