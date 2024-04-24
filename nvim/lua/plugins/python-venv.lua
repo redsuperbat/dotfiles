@@ -1,5 +1,3 @@
 return {
-  {
-    "AckslD/swenv.nvim",
-  },
+  "AckslD/swenv.nvim",
 }
