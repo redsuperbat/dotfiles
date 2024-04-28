@@ -1,8 +1,9 @@
 return {
-  "navarasu/onedark.nvim",
+  "rebelot/kanagawa.nvim",
   config = function()
-    require("onedark").setup({
-      style = "warmer",
-    })
+    -- wave the default heart-warming theme,
+    -- dragon for those late-night sessions
+    -- lotus for when you're out in the open.
+    require("kanagawa").load("wave")
   end,
 }
