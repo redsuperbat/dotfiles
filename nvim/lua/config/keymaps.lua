@@ -52,12 +52,6 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
-map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
-map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
-
-map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
-map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
-
 -- formatting
 map({ "n", "v" }, "<leader>cf", function()
   LazyVim.format({ force = true })
@@ -86,15 +80,8 @@ map("n", "<leader>uf", function() LazyVim.format.toggle() end, { desc = "Toggle 
 map("n", "<leader>uF", function() LazyVim.format.toggle(true) end, { desc = "Toggle Auto Format (Buffer)" })
 map("n", "<leader>us", function() LazyVim.toggle("spell") end, { desc = "Toggle Spelling" })
 map("n", "<leader>uw", function() LazyVim.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-map("n", "<leader>uL", function() LazyVim.toggle("relativenumber") end, { desc = "Toggle Relative Line Numbers" })
 map("n", "<leader>ul", function() LazyVim.toggle.number() end, { desc = "Toggle Line Numbers" })
 map("n", "<leader>ud", function() LazyVim.toggle.diagnostics() end, { desc = "Toggle Diagnostics" })
-local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
-map("n", "<leader>uc", function() LazyVim.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
-if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
-  map( "n", "<leader>uh", function() LazyVim.toggle.inlay_hints() end, { desc = "Toggle Inlay Hints" })
-end
-map("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
 map("n", "<leader>ub", function() LazyVim.toggle("background", false, {"light", "dark"}) end, { desc = "Toggle Background" })
 
 -- lazygit
@@ -107,12 +94,6 @@ end, { desc = "Lazygit Current File History" })
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-
--- highlights under cursor
-map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
-
--- LazyVim Changelog
-map("n", "<leader>L", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
 
 -- floating terminal
 local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end

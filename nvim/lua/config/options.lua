@@ -23,12 +23,6 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 -- Set to false to disable.
 vim.g.lazygit_config = true
 
--- Optionally setup the terminal to use
--- This sets `vim.o.shell` and does some additional configuration for:
--- * pwsh
--- * powershell
--- LazyVim.terminal.setup("pwsh")
-
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
@@ -55,7 +49,7 @@ opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
 opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.relativenumber = true -- Relative line numbers
+opt.relativenumber = false -- Relative line numbers
 opt.scrolloff = 4 -- Lines of context
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true -- Round indent
