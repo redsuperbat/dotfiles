@@ -52,6 +52,15 @@ return {
       bind_to_cwd = false,
       follow_current_file = { enabled = true },
       use_libuv_file_watcher = true,
+      filtered_items = {
+        hide_hidden = false,
+        hide_dotfiles = false,
+        hide_gitignored = false,
+        never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
+          ".DS_Store",
+          ".git",
+        },
+      },
     },
     window = {
       mappings = {
@@ -66,7 +75,8 @@ return {
         },
         ["O"] = {
           function(state)
-            require("lazy.util").open(state.tree:get_node().path, { system = true })
+            local path = state.tree:get_node().path
+            os.execute("open -R " .. path)
           end,
           desc = "Open with System Application",
         },
