@@ -58,7 +58,6 @@ config.window_padding = {
 }
 config.window_decorations = "NONE"
 config.enable_tab_bar = false
-config.term = "alacritty"
 
 -- Eu keyboards
 keybind("(", "ALT|SHIFT", act.SendString("{"))
