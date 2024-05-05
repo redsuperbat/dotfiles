@@ -3,5 +3,6 @@ return {
   opts = {
     colorscheme = "kanagawa",
   },
-  priority = 1000,
+  lazy = false,
+  priority = 500,
 }

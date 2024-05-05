@@ -1,5 +1,7 @@
 return {
   "rebelot/kanagawa.nvim",
+  lazy = false,
+  priority = 1000,
   config = function()
     -- wave the default heart-warming theme,
     -- dragon for those late-night sessions

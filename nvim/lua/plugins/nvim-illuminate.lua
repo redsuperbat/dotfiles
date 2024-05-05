@@ -5,7 +5,7 @@ return {
     delay = 200,
     large_file_cutoff = 2000,
     large_file_overrides = {
-      providers = { "lsp" },
+      providers = { "lsp", "treesitter" },
     },
   },
   config = function(_, opts)
@@ -19,6 +19,11 @@ return {
 
     map("]]", "next")
     map("[[", "prev")
+
+    -- Make the highlighting a bit nicer
+    vim.api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
+    vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
+    vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
 
     -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
     vim.api.nvim_create_autocmd("FileType", {
