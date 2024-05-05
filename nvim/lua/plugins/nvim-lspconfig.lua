@@ -7,10 +7,7 @@ return {
     "mason.nvim",
     "williamboman/mason-lspconfig.nvim",
   },
-  ---@class PluginLspOpts
   opts = {
-    -- options for vim.diagnostic.config()
-    ---@type vim.diagnostic.Opts
     diagnostics = {
       underline = true,
       update_in_insert = false,
@@ -18,9 +15,6 @@ return {
         spacing = 4,
         source = "if_many",
         prefix = "●",
-        -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-        -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-        -- prefix = "icons",
       },
       severity_sort = true,
       signs = {
@@ -32,21 +26,15 @@ return {
         },
       },
     },
-    -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
-    -- Be aware that you also will need to properly configure your LSP server to
-    -- provide the inlay hints.
+
     inlay_hints = {
       enabled = false,
     },
-    -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
-    -- Be aware that you also will need to properly configure your LSP server to
-    -- provide the code lenses.
     codelens = {
       enabled = false,
     },
     -- add any global capabilities here
     capabilities = {},
-    -- options for vim.lsp.buf.format
     -- `bufnr` and `filter` is handled by the LazyVim formatter,
     -- but can be also overridden when specified
     format = {
@@ -57,11 +45,6 @@ return {
     ---@type lspconfig.options
     servers = {
       lua_ls = {
-        -- mason = false, -- set to false if you don't want this server to be installed with mason
-        -- Use this to add any additional keymaps
-        -- for specific lsp servers
-        ---@type LazyKeysSpec[]
-        -- keys = {},
         settings = {
           Lua = {
             workspace = {
@@ -101,8 +84,69 @@ return {
     LazyVim.format.register(LazyVim.lsp.formatter())
 
     -- setup keymaps
-    LazyVim.lsp.on_attach(function(client, buffer)
-      require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+    LazyVim.lsp.on_attach(function(_, buffer)
+      local keymaps = {
+        { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+        {
+          "gd",
+          function()
+            require("telescope.builtin").lsp_definitions({ reuse_win = true })
+          end,
+          desc = "Goto Definition",
+          has = "definition",
+        },
+        { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
+        { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+        {
+          "gI",
+          function()
+            require("telescope.builtin").lsp_implementations({ reuse_win = true })
+          end,
+          desc = "Goto Implementation",
+        },
+        {
+          "gy",
+          function()
+            require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
+          end,
+          desc = "Goto T[y]pe Definition",
+        },
+        { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
+        { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
+        { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
+        { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" }, has = "codeLens" },
+        {
+          "<leader>cC",
+          vim.lsp.codelens.refresh,
+          desc = "Refresh & Display Codelens",
+          mode = { "n" },
+          has = "codeLens",
+        },
+        { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
+        {
+          "<leader>cA",
+          function()
+            vim.lsp.buf.code_action({
+              context = {
+                only = {
+                  "source",
+                },
+                diagnostics = {},
+              },
+            })
+          end,
+          desc = "Source Action",
+          has = "codeAction",
+        },
+      }
+
+      for _, keys in pairs(keymaps) do
+        vim.keymap.set(keys.mode or "n", keys[1], keys[2], {
+          buffer = buffer,
+          silent = false,
+          desc = keys.desc,
+        })
+      end
     end)
 
     local register_capability = vim.lsp.handlers["client/registerCapability"]
@@ -123,20 +167,6 @@ return {
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end
-    end
-
-    -- code lens
-    if opts.codelens.enabled and vim.lsp.codelens then
-      LazyVim.lsp.on_attach(function(client, buffer)
-        if client.supports_method("textDocument/codeLens") then
-          vim.lsp.codelens.refresh()
-          --- autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
-          vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-            buffer = buffer,
-            callback = vim.lsp.codelens.refresh,
-          })
-        end
-      end)
     end
 
     if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
