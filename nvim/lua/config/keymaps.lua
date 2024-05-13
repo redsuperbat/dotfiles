@@ -63,7 +63,7 @@ map("n", "J", "<C-d>")
 
 -- diagnostic
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "<leader>ck", vim.lsp.buf.hover, { desc = "Hover over" })
+map("n", "<leader>k", vim.lsp.buf.hover, { desc = "Hover over" })
 map("n", "<leader>n", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 map("n", "<leader>N", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
 
