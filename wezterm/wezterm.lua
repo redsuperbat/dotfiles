@@ -53,8 +53,8 @@ config.default_prog = {
 config.window_padding = {
 	left = 0,
 	right = 0,
-	top = 30,
-	bottom = 0,
+	top = 0,
+	bottom = 30,
 }
 config.window_decorations = "NONE"
 config.enable_tab_bar = false

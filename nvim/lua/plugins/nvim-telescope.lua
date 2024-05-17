@@ -48,19 +48,6 @@ return {
     { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
     { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
     { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-    --  { "<leader>sw", require("lazyvim.util").telescope("grep_string", { word_match = "-w" }), desc = "Word (Root Dir)" },
-    -- {
-    --   "<leader>sW",
-    --   require("lazyvim.util").telescope("grep_string", { cwd = false, word_match = "-w" }),
-    --   desc = "Word (cwd)",
-    -- },
-    --  { "<leader>sw", require("lazyvim.util").telescope("grep_string"), mode = "v", desc = "Selection (Root Dir)" },
-    -- {
-    --   "<leader>sW",
-    --   require("lazyvim.util").telescope("grep_string", { cwd = false }),
-    --   mode = "v",
-    --   desc = "Selection (cwd)",
-    -- },
     {
       "<leader>ss",
       function()
@@ -82,14 +69,6 @@ return {
   },
   opts = function()
     local actions = require("telescope.actions")
-
-    local open_with_trouble = function(...)
-      return require("trouble.providers.telescope").open_with_trouble(...)
-    end
-
-    local open_selected_with_trouble = function(...)
-      return require("trouble.providers.telescope").open_selected_with_trouble(...)
-    end
 
     local find_files_no_ignore = function()
       local action_state = require("telescope.actions.state")
@@ -122,8 +101,6 @@ return {
         end,
         mappings = {
           i = {
-            ["<c-t>"] = open_with_trouble,
-            ["<a-t>"] = open_selected_with_trouble,
             ["<a-i>"] = find_files_no_ignore,
             ["<a-h>"] = find_files_with_hidden,
             ["<C-Down>"] = actions.cycle_history_next,

@@ -154,9 +154,9 @@ return {
     vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
       ---@diagnostic disable-next-line: no-unknown
       local ret = register_capability(err, res, ctx)
-      local client = vim.lsp.get_client_by_id(ctx.client_id)
-      local buffer = vim.api.nvim_get_current_buf()
-      require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
+      -- local client = vim.lsp.get_client_by_id(ctx.client_id)
+      -- local buffer = vim.api.nvim_get_current_buf()
+      -- require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
       return ret
     end
 
