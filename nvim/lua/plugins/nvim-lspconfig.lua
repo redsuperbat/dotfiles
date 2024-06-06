@@ -2,8 +2,6 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = {
-    { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-    { "folke/neodev.nvim", opts = {} },
     "mason.nvim",
     "williamboman/mason-lspconfig.nvim",
   },
@@ -41,9 +39,26 @@ return {
       formatting_options = nil,
       timeout_ms = nil,
     },
+    setup = {},
     -- LSP Server Settings
     ---@type lspconfig.options
+    ---@diagnostic disable: missing-fields
     servers = {
+      tsserver = {
+        commands = {
+          OrganizeImports = {
+            function()
+              local params = {
+                command = "_typescript.organizeImports",
+                arguments = { vim.api.nvim_buf_get_name(0) },
+                title = "Organize Imports",
+              }
+              vim.lsp.buf.execute_command(params)
+            end,
+            description = "Organize Imports",
+          },
+        },
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -59,18 +74,6 @@ return {
           },
         },
       },
-    },
-    -- you can do any additional lsp server setup here
-    -- return true if you don't want this server to be setup with lspconfig
-    ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-    setup = {
-      -- example to setup with typescript.nvim
-      -- tsserver = function(_, opts)
-      --   require("typescript").setup({ server = opts })
-      --   return true
-      -- end,
-      -- Specify * to use this function as a fallback for any server
-      -- ["*"] = function(server, opts) end,
     },
   },
   ---@param opts PluginLspOpts
@@ -148,17 +151,6 @@ return {
         })
       end
     end)
-
-    local register_capability = vim.lsp.handlers["client/registerCapability"]
-
-    vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
-      ---@diagnostic disable-next-line: no-unknown
-      local ret = register_capability(err, res, ctx)
-      -- local client = vim.lsp.get_client_by_id(ctx.client_id)
-      -- local buffer = vim.api.nvim_get_current_buf()
-      -- require("lazyvim.plugins.lsp.keymaps").on_attach(client, buffer)
-      return ret
-    end
 
     -- diagnostics signs
     if vim.fn.has("nvim-0.10.0") == 0 then

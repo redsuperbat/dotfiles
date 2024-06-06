@@ -8,7 +8,7 @@ end
 -- Remove unused import on save
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.ts*",
-  command = ":TSToolsRemoveUnusedImports sync",
+  command = ":OrganizeImports",
 })
 
 -- Fix conceallevel for markdown files
