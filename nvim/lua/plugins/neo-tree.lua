@@ -1,6 +1,7 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
+  dependencies = { "nvim-lua/plenary.nvim" },
   cmd = "Neotree",
   keys = {
     {
@@ -10,6 +11,8 @@ return {
       end,
       desc = "Explorer NeoTree (Root Dir)",
     },
+    { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
+
     {
       "<leader>fE",
       function()
@@ -18,7 +21,6 @@ return {
       desc = "Explorer NeoTree (cwd)",
     },
     { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
-    { "<leader>e", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
     {
       "<leader>ge",
       function()

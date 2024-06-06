@@ -4,6 +4,7 @@ return {
   version = false, -- telescope did only one release, so use HEAD for now
   dependencies = {
     {
+      "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
       build = vim.fn.executable("make") == 1 and "make"
         or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
@@ -23,7 +24,13 @@ return {
     },
     { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (Root Dir)" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-    { "<leader><space>", "<cmd>Telescope find_files<cr>", desc = "Find Files (Root Dir)" },
+    {
+      "<leader><space>",
+      function()
+        require("lazyvim.util").telescope("find_files", { cwd = LazyVim.root() })()
+      end,
+      desc = "Find Files (Root Dir)",
+    },
     -- find
     { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (Root Dir)" },
