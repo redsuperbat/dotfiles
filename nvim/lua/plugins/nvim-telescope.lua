@@ -1,3 +1,8 @@
+local logger = require("plenary.log").new({
+  plugin = "telescope",
+  level = "debug",
+})
+
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
@@ -6,9 +11,6 @@ return {
     {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
-      build = vim.fn.executable("make") == 1 and "make"
-        or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-      enabled = vim.fn.executable("make") == 1 or vim.fn.executable("cmake") == 1,
       config = function()
         require("lazyvim.util").on_load("telescope.nvim", function()
           require("telescope").load_extension("fzf")
@@ -77,16 +79,20 @@ return {
   opts = function()
     local actions = require("telescope.actions")
 
-    local find_files_no_ignore = function()
+    local telescope_no_ignore = function()
       local action_state = require("telescope.actions.state")
+      local picker = action_state.get_current_picker(vim.api.nvim_get_current_buf())
+      local cmd = picker.prompt_title == "Live Grep" and "live_grep" or "find_files"
       local line = action_state.get_current_line()
-      require("lazyvim.util").telescope("find_files", { no_ignore = true, default_text = line })()
+      require("lazyvim.util").telescope(cmd, { no_ignore = true, default_text = line })()
     end
 
-    local find_files_with_hidden = function()
+    local telescope_with_hidden = function()
       local action_state = require("telescope.actions.state")
+      local picker = action_state.get_current_picker(vim.api.nvim_get_current_buf())
+      local cmd = picker.prompt_title == "Live Grep" and "live_grep" or "find_files"
       local line = action_state.get_current_line()
-      require("lazyvim.util").telescope("find_files", { hidden = true, default_text = line })()
+      require("lazyvim.util").telescope(cmd, { hidden = true, default_text = line })()
     end
 
     return {
@@ -108,10 +114,8 @@ return {
         end,
         mappings = {
           i = {
-            ["<a-i>"] = find_files_no_ignore,
-            ["<a-h>"] = find_files_with_hidden,
-            ["<C-Down>"] = actions.cycle_history_next,
-            ["<C-Up>"] = actions.cycle_history_prev,
+            ["<a-i>"] = telescope_no_ignore,
+            ["<a-h>"] = telescope_with_hidden,
             ["<C-f>"] = actions.preview_scrolling_down,
             ["<C-b>"] = actions.preview_scrolling_up,
           },
