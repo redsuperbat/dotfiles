@@ -3,6 +3,8 @@ local logger = require("plenary.log").new({
   level = "debug",
 })
 
+local telescope_last = 0
+
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
@@ -49,7 +51,18 @@ return {
     { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
     { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-    { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep (CWD Dir)" },
+    {
+      "<leader>sg",
+      function()
+        if telescope_last == 0 then
+          telescope_last = 1
+          require("telescope.builtin").live_grep()
+        else
+          require("telescope.builtin").resume()
+        end
+      end,
+      desc = "Grep (CWD Dir)",
+    },
     {
       "<leader>sG",
       function()
