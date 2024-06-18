@@ -1,3 +1,7 @@
+local logger = require("plenary.log").new({
+  plugin = "lspconfig",
+})
+
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
@@ -41,8 +45,6 @@ return {
     },
     setup = {},
     -- LSP Server Settings
-    ---@type lspconfig.options
-    ---@diagnostic disable: missing-fields
     servers = {
       tsserver = {
         commands = {
@@ -76,13 +78,7 @@ return {
       },
     },
   },
-  ---@param opts PluginLspOpts
   config = function(_, opts)
-    if LazyVim.has("neoconf.nvim") then
-      local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
-      require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
-    end
-
     -- setup autoformat
     LazyVim.format.register(LazyVim.lsp.formatter())
 

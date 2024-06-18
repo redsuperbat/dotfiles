@@ -5,12 +5,6 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
--- Remove unused import on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.ts*",
-  command = ":OrganizeImports",
-})
-
 -- Fix conceallevel for markdown files
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("markdown_conceal"),

@@ -29,7 +29,7 @@ return {
     {
       "<leader><space>",
       function()
-        require("lazyvim.util").telescope("find_files", { cwd = LazyVim.root() })()
+        require("telescope.builtin").find_files({ cwd = LazyVim.root() })
       end,
       desc = "Find Files (Root Dir)",
     },
@@ -49,7 +49,14 @@ return {
     { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
     { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-    { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep (Root Dir)" },
+    { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep (CWD Dir)" },
+    {
+      "<leader>sG",
+      function()
+        require("telescope.builtin").live_grep({ cwd = LazyVim.root() })
+      end,
+      desc = "Grep (Root Dir)",
+    },
     { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
     { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
     { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
@@ -84,7 +91,7 @@ return {
       local picker = action_state.get_current_picker(vim.api.nvim_get_current_buf())
       local cmd = picker.prompt_title == "Live Grep" and "live_grep" or "find_files"
       local line = action_state.get_current_line()
-      require("lazyvim.util").telescope(cmd, { no_ignore = true, default_text = line })()
+      require("telescope.builtin")[cmd]({ no_ignore = true, default_text = line })
     end
 
     local telescope_with_hidden = function()
@@ -92,7 +99,7 @@ return {
       local picker = action_state.get_current_picker(vim.api.nvim_get_current_buf())
       local cmd = picker.prompt_title == "Live Grep" and "live_grep" or "find_files"
       local line = action_state.get_current_line()
-      require("lazyvim.util").telescope(cmd, { hidden = true, default_text = line })()
+      require("telescope.builtin")[cmd]({ hidden = true, default_text = line })
     end
 
     return {

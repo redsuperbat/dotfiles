@@ -1,15 +1,6 @@
-local M = {}
-
----@param opts ConformOpts
-function M.setup(_, opts)
-  for _, key in ipairs({ "format_on_save", "format_after_save" }) do
-    if opts[key] then
-      ---@diagnostic disable-next-line: no-unknown
-      opts[key] = nil
-    end
-  end
-  require("conform").setup(opts)
-end
+local logger = require("plenary.log").new({
+  plugin = "conform",
+})
 
 return {
   {
@@ -90,6 +81,8 @@ return {
       }
       return opts
     end,
-    config = M.setup,
+    config = function(_, opts)
+      require("conform").setup(opts)
+    end,
   },
 }

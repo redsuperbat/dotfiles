@@ -2271,7 +2271,9 @@ return {
         header = vim.split(logo, "\n"),
         center = {
           {
-            action = LazyVim.telescope("files"),
+            action = function()
+              require("telescope.builtin").find_files()
+            end,
             desc = " Find File",
             icon = "🔍",
             key = "f",
@@ -2288,7 +2290,14 @@ return {
             icon = "📗",
             key = "g",
           },
-          { action = [[lua LazyVim.telescope.config_files()()]], desc = " Config", icon = "🤖", key = "c" },
+          {
+            action = function()
+              require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+            end,
+            desc = " Config",
+            icon = "🤖",
+            key = "c",
+          },
           {
             action = "qa",
             desc = " Quit",
