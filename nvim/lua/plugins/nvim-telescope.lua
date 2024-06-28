@@ -54,12 +54,7 @@ return {
     {
       "<leader>sg",
       function()
-        if telescope_last == 0 then
-          telescope_last = 1
-          require("telescope.builtin").live_grep()
-        else
-          require("telescope.builtin").resume()
-        end
+        require("telescope.builtin").live_grep()
       end,
       desc = "Grep (CWD Dir)",
     },
