@@ -59,6 +59,10 @@ function fish_prompt
     echo -n -s $status_color $suffix ' ' $normal
 end
 
+
+# sourcing
+source "$HOME/.config/fish/k8s.fish"
+
 # Aliases
 alias kc=kubectl
 alias gap="git add :/ -Ap"
