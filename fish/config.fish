@@ -21,11 +21,22 @@ export PATH="$PATH:$GOPATH/bin"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # pnpm
 export PNPM_HOME="/Users/maxnetterberg/Library/pnpm"
 
 # Set default editor to neovim
 export EDITOR="nvim"
+
+
+
+# Kill process on port
+function kill_port
+    kill -9 $(lsof -ti:$1)
+end
+
 
 # Prompt
 function fish_prompt
@@ -60,7 +71,7 @@ function fish_prompt
 end
 
 
-# sourcing
+# Source k8s functions
 source "$HOME/.config/fish/k8s.fish"
 
 # Aliases
