@@ -1,9 +1,13 @@
+local function organize_imports()
+  vim.api.nvim_command("TSToolsRemoveUnusedImports sync")
+end
+
 return {
   {
     "stevearc/conform.nvim",
     dependencies = { "mason.nvim" },
     lazy = true,
-    event = { "VeryLazy" },
+    event = { "BufWritePre" },
     cmd = "ConformInfo",
     keys = {
       {
@@ -32,8 +36,8 @@ return {
           sh = { "shfmt" },
           javascript = { "prettier" },
           javascriptreact = { "prettier" },
-          typescript = { "prettier" },
-          typescriptreact = { "prettier" },
+          typescript = { "organize_imports", "prettier" },
+          typescriptreact = { "organize_imports", "prettier" },
           vue = { "prettier" },
           css = { "prettier" },
           scss = { "prettier" },
@@ -52,6 +56,9 @@ return {
         ---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
         formatters = {
           injected = { options = { ignore_errors = true } },
+          organize_imports = function()
+            organize_imports()
+          end,
         },
       }
       return opts

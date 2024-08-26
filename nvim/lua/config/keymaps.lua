@@ -20,6 +20,11 @@ map(
   { desc = "Redraw / Clear hlsearch / Diff Update" }
 )
 
+map("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
+map("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
+map("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
+map("v", "<A-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
+
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
