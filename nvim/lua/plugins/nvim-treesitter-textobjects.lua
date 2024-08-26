@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter-textobjects",
+  event = "VeryLazy",
   lazy = true,
   config = function()
     require("nvim-treesitter.configs").setup({
@@ -15,7 +16,6 @@ return {
       textobjects = {
         select = {
           enable = true,
-
           -- Automatically jump forward to textobj, similar to targets.vim
           lookahead = true,
 

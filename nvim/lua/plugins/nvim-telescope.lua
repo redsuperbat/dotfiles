@@ -1,10 +1,3 @@
-local logger = require("plenary.log").new({
-  plugin = "telescope",
-  level = "debug",
-})
-
-local telescope_last = 0
-
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
@@ -14,9 +7,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
       config = function()
-        require("lazyvim.util").on_load("telescope.nvim", function()
-          require("telescope").load_extension("fzf")
-        end)
+        require("telescope").load_extension("fzf")
       end,
     },
   },
@@ -31,7 +22,7 @@ return {
     {
       "<leader><space>",
       function()
-        require("telescope.builtin").find_files({ cwd = LazyVim.root() })
+        require("telescope.builtin").find_files({ cwd = require("fs").root() })
       end,
       desc = "Find Files (Root Dir)",
     },
@@ -61,7 +52,7 @@ return {
     {
       "<leader>sG",
       function()
-        require("telescope.builtin").live_grep({ cwd = LazyVim.root() })
+        require("telescope.builtin").live_grep({ cwd = require("fs").root() })
       end,
       desc = "Grep (Root Dir)",
     },
@@ -72,15 +63,6 @@ return {
     { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
     { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
     { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-    {
-      "<leader>ss",
-      function()
-        require("telescope.builtin").lsp_document_symbols({
-          symbols = require("lazyvim.config").get_kind_filter(),
-        })
-      end,
-      desc = "Goto Symbol",
-    },
     {
       "<leader>sS",
       function()

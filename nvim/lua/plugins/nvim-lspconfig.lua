@@ -79,74 +79,68 @@ return {
     },
   },
   config = function(_, opts)
-    -- setup autoformat
-    LazyVim.format.register(LazyVim.lsp.formatter())
-
     -- setup keymaps
-    LazyVim.lsp.on_attach(function(_, buffer)
-      local keymaps = {
-        { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
-        {
-          "gd",
-          function()
-            require("telescope.builtin").lsp_definitions({ reuse_win = true })
-          end,
-          desc = "Goto Definition",
-          has = "definition",
-        },
-        { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
-        { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-        {
-          "gI",
-          function()
-            require("telescope.builtin").lsp_implementations({ reuse_win = true })
-          end,
-          desc = "Goto Implementation",
-        },
-        {
-          "gy",
-          function()
-            require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
-          end,
-          desc = "Goto T[y]pe Definition",
-        },
-        { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
-        { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
-        { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
-        { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" }, has = "codeLens" },
-        {
-          "<leader>cC",
-          vim.lsp.codelens.refresh,
-          desc = "Refresh & Display Codelens",
-          mode = { "n" },
-          has = "codeLens",
-        },
-        { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
-        {
-          "<leader>cA",
-          function()
-            vim.lsp.buf.code_action({
-              context = {
-                only = {
-                  "source",
-                },
-                diagnostics = {},
+    local keymaps = {
+      { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+      {
+        "gd",
+        function()
+          require("telescope.builtin").lsp_definitions({ reuse_win = true })
+        end,
+        desc = "Goto Definition",
+        has = "definition",
+      },
+      { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
+      { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+      {
+        "gI",
+        function()
+          require("telescope.builtin").lsp_implementations({ reuse_win = true })
+        end,
+        desc = "Goto Implementation",
+      },
+      {
+        "gy",
+        function()
+          require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
+        end,
+        desc = "Goto T[y]pe Definition",
+      },
+      { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
+      { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
+      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" }, has = "codeAction" },
+      { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens", mode = { "n", "v" }, has = "codeLens" },
+      {
+        "<leader>cC",
+        vim.lsp.codelens.refresh,
+        desc = "Refresh & Display Codelens",
+        mode = { "n" },
+        has = "codeLens",
+      },
+      { "<leader>cr", vim.lsp.buf.rename, desc = "Rename", has = "rename" },
+      {
+        "<leader>cA",
+        function()
+          vim.lsp.buf.code_action({
+            context = {
+              only = {
+                "source",
               },
-            })
-          end,
-          desc = "Source Action",
-          has = "codeAction",
-        },
-      }
+              diagnostics = {},
+            },
+          })
+        end,
+        desc = "Source Action",
+        has = "codeAction",
+      },
+    }
 
-      for _, keys in pairs(keymaps) do
-        vim.keymap.set(keys.mode or "n", keys[1], keys[2], {
-          buffer = buffer,
-          silent = false,
-          desc = keys.desc,
-        })
-      end
-    end)
+    for _, keys in pairs(keymaps) do
+      vim.keymap.set(keys.mode or "n", keys[1], keys[2], {
+        silent = false,
+        desc = keys.desc,
+      })
+    end
 
     -- diagnostics signs
     if vim.fn.has("nvim-0.10.0") == 0 then
@@ -155,18 +149,6 @@ return {
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end
-    end
-
-    if type(opts.diagnostics.virtual_text) == "table" and opts.diagnostics.virtual_text.prefix == "icons" then
-      opts.diagnostics.virtual_text.prefix = vim.fn.has("nvim-0.10.0") == 0 and "●"
-        or function(diagnostic)
-          local icons = require("lazyvim.config").icons.diagnostics
-          for d, icon in pairs(icons) do
-            if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
-              return icon
-            end
-          end
-        end
     end
 
     vim.diagnostic.config(vim.deepcopy(opts.diagnostics))

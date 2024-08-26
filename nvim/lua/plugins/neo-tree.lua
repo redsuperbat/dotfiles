@@ -7,7 +7,7 @@ return {
     {
       "<leader>fe",
       function()
-        require("neo-tree.command").execute({ toggle = true, dir = LazyVim.root() })
+        require("neo-tree.command").execute({ toggle = true, dir = require("fs").root() })
       end,
       desc = "Explorer NeoTree (Root Dir)",
     },
@@ -16,7 +16,7 @@ return {
     {
       "<leader>fE",
       function()
-        require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
+        require("neo-tree.command").execute({ toggle = true, dir = vim.fn.getcwd() })
       end,
       desc = "Explorer NeoTree (cwd)",
     },
@@ -94,12 +94,11 @@ return {
     },
   },
   config = function(_, opts)
-    local function on_move(data)
-      LazyVim.lsp.on_rename(data.source, data.destination)
-    end
-
     local events = require("neo-tree.events")
     opts.event_handlers = opts.event_handlers or {}
+
+    local on_move = function() end
+
     vim.list_extend(opts.event_handlers, {
       { event = events.FILE_MOVED, handler = on_move },
       { event = events.FILE_RENAMED, handler = on_move },

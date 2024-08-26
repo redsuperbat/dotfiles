@@ -26,7 +26,7 @@ return {
         "svelte",
         "jsonls",
         "lua_ls",
-        "typescript-language-server",
+        "tsserver",
         "graphql",
         "emmet_ls",
         "marksman",

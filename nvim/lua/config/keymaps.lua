@@ -1,6 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
 local map = vim.keymap.set
 
 -- buffers
@@ -49,11 +46,6 @@ map("v", ">", ">gv")
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
--- formatting
-map({ "n", "v" }, "<leader>cf", function()
-  LazyVim.format({ force = true })
-end, { desc = "Format" })
-
 -- better movement
 map("n", "K", "<C-u>")
 map("n", "J", "<C-d>")
@@ -64,32 +56,17 @@ map("n", "<leader>k", vim.lsp.buf.hover, { desc = "Hover over" })
 map("n", "<leader>n", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 map("n", "<leader>N", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
 
--- stylua: ignore start
-
--- toggle options
-map("n", "<leader>uf", function() LazyVim.format.toggle() end, { desc = "Toggle Auto Format (Global)" })
-map("n", "<leader>uF", function() LazyVim.format.toggle(true) end, { desc = "Toggle Auto Format (Buffer)" })
-map("n", "<leader>us", function() LazyVim.toggle("spell") end, { desc = "Toggle Spelling" })
-map("n", "<leader>uw", function() LazyVim.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-map("n", "<leader>ub", function() LazyVim.toggle("background", false, {"light", "dark"}) end, { desc = "Toggle Background" })
+map("n", "<leader>ft", function()
+  require("terminal").open()
+end, { desc = "Floating terminal" })
 
 -- lazygit
-map("n", "<leader>gg", function() LazyVim.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
-map("n", "<leader>gG", function() LazyVim.lazygit() end, { desc = "Lazygit (cwd)" })
-map("n", "<leader>gf", function()
-  local git_path = vim.api.nvim_buf_get_name(0)
-  LazyVim.lazygit({args = { "-f", vim.trim(git_path) }})
-end, { desc = "Lazygit Current File History" })
+map("n", "<leader>gg", function()
+  require("terminal").open("lazygit")
+end, { desc = "Lazygit (Root Dir)" })
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-
--- floating terminal
-local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
-map("n", "<leader>ft", lazyterm, { desc = "Terminal (Root Dir)" })
-map("n", "<leader>fT", function() LazyVim.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<c-/>", lazyterm, { desc = "Terminal (Root Dir)" })
-map("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
 
 -- Terminal Mappings
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
