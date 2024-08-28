@@ -83,7 +83,7 @@ return {
           settings = {
             json = {
               format = {
-                enable = true,
+                enable = false,
               },
             },
             validate = { enable = true },

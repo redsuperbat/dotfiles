@@ -15,11 +15,37 @@ return {
         desc = "Format Injected Langs",
       },
     },
-    opts = function()
-      local opts = {
-        format_on_save = {
-          timeout_ms = 3000,
-        },
+
+    init = function()
+      vim.api.nvim_create_user_command("FormatDisable", function(args)
+        if args.bang then
+          vim.b.disable_autoformat = true
+        else
+          vim.g.disable_autoformat = true
+        end
+      end, {
+        desc = "Disable autoformat-on-save",
+        bang = true,
+      })
+
+      vim.api.nvim_create_user_command("FormatEnable", function()
+        vim.b.disable_autoformat = false
+        vim.g.disable_autoformat = false
+      end, {
+        desc = "Re-enable autoformat-on-save",
+      })
+    end,
+
+    config = function()
+      require("conform").setup({
+        log_level = vim.log.levels.DEBUG,
+        format_on_save = function(bufnr)
+          -- Disable with a global or buffer-local variable
+          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            return
+          end
+          return { timeout_ms = 500, lsp_format = "fallback" }
+        end,
         format = {
           timeout_ms = 3000,
           async = false, -- not recommended to change
@@ -47,9 +73,19 @@ return {
         ---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
         formatters = {
           injected = { options = { ignore_errors = true } },
+          biome = {
+            args = {
+              "check",
+              "--write",
+              "--unsafe",
+              "--indent-style",
+              "space",
+              "--stdin-file-path",
+              "$FILENAME",
+            },
+          },
         },
-      }
-      return opts
+      })
     end,
   },
 }
