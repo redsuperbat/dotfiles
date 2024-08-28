@@ -8,6 +8,7 @@ return {
   dependencies = {
     "mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "nvimtools/none-ls.nvim",
   },
   opts = {
     diagnostics = {
@@ -28,7 +29,6 @@ return {
         },
       },
     },
-
     inlay_hints = {
       enabled = false,
     },
@@ -37,8 +37,6 @@ return {
     },
     -- add any global capabilities here
     capabilities = {},
-    -- `bufnr` and `filter` is handled by the LazyVim formatter,
-    -- but can be also overridden when specified
     format = {
       formatting_options = nil,
       timeout_ms = nil,
@@ -46,7 +44,21 @@ return {
     setup = {},
     -- LSP Server Settings
     servers = {
-      tsserver = {
+      jsonls = {
+        settings = {
+          json = {
+            format = {
+              enable = true,
+            },
+          },
+          validate = { enable = true },
+        },
+      },
+      html = {},
+      cssls = {},
+      tailwindcss = {},
+      prismals = {},
+      biome = {
         commands = {
           OrganizeImports = {
             function()
@@ -61,6 +73,8 @@ return {
           },
         },
       },
+      emmet_ls = {},
+      tsserver = {},
       lua_ls = {
         settings = {
           Lua = {

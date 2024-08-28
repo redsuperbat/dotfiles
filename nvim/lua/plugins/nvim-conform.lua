@@ -1,7 +1,3 @@
-local function organize_imports()
-  vim.api.nvim_command("TSToolsRemoveUnusedImports sync")
-end
-
 return {
   {
     "stevearc/conform.nvim",
@@ -22,7 +18,7 @@ return {
     opts = function()
       local opts = {
         format_on_save = {
-          timeout_ms = 500,
+          timeout_ms = 3000,
         },
         format = {
           timeout_ms = 3000,
@@ -36,29 +32,26 @@ return {
           sh = { "shfmt" },
           javascript = { "prettier" },
           javascriptreact = { "prettier" },
-          typescript = { "organize_imports", "prettier" },
-          typescriptreact = { "organize_imports", "prettier" },
+          typescript = { "biome" },
+          typescriptreact = { "biome" },
           vue = { "prettier" },
           css = { "prettier" },
           scss = { "prettier" },
           less = { "prettier" },
           html = { "prettier" },
-          json = { "prettier" },
-          jsonc = { "prettier" },
-          yaml = { "prettier" },
+          json = { "biome" },
+          yaml = { "biome" },
           markdown = { "prettier" },
           ["markdown.mdx"] = { "prettier" },
           graphql = { "prettier" },
           handlebars = { "prettier" },
+          prisma = { "prettier" },
         },
         -- The options you set here will be merged with the builtin formatters.
         -- You can also define any custom formatters here.
         ---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
         formatters = {
           injected = { options = { ignore_errors = true } },
-          organize_imports = function()
-            organize_imports()
-          end,
         },
       }
       return opts
