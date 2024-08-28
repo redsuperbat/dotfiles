@@ -46,6 +46,9 @@ return {
         opts.desc = "Code action"
         keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
+        opts.desc = "Rename"
+        keymap("n", "<leader>cr", vim.lsp.buf.rename, opts)
+
         opts.desc = "Run code lens"
         keymap("n", "<leader>cc", vim.lsp.codelens.run, opts)
 

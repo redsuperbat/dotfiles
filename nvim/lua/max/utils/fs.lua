@@ -1,8 +1,13 @@
 local logger = require("plenary.log").new({
-  plugin = "lspconfig",
+  plugin = "filesystem-utils",
 })
 
 local M = {}
+
+function M.is_dir(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat and stat.type == "directory"
+end
 
 function M.root()
   local filenames = {

@@ -1,3 +1,4 @@
+local fs = require("max.utils.fs")
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
@@ -40,11 +41,8 @@ return {
     vim.cmd([[Neotree close]])
   end,
   init = function()
-    if vim.fn.argc(-1) == 1 then
-      local stat = vim.uv.fs_stat(vim.fn.argv(0))
-      if stat and stat.type == "directory" then
-        require("neo-tree")
-      end
+    if vim.fn.argc(-1) == 1 and fs.is_dir(vim.fn.argv(0)) then
+      require("neo-tree")
     end
   end,
   config = function()
@@ -68,6 +66,24 @@ return {
       window = {
         mappings = {
           ["<space>"] = "none",
+          ["G"] = {
+            function(state)
+              local path = state.tree:get_node().path
+              if not fs.is_dir(path) then
+                path = vim.fs.dirname(path)
+              end
+              require("telescope.builtin").live_grep({ cwd = vim.fs.dirname(path) })
+            end,
+          },
+          ["F"] = {
+            function(state)
+              local path = state.tree:get_node().path
+              if not fs.is_dir(path) then
+                path = vim.fs.dirname(path)
+              end
+              require("telescope.builtin").find_files({ cwd = path })
+            end,
+          },
           ["Y"] = {
             function(state)
               local node = state.tree:get_node()
