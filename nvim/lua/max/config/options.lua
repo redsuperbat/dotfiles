@@ -1,26 +1,6 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
-
--- This file is automatically loaded by plugins.core
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Enable LazyVim auto format
-vim.g.autoformat = true
-
--- LazyVim root dir detection
--- Each entry can be:
--- * the name of a detector function like `lsp` or `cwd`
--- * a pattern or array of patterns like `.git` or `lua`.
--- * a function with signature `function(buf) -> string|string[]`
-vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
-
--- LazyVim automatically configures lazygit:
---  * theme, based on the active colorscheme.
---  * editorPreset to nvim-remote
---  * enables nerd font icons
--- Set to false to disable.
 vim.g.lazygit_config = true
 
 local opt = vim.opt
@@ -83,21 +63,14 @@ opt.fillchars = {
   eob = " ",
 }
 
-if vim.fn.has("nvim-0.10") == 1 then
-  opt.smoothscroll = true
-end
+opt.smoothscroll = true
 
 -- Folding
 opt.foldlevel = 99
 
--- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
-if vim.fn.has("nvim-0.10") == 1 then
-  opt.foldmethod = "expr"
-  opt.foldtext = ""
-  opt.fillchars = "fold: "
-else
-  opt.foldmethod = "indent"
-end
+opt.foldmethod = "expr"
+opt.foldtext = ""
+opt.fillchars = "fold: "
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

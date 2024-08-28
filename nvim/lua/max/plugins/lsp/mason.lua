@@ -4,17 +4,17 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
-  event = { "VeryLazy" },
-  opts = {
-    ui = {
-      icons = {
-        package_installed = "✓",
-        package_pending = "➜",
-        package_uninstalled = "✗",
-      },
-    },
-  },
   config = function()
+    require("mason").setup({
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
+        },
+      },
+    })
+
     require("mason-lspconfig").setup({
       ensure_installed = {
         "html",
@@ -26,20 +26,21 @@ return {
         "lua_ls",
         "tsserver",
         "graphql",
-        "emmet_language_server",
-        "marksman",
+        "emmet_ls",
         "prismals",
+        "marksman",
         "pyright",
       },
+      automatic_installation = true,
     })
 
     require("mason-tool-installer").setup({
       ensure_installed = {
         "prettier",
         "stylua",
-        "taplo",
-        "isort",
-        "black",
+        "taplo", -- markdown formatter?
+        "isort", -- python formatter
+        "black", -- python formatter
         "pylint",
         "eslint_d",
       },

@@ -1,5 +1,6 @@
 return {
   "sindrets/diffview.nvim",
+  event = "VeryLazy",
   config = function(config)
     vim.keymap.set(
       { "n", "v" },

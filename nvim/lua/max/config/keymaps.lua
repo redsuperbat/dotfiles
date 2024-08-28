@@ -62,12 +62,12 @@ map("n", "<leader>n", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 map("n", "<leader>N", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
 
 map("n", "<leader>ft", function()
-  require("terminal").open()
+  require("max.utils.terminal").open()
 end, { desc = "Floating terminal" })
 
 -- lazygit
 map("n", "<leader>gg", function()
-  require("terminal").open("lazygit")
+  require("max.utils.terminal").open("lazygit")
 end, { desc = "Lazygit (Root Dir)" })
 
 -- quit

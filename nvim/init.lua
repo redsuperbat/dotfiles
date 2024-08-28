@@ -1,6 +1,3 @@
-require("config.options")
+require("max.config")
+require("max.lazy")
 
-require("config.lazy")
-
-require("config.autocmds")
-require("config.keymaps")

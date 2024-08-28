@@ -22,7 +22,7 @@ return {
     {
       "<leader><space>",
       function()
-        require("telescope.builtin").find_files({ cwd = require("fs").root() })
+        require("telescope.builtin").find_files({ cwd = require("max.utils.fs").root() })
       end,
       desc = "Find Files (Root Dir)",
     },
@@ -52,7 +52,7 @@ return {
     {
       "<leader>sG",
       function()
-        require("telescope.builtin").live_grep({ cwd = require("fs").root() })
+        require("telescope.builtin").live_grep({ cwd = require("max.utils.fs").root() })
       end,
       desc = "Grep (Root Dir)",
     },
