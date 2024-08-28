@@ -5,19 +5,16 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
   event = { "VeryLazy" },
-  config = function()
-    local mason = require("mason")
-
-    mason.setup({
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
-        },
+  opts = {
+    ui = {
+      icons = {
+        package_installed = "✓",
+        package_pending = "➜",
+        package_uninstalled = "✗",
       },
-    })
-
+    },
+  },
+  config = function()
     require("mason-lspconfig").setup({
       ensure_installed = {
         "html",
@@ -29,7 +26,7 @@ return {
         "lua_ls",
         "tsserver",
         "graphql",
-        "emmet_ls",
+        "emmet_language_server",
         "marksman",
         "prismals",
         "pyright",
