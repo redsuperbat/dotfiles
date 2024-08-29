@@ -1,5 +1,7 @@
+local fs = require("max.utils.fs")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+
+if not fs.path_exists(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -12,6 +14,9 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
+  rocks = {
+    enabled = false,
+  },
   spec = {
     { import = "max.plugins" },
     { import = "max.plugins.lsp" },

@@ -1,12 +1,12 @@
-local logger = require("plenary.log").new({
-  plugin = "filesystem-utils",
-})
-
 local M = {}
 
 function M.is_dir(path)
   local stat = vim.uv.fs_stat(path)
   return stat and stat.type == "directory"
+end
+
+function M.path_exists(path)
+  return vim.uv.fs_stat(path)
 end
 
 function M.root()
@@ -25,6 +25,7 @@ function M.root()
     local file_path = vim.fs.find(filename, {
       upward = true,
       path = starting_dir,
+      type = "file",
     })[1]
 
     if file_path then
