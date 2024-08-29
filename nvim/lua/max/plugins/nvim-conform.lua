@@ -77,7 +77,6 @@ return {
             args = {
               "check",
               "--write",
-              "--unsafe",
               "--indent-style",
               "space",
               "--stdin-file-path",

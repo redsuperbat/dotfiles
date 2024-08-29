@@ -25,7 +25,7 @@ return {
         end, opts)
 
         opts.desc = "Go to references"
-        keymap("n", "<leader>cl", "<cmd>Telescope lsp_references<cr>", opts)
+        keymap("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 
         opts.desc = "Go to declaration"
         keymap("n", "gD", vim.lsp.buf.declaration, opts)
