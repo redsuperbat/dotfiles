@@ -72,7 +72,7 @@ return {
               if not fs.is_dir(path) then
                 path = vim.fs.dirname(path)
               end
-              require("telescope.builtin").live_grep({ cwd = vim.fs.dirname(path) })
+              require("telescope.builtin").live_grep({ cwd = path })
             end,
           },
           ["F"] = {
