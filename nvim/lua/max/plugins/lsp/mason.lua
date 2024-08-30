@@ -26,7 +26,6 @@ return {
         "lua_ls",
         "tsserver",
         "graphql",
-        "emmet_ls",
         "prismals",
         "marksman",
         "pyright",

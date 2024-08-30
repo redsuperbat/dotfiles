@@ -67,7 +67,7 @@ end, { desc = "Floating terminal" })
 
 -- lazygit
 keymap("n", "<leader>gg", function()
-  require("max.utils.terminal").open("lazygit")
+  require("max.utils.terminal").open("lazygit", { esc_esc = false, ctrl_hjkl = false })
 end, { desc = "Lazygit (Root Dir)" })
 
 -- quit

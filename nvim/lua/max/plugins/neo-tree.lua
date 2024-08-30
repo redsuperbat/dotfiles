@@ -66,7 +66,7 @@ return {
       window = {
         mappings = {
           ["<space>"] = "none",
-          ["G"] = {
+          ["S"] = {
             function(state)
               local path = state.tree:get_node().path
               if not fs.is_dir(path) then

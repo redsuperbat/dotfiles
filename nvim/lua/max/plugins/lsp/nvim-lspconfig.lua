@@ -70,47 +70,68 @@ return {
     local lspconfig = require("lspconfig")
     local mason_lspconfig = require("mason-lspconfig")
 
-    mason_lspconfig.setup_handlers({
+    local handlers = {
       -- default handler for installed servers
       function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,
         })
       end,
-      ["jsonls"] = function()
-        lspconfig["jsonls"].setup({
-          capabilities = capabilities,
-          settings = {
-            json = {
-              format = {
-                enable = false,
-              },
-            },
-            validate = { enable = true },
+    }
+
+    local add_handler = function(name, options)
+      local setup = vim.tbl_deep_extend("error", { capabilities = capabilities }, options or {})
+      handlers[name] = function()
+        lspconfig[name].setup(setup)
+      end
+    end
+
+    add_handler("jsonls", {
+      settings = {
+        json = {
+          format = {
+            enable = false,
           },
-        })
-      end,
-      ["lua_ls"] = function()
-        lspconfig["lua_ls"].setup({
-          capabilities = capabilities,
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = { "vim" },
-              },
-              workspace = {
-                checkThirdParty = false,
-              },
-              codeLens = {
-                enable = true,
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
-            },
-          },
-        })
-      end,
+        },
+        validate = { enable = true },
+      },
     })
+
+    add_handler("tsserver", {
+      commands = {
+        OrganizeImports = {
+          function()
+            local params = {
+              command = "_typescript.organizeImports",
+              arguments = { vim.api.nvim_buf_get_name(0) },
+              title = "Organize Imports",
+            }
+            vim.lsp.buf.execute_command(params)
+          end,
+          description = "Organize Imports",
+        },
+      },
+    })
+
+    add_handler("lua_ls", {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+          workspace = {
+            checkThirdParty = false,
+          },
+          codeLens = {
+            enable = true,
+          },
+          completion = {
+            callSnippet = "Replace",
+          },
+        },
+      },
+    })
+
+    mason_lspconfig.setup_handlers(handlers)
   end,
 }

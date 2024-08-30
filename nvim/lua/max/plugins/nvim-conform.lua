@@ -75,7 +75,7 @@ return {
           injected = { options = { ignore_errors = true } },
           biome = {
             args = {
-              "check",
+              "format",
               "--write",
               "--indent-style",
               "space",
