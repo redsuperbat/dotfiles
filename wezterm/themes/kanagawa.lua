@@ -1,5 +1,5 @@
 return {
-  foreground = "#dcd8ba",
+  foreground = "#dcd7ba",
   background = "#1f1f28",
 
   cursor_bg = "#c8c093",

@@ -18,7 +18,7 @@ config.keys = {}
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
 config.force_reverse_video_cursor = true
-config.colors = require("themes.kawanaga")
+config.colors = require("themes.kanagawa")
 
 local keybind = function(key, mod, action)
   table.insert(config.keys, { key = key, mods = mod, action = action })
