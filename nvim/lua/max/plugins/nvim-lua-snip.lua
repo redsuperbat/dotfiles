@@ -1,54 +1,23 @@
 return {
   "L3MON4D3/LuaSnip",
+  event = { "InsertEnter" },
   dependencies = {
-    {
-      "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    },
-    {
-      "nvim-cmp",
-      dependencies = {
-        "saadparwaiz1/cmp_luasnip",
-      },
-      opts = function(_, opts)
-        opts.snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
-        }
-        table.insert(opts.sources, { name = "luasnip" })
-      end,
-    },
+    "rafamadriz/friendly-snippets",
+    "saadparwaiz1/cmp_luasnip",
   },
-  opts = {
-    history = true,
-    delete_check_events = "TextChanged",
-  },
-  keys = {
-    {
-      "<tab>",
-      function()
-        return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-      end,
-      expr = true,
-      silent = true,
-      mode = "i",
-    },
-    {
-      "<tab>",
-      function()
-        require("luasnip").jump(1)
-      end,
-      mode = "s",
-    },
-    {
-      "<s-tab>",
-      function()
-        require("luasnip").jump(-1)
-      end,
-      mode = { "i", "s" },
-    },
-  },
+  config = function()
+    local luasnip = require("luasnip")
+
+    -- Add html snippets in jsx, tsx and vue
+    luasnip.filetype_extend("javascriptreact", { "html" })
+    luasnip.filetype_extend("typescriptreact", { "html" })
+    luasnip.filetype_extend("vue", { "html" })
+
+    require("luasnip").setup({
+      history = true,
+      delete_check_events = "TextChanged",
+    })
+
+    require("luasnip.loaders.from_vscode").lazy_load()
+  end,
 }

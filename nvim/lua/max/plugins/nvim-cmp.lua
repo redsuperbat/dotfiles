@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+---
 local kind_icons = {
   Text = "",
   Method = "󰆧",
@@ -31,9 +33,17 @@ return {
     "hrsh7th/nvim-cmp",
     version = false, -- last release is way too old
     event = "InsertEnter",
-    opts = function()
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+    },
+    config = function()
+      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       local cmp = require("cmp")
-      return {
+      local Kind = cmp.lsp.CompletionItemKind
+
+      cmp.setup({
         completion = {
           completeopt = "menu,menuone,preview,noselect",
         },
@@ -46,11 +56,20 @@ return {
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
+        matching = {
+          disallow_partial_fuzzy_matching = false,
+        },
+        snippet = {
+          expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+          end,
+        },
         sources = cmp.config.sources({
-          { name = "nvim_lsp", group_index = 1 },
-          { name = "path", group_index = 1 },
-          { name = "buffer", group_index = 1 },
-          { name = "luasnip", group_index = 1 },
+
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
         }),
         formatting = {
           format = function(_, item)
@@ -63,22 +82,10 @@ return {
             hl_group = "CmpGhostText",
           },
         },
-      }
-    end,
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-    },
-    config = function(_, opts)
-      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-      local cmp = require("cmp")
-      local Kind = cmp.lsp.CompletionItemKind
-
-      cmp.setup(opts)
+      })
 
       cmp.event:on("confirm_done", function(event)
-        if not vim.tbl_contains(opts.auto_brackets or {}, vim.bo.filetype) then
+        if not vim.tbl_contains({}, vim.bo.filetype) then
           return
         end
         local entry = event.entry

@@ -41,9 +41,6 @@ keymap("i", ";", ";<c-g>u")
 -- save file
 keymap({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
---keywordprg
-keymap("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
-
 -- better indenting
 keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
@@ -68,7 +65,7 @@ end, { desc = "Floating terminal" })
 -- lazygit
 keymap("n", "<leader>gg", function()
   require("max.utils.terminal").open("lazygit", { esc_esc = false, ctrl_hjkl = false })
-end, { desc = "Lazygit (Root Dir)" })
+end, { desc = "Lazygit" })
 
 -- quit
 keymap("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
