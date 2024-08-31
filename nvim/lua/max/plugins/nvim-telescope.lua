@@ -5,10 +5,13 @@ return {
   dependencies = {
     {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-fzf-native.nvim",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        config = function()
+          require("telescope").load_extension("fzf")
+        end,
+      },
     },
   },
   keys = {
@@ -73,7 +76,7 @@ return {
       desc = "Goto Symbol (Workspace)",
     },
   },
-  opts = function()
+  config = function()
     local actions = require("telescope.actions")
 
     local telescope_no_ignore = function()
@@ -92,7 +95,8 @@ return {
       require("telescope.builtin")[cmd]({ hidden = true, default_text = line })
     end
 
-    return {
+    require("telescope").setup({
+      extensions_list = { "fzf" },
       defaults = {
         prompt_prefix = " ",
         selection_caret = " ",
@@ -121,6 +125,6 @@ return {
           },
         },
       },
-    }
+    })
   end,
 }
