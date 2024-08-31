@@ -55,8 +55,8 @@ keymap("n", "J", "<C-d>")
 -- diagnostic
 keymap("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 keymap("n", "<leader>k", vim.lsp.buf.hover, { desc = "Hover over" })
-keymap("n", "<leader>n", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
-keymap("n", "<leader>N", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
+keymap("n", "<leader>gd", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
+keymap("n", "<leader>gD", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
 
 keymap("n", "<leader>ft", function()
   require("max.utils.terminal").open()
