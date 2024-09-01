@@ -18,6 +18,9 @@ return {
       { "<c-space>", desc = "Increment Selection" },
       { "<bs>", desc = "Decrement Selection", mode = "x" },
     },
+    dependencies = {
+      { "nushell/tree-sitter-nu" },
+    },
     ---@type TSConfig
     opts = {
       ignore_install = {},
@@ -34,6 +37,7 @@ return {
         "javascript",
         "jsdoc",
         "json",
+        "terraform",
         "jsonc",
         "lua",
         "luadoc",

@@ -26,6 +26,8 @@ return {
         "lua_ls",
         "tsserver",
         "graphql",
+        "terraformls",
+        "docker_compose_language_service",
         "prismals",
         "marksman",
         "pyright",

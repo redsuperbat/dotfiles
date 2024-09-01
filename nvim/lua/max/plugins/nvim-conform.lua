@@ -7,12 +7,12 @@ return {
     cmd = "ConformInfo",
     keys = {
       {
-        "<leader>cF",
+        "<leader>cf",
         function()
-          require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
+          require("conform").format()
         end,
-        mode = { "n", "v" },
-        desc = "Format Injected Langs",
+        mode = { "n" },
+        desc = "Format buffer",
       },
     },
 

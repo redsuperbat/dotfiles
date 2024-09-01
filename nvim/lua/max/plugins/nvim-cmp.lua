@@ -47,15 +47,19 @@ return {
         completion = {
           completeopt = "menu,menuone,preview,noselect",
         },
-        mapping = cmp.mapping.preset.insert({
+        mapping = {
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        }),
+          -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          -- Disable up and down when cmp is open to force me to use proper keybinds
+          ["<Up>"] = function() end,
+          ["<Down>"] = function() end,
+        },
         matching = {
           disallow_partial_fuzzy_matching = false,
         },
@@ -65,7 +69,6 @@ return {
           end,
         },
         sources = cmp.config.sources({
-
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "buffer" },
