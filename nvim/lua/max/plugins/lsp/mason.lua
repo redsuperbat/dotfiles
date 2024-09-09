@@ -27,6 +27,7 @@ return {
         "tsserver",
         "graphql",
         "terraformls",
+        "rust_analyzer",
         "docker_compose_language_service",
         "prismals",
         "marksman",

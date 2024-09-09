@@ -34,6 +34,7 @@ return {
         "c",
         "diff",
         "html",
+        "rust",
         "javascript",
         "jsdoc",
         "json",
