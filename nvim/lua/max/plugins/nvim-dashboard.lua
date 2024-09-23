@@ -69,7 +69,17 @@ return {
         footer = function()
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          return { "🚀 Great config dude, neovim loaded in " .. ms .. "ms" }
+          local no_plugins = stats.loaded
+          local total_plugins = stats.count
+          return {
+            "🚀 Great config dude, lazy loaded "
+              .. no_plugins
+              .. "/"
+              .. total_plugins
+              .. " plugins in "
+              .. ms
+              .. "ms",
+          }
         end,
       },
     }

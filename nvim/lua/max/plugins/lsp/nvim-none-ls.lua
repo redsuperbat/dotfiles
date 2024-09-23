@@ -32,6 +32,11 @@ return {
 
     nls.setup({
       sources = {
+        nls.builtins.code_actions.refactoring,
+
+        nls.builtins.diagnostics.actionlint,
+        nls.builtins.diagnostics.codespell,
+
         nls.builtins.formatting.shfmt,
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.biome.with({
