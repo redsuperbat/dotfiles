@@ -19,6 +19,7 @@ return {
       virt_text_priority = 100,
     },
     on_attach = function(buffer)
+      local gs = package.loaded.gitsigns
       local function map(mode, l, r, desc)
         vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
       end
@@ -28,6 +29,12 @@ return {
       map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
       map({ "n", "v" }, "<leader>gbs", ":Gitsigns stage_buffer<CR>", "Stage buffer")
       map({ "n", "v" }, "<leader>gbr", ":Gitsigns reset_buffer<CR>", "Reset buffer")
+
+      map("n", "<leader>gc", function()
+        vim.schedule(function()
+          gs.next_hunk()
+        end)
+      end, "Go to next change")
     end,
   },
 }
