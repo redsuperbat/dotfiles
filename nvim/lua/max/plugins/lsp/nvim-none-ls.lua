@@ -41,10 +41,8 @@ return {
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.biome.with({
           args = {
-            "format",
+            "check",
             "--write",
-            "--indent-style",
-            "space",
             "--stdin-file-path",
             "$FILENAME",
           },
