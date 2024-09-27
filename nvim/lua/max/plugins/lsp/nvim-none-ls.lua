@@ -37,6 +37,13 @@ return {
         nls.builtins.diagnostics.actionlint,
         nls.builtins.diagnostics.codespell,
 
+        nls.builtins.formatting.sqlfluff.with({
+          extra_args = { "--dialect", "postgres" },
+        }),
+        nls.builtins.diagnostics.sqlfluff.with({
+          extra_args = { "--dialect", "postgres" },
+        }),
+
         nls.builtins.formatting.shfmt,
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.biome.with({

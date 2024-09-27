@@ -40,6 +40,7 @@ return {
       ensure_installed = {
         "prettier",
         "stylua",
+        "sqlfluff",
         "biome",
         "taplo", -- markdown formatter?
         "isort", -- python formatter

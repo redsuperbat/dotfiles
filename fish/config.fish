@@ -81,4 +81,12 @@ source "$HOME/.config/fish/kanagawa.fish"
 alias kc=kubectl
 alias gap="git add :/ -Ap"
 alias vim=nvim
-alias cl=clear
+alias cl="clear && tmux clear-history"
+
+# Clear all logs in all windows
+function clw
+    for pane in (tmux list-panes -F '#{pane_id}')
+        tmux send-keys -t $pane C-z cl Enter
+    end
+end
+
