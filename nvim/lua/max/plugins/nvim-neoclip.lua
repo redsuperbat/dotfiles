@@ -1,5 +1,6 @@
 return {
   "AckslD/nvim-neoclip.lua",
+  events = { "VeryLazy" },
   keys = {
 
     {
