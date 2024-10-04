@@ -1,8 +1,21 @@
 local lsp_formatting = function(bufnr)
+  local logger = require("plenary.log").new({
+    plugin = "none-ls",
+  })
+
   vim.lsp.buf.format({
     async = false,
     filter = function(client)
-      return client.name == "null-ls"
+      local accepted_clients = vim.iter({ "null-ls", "prismals" })
+      local is_accepted = accepted_clients:any(function(c)
+        return c == client.name
+      end)
+
+      if not is_accepted then
+        --      logger.info("unaccepted client" .. client.name)
+      end
+
+      return is_accepted
     end,
     bufnr = bufnr,
   })
