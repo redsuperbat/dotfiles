@@ -20,6 +20,9 @@ keymap(
   { desc = "Redraw / Clear hlsearch / Diff Update" }
 )
 
+keymap("n", "gl", "g_")
+keymap("n", "gh", "^")
+
 keymap("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
 keymap("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
 keymap("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)

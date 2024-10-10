@@ -15,6 +15,7 @@ function M.root()
     "lazyvim.json",
     ".gitignore",
     "tsconfig.json",
+    "deno.json",
     "Cargo.toml",
   }
   -- Start from the current directory

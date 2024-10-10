@@ -43,6 +43,7 @@ return {
       end,
     })
 
+
     nls.setup({
       sources = {
         nls.builtins.code_actions.refactoring,
@@ -58,6 +59,9 @@ return {
         }),
 
         nls.builtins.formatting.shfmt,
+
+        nls.builtins.formatting.terraform_fmt,
+
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.biome.with({
           args = {
