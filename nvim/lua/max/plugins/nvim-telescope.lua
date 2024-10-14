@@ -25,7 +25,7 @@ return {
     {
       "<leader><space>",
       function()
-        require("telescope.builtin").find_files({ cwd = require("max.utils.fs").root() })
+        require("telescope.builtin").find_files({ cwd = require("max.utils.fs").root(), hidden = true })
       end,
       desc = "Find Files (Root Dir)",
     },
@@ -74,22 +74,6 @@ return {
   config = function()
     local actions = require("telescope.actions")
 
-    local telescope_no_ignore = function()
-      local action_state = require("telescope.actions.state")
-      local picker = action_state.get_current_picker(vim.api.nvim_get_current_buf())
-      local cmd = picker.prompt_title == "Live Grep" and "live_grep" or "find_files"
-      local line = action_state.get_current_line()
-      require("telescope.builtin")[cmd]({ no_ignore = true, default_text = line })
-    end
-
-    local telescope_with_hidden = function()
-      local action_state = require("telescope.actions.state")
-      local picker = action_state.get_current_picker(vim.api.nvim_get_current_buf())
-      local cmd = picker.prompt_title == "Live Grep" and "live_grep" or "find_files"
-      local line = action_state.get_current_line()
-      require("telescope.builtin")[cmd]({ hidden = true, default_text = line })
-    end
-
     require("telescope").setup({
       extensions_list = { "fzf" },
       defaults = {
@@ -111,8 +95,6 @@ return {
         end,
         mappings = {
           i = {
-            ["<a-i>"] = telescope_no_ignore,
-            ["<a-h>"] = telescope_with_hidden,
             ["<C-f>"] = actions.preview_scrolling_down,
             ["<C-b>"] = actions.preview_scrolling_up,
             -- Disable up and down when cmp is open to force me to use proper keybinds
