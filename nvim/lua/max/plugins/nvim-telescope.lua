@@ -25,7 +25,10 @@ return {
     {
       "<leader><space>",
       function()
-        require("telescope.builtin").find_files({ cwd = require("max.utils.fs").root(), hidden = true })
+        require("telescope.builtin").find_files({
+          cwd = require("max.utils.fs").root(),
+          hidden = true,
+        })
       end,
       desc = "Find Files (Root Dir)",
     },
@@ -50,7 +53,10 @@ return {
     {
       "<leader>sG",
       function()
-        require("telescope.builtin").live_grep({ cwd = require("max.utils.fs").root() })
+        require("telescope.builtin").live_grep({
+          cwd = require("max.utils.fs").root(),
+          hidden = true,
+        })
       end,
       desc = "Grep (Root Dir)",
     },
@@ -80,6 +86,9 @@ return {
         prompt_prefix = " ",
         selection_caret = " ",
         hidden = true,
+        file_ignore_patterns = {
+          ".git/",
+        },
         -- open files in the first window that is an actual file.
         -- use the current window if no other window is available.
         get_selection_window = function()
