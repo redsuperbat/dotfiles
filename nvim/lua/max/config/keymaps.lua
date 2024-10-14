@@ -22,6 +22,8 @@ keymap(
 
 keymap("n", "gl", "g_")
 keymap("n", "gh", "^")
+keymap("v", "gl", "g_")
+keymap("v", "gh", "^")
 
 keymap("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
 keymap("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
