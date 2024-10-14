@@ -1,19 +1,11 @@
 local lsp_formatting = function(bufnr)
-  local logger = require("plenary.log").new({
-    plugin = "none-ls",
-  })
-
   vim.lsp.buf.format({
     async = false,
     filter = function(client)
-      local accepted_clients = vim.iter({ "null-ls", "prismals" })
+      local accepted_clients = vim.iter({ "null-ls", "prismals", "rust_analyzer" })
       local is_accepted = accepted_clients:any(function(c)
         return c == client.name
       end)
-
-      if not is_accepted then
-        --      logger.info("unaccepted client" .. client.name)
-      end
 
       return is_accepted
     end,
@@ -24,6 +16,9 @@ end
 return {
   "nvimtools/none-ls.nvim",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  dependencies = {
+    "davidmh/cspell.nvim",
+  },
   keys = {
     {
       "<leader>cf",
@@ -36,6 +31,7 @@ return {
   },
   config = function()
     local nls = require("null-ls")
+    local cspell = require("cspell")
 
     vim.api.nvim_create_autocmd("BufWritePre", {
       callback = function()
@@ -43,13 +39,18 @@ return {
       end,
     })
 
+    local cspell_config = {
+      cspell_config_dirs = { "~/.config/nvim/lua/max/plugins/lsp/cspell/" },
+    }
 
     nls.setup({
       sources = {
         nls.builtins.code_actions.refactoring,
 
         nls.builtins.diagnostics.actionlint,
-        nls.builtins.diagnostics.codespell,
+
+        cspell.diagnostics.with({ config = cspell_config }),
+        cspell.code_actions.with({ config = cspell_config }),
 
         nls.builtins.formatting.sqlfluff.with({
           extra_args = { "--dialect", "postgres" },

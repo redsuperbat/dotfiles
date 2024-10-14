@@ -24,6 +24,7 @@ return {
         "svelte",
         "jsonls",
         "lua_ls",
+        "denols",
         "tsserver",
         "graphql",
         "terraformls",
@@ -39,6 +40,7 @@ return {
     require("mason-tool-installer").setup({
       ensure_installed = {
         "prettier",
+        "cspell",
         "stylua",
         "sqlfluff",
         "biome",

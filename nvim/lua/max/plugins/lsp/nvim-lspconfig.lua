@@ -1,7 +1,3 @@
-local logger = require("plenary.log").new({
-  plugin = "lspconfig",
-})
-
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
@@ -97,7 +93,30 @@ return {
       },
     })
 
+    add_handler("denols", {
+      root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+      single_file_support = false,
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+    })
+
+    add_handler("tailwindcss", {
+      filetypes = {
+        "typescript.tsx",
+        "typescriptreact",
+        "html",
+      },
+    })
+
     add_handler("tsserver", {
+      root_dir = lspconfig.util.root_pattern("package.json"),
+      single_file_support = false,
       commands = {
         OrganizeImports = {
           function()
