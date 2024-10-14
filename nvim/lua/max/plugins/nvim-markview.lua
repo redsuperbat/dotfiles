@@ -6,4 +6,13 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
   },
+  keys = {
+    {
+      "<leader>mw",
+      function()
+        vim.api.nvim_command(":Markview toggle")
+      end,
+      desc = "Toggle markdown view",
+    },
+  },
 }
