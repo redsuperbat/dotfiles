@@ -49,7 +49,12 @@ return {
 
         nls.builtins.diagnostics.actionlint,
 
-        cspell.diagnostics.with({ config = cspell_config }),
+        cspell.diagnostics.with({
+          config = cspell_config,
+          diagnostics_postprocess = function(diagnostic)
+            diagnostic.severity = vim.diagnostic.severity.HINT
+          end,
+        }),
         cspell.code_actions.with({ config = cspell_config }),
 
         nls.builtins.formatting.sqlfluff.with({

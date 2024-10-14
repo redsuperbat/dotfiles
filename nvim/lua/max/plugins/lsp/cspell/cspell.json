@@ -12,7 +12,15 @@
 		"nvimtools",
 		"davidmh",
 		"Neotree",
-		"antosha"
+		"antosha",
+		"lspconfig",
+		"numhl",
+		"denols",
+		"jsonls",
+		"keymap",
+		"augroup",
+		"hrsh",
+		"texthl"
 	],
 	"language": "en",
 	"version": "0.2",

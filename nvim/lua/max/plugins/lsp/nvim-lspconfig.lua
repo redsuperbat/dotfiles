@@ -110,6 +110,7 @@ return {
       filetypes = {
         "typescript.tsx",
         "typescriptreact",
+        "vue",
         "html",
       },
     })
