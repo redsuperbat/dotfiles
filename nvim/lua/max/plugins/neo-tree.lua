@@ -86,15 +86,16 @@ return {
           },
           ["Y"] = {
             function(state)
-              local node = state.tree:get_node()
-              local path = node:get_id()
+              local path = state.tree:get_node().path
               vim.fn.setreg("+", path, "c")
+              vim.print("copied path " .. path)
             end,
             desc = "Copy Path to Clipboard",
           },
           ["O"] = {
             function(state)
               local path = state.tree:get_node().path
+              vim.print("opening path " .. path)
               os.execute("open -R " .. path)
             end,
             desc = "Open with System Application",
