@@ -41,6 +41,14 @@ return {
 
     local cspell_config = {
       cspell_config_dirs = { "~/.config/nvim/lua/max/plugins/lsp/cspell/" },
+      on_add_to_json = function(payload)
+        local command = string.format(
+          "jq -S '.words |= sort' %s | sponge %s ",
+          payload.cspell_config_path,
+          payload.cspell_config_path
+        )
+        os.execute(command)
+      end,
     }
 
     nls.setup({
