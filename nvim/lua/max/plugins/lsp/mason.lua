@@ -25,7 +25,7 @@ return {
         "jsonls",
         "lua_ls",
         "denols",
-        "tsserver",
+        "ts_ls",
         "graphql",
         "terraformls",
         "rust_analyzer",
