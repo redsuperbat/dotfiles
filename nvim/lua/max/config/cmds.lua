@@ -16,11 +16,11 @@ vim.api.nvim_create_user_command("SearchReplace", function(opts)
 
   local result = os.capture(string.format("rg -l '%s'", args[1]))
   local command = string.format(
-    "rg -l '%s' | xargs -I§ -- sh -c 'rg \"%s\" -r \"%s\" --passthru § | sponge §'",
+    "rg -l '%s' %s | xargs -I§ -- sh -c 'rg \"%s\" -r \"%s\" --passthru § | sponge §'",
     args[1],
+    args[3] or ".",
     args[1],
-    args[2],
-    args[3] or "."
+    args[2]
   )
   os.execute(command)
   vim.print(result)
