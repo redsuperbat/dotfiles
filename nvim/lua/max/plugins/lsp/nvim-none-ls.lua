@@ -2,7 +2,7 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     async = false,
     filter = function(client)
-      local accepted_clients = vim.iter({ "null-ls", "prismals", "rust_analyzer" })
+      local accepted_clients = vim.iter({ "null-ls", "prismals", "rust_analyzer", "denols" })
       local is_accepted = accepted_clients:any(function(c)
         return c == client.name
       end)

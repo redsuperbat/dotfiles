@@ -17,7 +17,7 @@ return {
 
         opts.desc = "Go to definition"
         keymap("n", "gd", function()
-          require("telescope.builtin").lsp_definitions({ reuse_win = true })
+          require("telescope.builtin").lsp_definitions({ reuse_win = true, no_ignore = true })
         end, opts)
 
         opts.desc = "Go to references"
@@ -115,7 +115,7 @@ return {
       },
     })
 
-    add_handler("tsserver", {
+    add_handler("ts_ls", {
       root_dir = lspconfig.util.root_pattern("package.json"),
       single_file_support = false,
       commands = {
