@@ -106,7 +106,7 @@ return {
           i = {
             ["<C-f>"] = actions.preview_scrolling_down,
             ["<C-b>"] = actions.preview_scrolling_up,
-            -- Disable up and down when cmp is open to force me to use proper keybinds
+            -- Disable up and down when telescope is open to force me to use proper keybinds
             ["<Up>"] = function() end,
             ["<Down>"] = function() end,
           },
