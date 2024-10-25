@@ -23,6 +23,7 @@ return {
         "tailwindcss",
         "svelte",
         "jsonls",
+        "intelephense",
         "lua_ls",
         "denols",
         "ts_ls",
