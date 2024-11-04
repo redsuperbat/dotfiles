@@ -66,13 +66,16 @@ return {
     local lspconfig = require("lspconfig")
     local mason_lspconfig = require("mason-lspconfig")
 
+    ---@param server_name string
+    local setup_server = function(server_name)
+      lspconfig[server_name].setup({
+        capabilities = capabilities,
+      })
+    end
+
     local handlers = {
       -- default handler for installed servers
-      function(server_name)
-        lspconfig[server_name].setup({
-          capabilities = capabilities,
-        })
-      end,
+      setup_server,
     }
 
     local add_handler = function(name, options)
@@ -139,7 +142,7 @@ return {
       },
     })
 
-    add_handler("nushell")
+    setup_server("nushell")
 
     add_handler("lua_ls", {
       settings = {

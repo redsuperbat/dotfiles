@@ -121,6 +121,6 @@ path add ($env.HOME | path join ".cargo/bin")
 # Set default editor to neovim
 $env.EDITOR = "nvim"
 
-
+log
 $env.PATH = ($env.PATH | uniq)
 
