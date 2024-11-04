@@ -1,6 +1,7 @@
 
 # Modules
 use ~/.config/nushell/k8s.nu
+use ~/.config/nushell/theme.nu
 
 # Sources
 source ~/.config/nushell/aliases.nu
@@ -23,7 +24,22 @@ def kill_port [port: string] {
   }
 }
 
+def cl [] {
+  clear
+  tmux clear-history
+}
+
+def clw [] {
+  tmux list-panes -F '#{pane_id}' | each {
+    print $in
+    tmux send-keys -t $in C-z cl Enter
+  }
+}
+
+let color_config = theme kawanaga_dragon
 $env.config = {
   edit_mode: vi
+  color_config: $color_config
+  show_banner: false
 };
 
