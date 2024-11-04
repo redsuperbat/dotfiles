@@ -34,7 +34,7 @@ export EDITOR="nvim"
 
 # Kill process on port
 function kill_port
-    kill -9 $(lsof -ti:$1)
+    kill -9 $(lsof -ti:$argv[1])
 end
 
 
@@ -90,4 +90,3 @@ function clw
         tmux send-keys -t $pane C-z cl Enter
     end
 end
-

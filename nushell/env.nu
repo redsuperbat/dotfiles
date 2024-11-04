@@ -39,11 +39,13 @@ $env.PROMPT_COMMAND = {|| create_left_prompt }
 # FIXME: This default is not implemented in rust code as of 2023-09-08.
 $env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
 
+
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-$env.PROMPT_INDICATOR = {|| "> " }
-$env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
+$env.PROMPT_INDICATOR = {|| " > " }
+$env.PROMPT_INDICATOR_VI_INSERT = {|| " [I] " }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| " [N] " }
+$env.PROMPT_INDICATOR_VI_VISUAL = {|| " [V] " }
 $env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
 
 # If you want previously entered commands to have a different prompt from the usual one,
@@ -87,15 +89,9 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
 
-# To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-# $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
-# An alternate way to add entries to $env.PATH is to use the custom command `path add`
-# which is built into the nushell stdlib:
 use std "path add"
 
-path add /some/path
-path add ($env.CARGO_HOME | path join "bin")
 path add ($env.HOME | path join ".local" "bin")
 
 # Homebrew programs
@@ -123,7 +119,7 @@ path add ($env.HOME | path join ".cargo/bin")
 
 
 # Set default editor to neovim
-$env.EDITOR = nvim
+$env.EDITOR = "nvim"
 
 
 $env.PATH = ($env.PATH | uniq)

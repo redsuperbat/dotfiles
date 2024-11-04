@@ -139,6 +139,8 @@ return {
       },
     })
 
+    add_handler("nushell")
+
     add_handler("lua_ls", {
       settings = {
         Lua = {
