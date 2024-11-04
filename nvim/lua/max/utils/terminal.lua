@@ -19,6 +19,7 @@ function M.open(cmd, opts)
     ft = "lazyterm",
     size = { width = 0.9, height = 0.9 },
     backdrop = 100,
+    border = "none",
     persistent = true,
   }, opts or {})
 

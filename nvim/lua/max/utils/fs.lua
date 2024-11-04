@@ -30,7 +30,11 @@ function M.root()
     })[1]
 
     if file_path then
-      return vim.fs.dirname(file_path)
+      local directory = vim.fs.dirname(file_path)
+      if directory == "." then
+        return vim.fn.getcwd()
+      end
+      return directory
     end
   end
 
