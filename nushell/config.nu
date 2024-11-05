@@ -1,10 +1,10 @@
 
 # Modules
-use ~/.config/nushell/k8s.nu
-use ~/.config/nushell/theme.nu
+use ./k8s.nu
+use ./theme.nu
 
 # Sources
-source ~/.config/nushell/aliases.nu
+source ./aliases.nu
 
 def watch [cmd: closure] {
   loop {
