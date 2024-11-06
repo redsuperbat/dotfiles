@@ -80,20 +80,25 @@ path add /opt/homebrew/opt/mysql-client/bin
 path add /opt/homebrew/opt/bison/bin
 path add /opt/homebrew/opt/llvm/bin
 
+# Fast node manager
+load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column '=' | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
+$env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
+
 # Deno
 path add ($env.HOME | path join ".deno")
-path add ($env.DENO_INSTALL | path join "bin")
+if "DENO_INSTALL" in $env { path add ($env.DENO_INSTALL | path join "bin") }
 
 # Scripts
 path add ($env.HOME | path join "Scripts")
 
 # Go
 path add ($env.HOME | path join "go")
-path add ($env.GOPATH | path join "bin")
+if "GOPATH" in $env { path add ($env.GOPATH | path join "bin") }
 
 
 # Rust
 path add ($env.HOME | path join ".cargo/bin")
+
 
 
 # Set default editor to neovim
