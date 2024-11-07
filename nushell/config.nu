@@ -6,12 +6,11 @@ use ./theme.nu
 # Sources
 source ./aliases.nu
 
-def watch [cmd: closure] {
+def repeat [cmd: closure, dur?: duration] {
   loop {
-    let result = do $cmd
-    clear
-    print $result
-    sleep 1sec
+    print (do $cmd)
+    print "\n"
+    sleep ($dur | default 2sec)
   }
 }
 
