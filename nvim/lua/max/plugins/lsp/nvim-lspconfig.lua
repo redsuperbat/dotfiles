@@ -119,6 +119,7 @@ return {
     })
 
     add_handler("ts_ls", {
+      filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
       root_dir = lspconfig.util.root_pattern("package.json"),
       single_file_support = false,
       commands = {
@@ -132,6 +133,18 @@ return {
             vim.lsp.buf.execute_command(params)
           end,
           description = "Organize Imports",
+        },
+      },
+    })
+
+    add_handler("volar", {
+      filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+      init_options = {
+        vue = {
+          hybridMode = false,
+        },
+        typescript = {
+          tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
         },
       },
     })

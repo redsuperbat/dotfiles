@@ -19,7 +19,7 @@ return {
       ensure_installed = {
         "html",
         "cssls",
-        "volar@1.8.27",
+        "volar",
         "tailwindcss",
         "svelte",
         "jsonls",
