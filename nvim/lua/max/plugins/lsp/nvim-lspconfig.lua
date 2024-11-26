@@ -40,7 +40,7 @@ return {
         keymap("n", "gK", vim.lsp.buf.signature_help, opts)
 
         opts.desc = "Code action"
-        keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+        keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
         opts.desc = "Rename"
         keymap("n", "<leader>cr", vim.lsp.buf.rename, opts)

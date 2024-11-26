@@ -49,7 +49,15 @@ return {
     { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
     { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
 
-    { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep (CWD Dir)" },
+    {
+      "<leader>sg",
+      function()
+        require("telescope.builtin").live_grep({
+          hidden = true,
+        })
+      end,
+      desc = "Grep (CWD Dir)",
+    },
     {
       "<leader>sG",
       function()
@@ -71,7 +79,7 @@ return {
       "<leader>sS",
       function()
         require("telescope.builtin").lsp_dynamic_workspace_symbols({
-          symbols = require("lazyvim.config").get_kind_filter(),
+          cwd = require("max.utils.fs").root(),
         })
       end,
       desc = "Goto Symbol (Workspace)",
@@ -83,6 +91,9 @@ return {
     require("telescope").setup({
       extensions_list = { "fzf" },
       defaults = {
+        preview = {
+          treesitter = true,
+        },
         prompt_prefix = " ",
         selection_caret = " ",
         hidden = true,
