@@ -1,3 +1,4 @@
+local fs = require("max.utils.fs")
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
@@ -113,6 +114,7 @@ return {
       filetypes = {
         "typescript.tsx",
         "typescriptreact",
+        "svelte",
         "vue",
         "html",
       },
@@ -120,7 +122,20 @@ return {
 
     add_handler("ts_ls", {
       filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-      root_dir = lspconfig.util.root_pattern("package.json"),
+      --- @param filename string
+      --- @param bufnr number
+      root_dir = function(filename, bufnr)
+        local files_to_not_start_lsp = {
+          "deno.json",
+        }
+        for _, filename in ipairs(files_to_not_start_lsp) do
+          if fs.find_file(filename, bufnr) then
+            return nil
+          end
+        end
+
+        return lspconfig.util.root_pattern("package.json")(filename)
+      end,
       single_file_support = false,
       commands = {
         OrganizeImports = {
@@ -138,7 +153,8 @@ return {
     })
 
     add_handler("volar", {
-      filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+      filetypes = { "vue" },
+      root_dir = lspconfig.util.root_pattern("app.vue"),
       init_options = {
         vue = {
           hybridMode = false,

@@ -9,6 +9,22 @@ function M.path_exists(path)
   return vim.uv.fs_stat(path)
 end
 
+--- @param filename string
+--- @param bufnr number
+--- @return string | nil
+function M.find_file(filename, bufnr)
+  local starting_dir = vim.api.nvim_buf_get_name(bufnr)
+  local file_path = vim.fs.find(filename, {
+    upward = true,
+    path = starting_dir,
+    type = "file",
+  })[1]
+  if file_path then
+    return file_path
+  end
+  return nil
+end
+
 function M.root()
   local filenames = {
     "package.json",
