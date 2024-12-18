@@ -33,8 +33,7 @@ function M.open(cmd, opts)
         vim.cmd.startinsert()
       end,
     })
-
-    return vim.api.nvim_open_win(buf, true, {
+    vim.api.nvim_open_win(buf, true, {
       relative = "editor",
       width = width,
       height = height,
@@ -43,6 +42,8 @@ function M.open(cmd, opts)
       style = "minimal",
       border = "rounded",
     })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1f1f28" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1f1f28" })
   end
 
   if vim.api.nvim_buf_is_valid(terminal or -1) then
