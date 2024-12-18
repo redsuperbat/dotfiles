@@ -3,6 +3,7 @@ return {
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "antosha417/nvim-lsp-file-operations",
   },
   opts = {},
   config = function()
@@ -17,7 +18,7 @@ return {
 
         opts.desc = "Go to definition"
         keymap("n", "gd", function()
-          require("telescope.builtin").lsp_definitions({ reuse_win = true, no_ignore = true })
+          require("telescope.builtin").lsp_definitions({ no_ignore = true })
         end, opts)
 
         opts.desc = "Go to references"
@@ -54,8 +55,15 @@ return {
     })
 
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    local capabilities =
-      vim.tbl_deep_extend("force", {}, vim.lsp.protocol.make_client_capabilities(), cmp_nvim_lsp.default_capabilities())
+    local file_operation_capabilities = require("lsp-file-operations").default_capabilities()
+
+    local capabilities = vim.tbl_deep_extend(
+      "force",
+      {},
+      vim.lsp.protocol.make_client_capabilities(),
+      cmp_nvim_lsp.default_capabilities(),
+      file_operation_capabilities
+    )
 
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do
@@ -138,7 +146,7 @@ return {
     })
 
     add_handler("volar", {
-      filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact" },
+      filetypes = { "vue" },
       init_options = {
         vue = {
           hybridMode = false,
