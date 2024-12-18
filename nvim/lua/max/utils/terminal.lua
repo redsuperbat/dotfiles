@@ -1,59 +1,73 @@
----@class lazyvim.util.terminal
-local M = setmetatable({}, {
-  __call = function(m, ...)
-    return m.open(...)
-  end,
-})
+local M = {}
 
----@type table<string, LazyFloat>
+---@type table<string, integer>
 local terminals = {}
 
----@class FloatingTermOpts
----@field esc_esc? boolean
----@field ctrl_hjkl? boolean
--- Opens a floating terminal (interactive by default)
+---@class FloatingTerminalOptions
+---@field on_buf_create? function
 ---@param cmd? string[]|string
----@param opts? FloatingTermOpts
+---@param opts? FloatingTerminalOptions
 function M.open(cmd, opts)
-  opts = vim.tbl_deep_extend("force", {}, {
-    ft = "lazyterm",
-    size = { width = 0.9, height = 0.9 },
-    backdrop = 100,
-    border = "none",
-    persistent = true,
-  }, opts or {})
+  cmd = cmd or vim.o.shell
+  -- Get the editor's dimensions
+  local editor_width = vim.o.columns
+  local editor_height = vim.o.lines
 
-  local termkey = vim.inspect({ cmd = cmd or "shell", count = vim.v.count1 })
+  -- Calculate the dimensions of the floating window
+  local width = math.floor(editor_width * 0.8)
+  local height = math.floor(editor_height * 0.8)
 
-  if terminals[termkey] and terminals[termkey]:buf_valid() then
-    terminals[termkey]:toggle()
-    return terminals[termkey]
+  -- Calculate the starting position
+  local col = math.floor((editor_width - width) / 2)
+  local row = math.floor((editor_height - height) / 2)
+
+  local terminal_key = vim.inspect({ cmd = cmd, count = vim.v.count1 })
+
+  local terminal = terminals[terminal_key]
+
+  ---@param buf integer
+  local open_win = function(buf)
+    vim.api.nvim_create_autocmd("BufEnter", {
+      buffer = buf,
+      callback = function()
+        vim.cmd.startinsert()
+      end,
+    })
+
+    return vim.api.nvim_open_win(buf, true, {
+      relative = "editor",
+      width = width,
+      height = height,
+      col = col,
+      row = row,
+      style = "minimal",
+      border = "rounded",
+    })
   end
 
-  terminals[termkey] = require("lazy.util").float_term(cmd, opts)
-  local buf = terminals[termkey].buf
-  vim.b[buf].lazyterm_cmd = cmd
-
-  if opts.esc_esc == false then
-    vim.keymap.set("t", "<esc>", "<esc>", { buffer = buf, nowait = true })
-  end
-  if opts.ctrl_hjkl == false then
-    vim.keymap.set("t", "<c-h>", "<c-h>", { buffer = buf, nowait = true })
-    vim.keymap.set("t", "<c-j>", "<c-j>", { buffer = buf, nowait = true })
-    vim.keymap.set("t", "<c-k>", "<c-k>", { buffer = buf, nowait = true })
-    vim.keymap.set("t", "<c-l>", "<c-l>", { buffer = buf, nowait = true })
+  if vim.api.nvim_buf_is_valid(terminal or -1) then
+    return open_win(terminal)
   end
 
-  vim.api.nvim_create_autocmd("BufEnter", {
-    buffer = buf,
-    callback = function()
-      vim.cmd.startinsert()
-    end,
-  })
+  local buf = vim.api.nvim_create_buf(false, true)
+  open_win(buf)
+
+  vim.fn.termopen(cmd)
+
+  vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { buffer = buf, nowait = true })
+  vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = buf, nowait = true })
+
+  if opts and opts.on_buf_create then
+    opts.on_buf_create(buf)
+  end
+
+  vim.keymap.set({ "t", "n" }, "<c-h>", "<c-h>", { buffer = buf, nowait = true })
+  vim.keymap.set({ "t", "n" }, "<c-j>", "<c-j>", { buffer = buf, nowait = true })
+  vim.keymap.set({ "t", "n" }, "<c-k>", "<c-k>", { buffer = buf, nowait = true })
+  vim.keymap.set({ "t", "n" }, "<c-l>", "<c-l>", { buffer = buf, nowait = true })
 
   vim.cmd("noh")
-
-  return terminals[termkey]
+  terminals[terminal_key] = buf
 end
 
 return M

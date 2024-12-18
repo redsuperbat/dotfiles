@@ -73,11 +73,22 @@ end, { desc = "Floating terminal" })
 
 -- lazygit
 keymap("n", "<leader>gg", function()
-  require("max.utils.terminal").open("lazygit", { esc_esc = false, ctrl_hjkl = false })
+  require("max.utils.terminal").open("lazygit", {
+    on_buf_create = function(buf)
+      -- To be able to use esc normally in lazygit
+      vim.keymap.set({ "t", "n" }, "<esc>", "<esc>", { buffer = buf, nowait = true })
+      -- Closes lazygit in a single keystroke
+      vim.keymap.set("t", "q", "<cmd>q<CR>", { buffer = buf, nowait = true })
+    end,
+  })
 end, { desc = "Lazygit" })
 
 -- quit
 keymap("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+
+keymap("n", "<leader>xx", "<cmd>source %<CR>", { desc = "Source current buffer file" })
+keymap("n", "<leader>x", ":.lua<CR>", { desc = "Execute current line" })
+keymap("v", "<leader>x", ":lua<CR>", { desc = "Execute current visual selection" })
 
 -- Terminal Mappings
 keymap("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
