@@ -2,7 +2,10 @@ local fs = require("max.utils.fs")
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "antosha417/nvim-lsp-file-operations",
+  },
   cmd = "Neotree",
   keys = {
     {
@@ -120,5 +123,8 @@ return {
         end
       end,
     })
+
+    -- Plugin to handle file operations like rename etc
+    require("lsp-file-operations").setup()
   end,
 }
