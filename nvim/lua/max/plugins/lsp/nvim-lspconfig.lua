@@ -118,6 +118,17 @@ return {
       },
     })
 
+    add_handler("biome", {
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+    })
+
     add_handler("tailwindcss", {
       filetypes = {
         "typescript.tsx",
