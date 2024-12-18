@@ -17,6 +17,7 @@
     "antosha",
     "augroup",
     "autocmd",
+    "bufhidden",
     "bufnr",
     "closeopen",
     "cuid",
@@ -25,6 +26,7 @@
     "denols",
     "fargs",
     "frakt",
+    "hjkl",
     "hrsh",
     "hubspot",
     "iname",
@@ -32,11 +34,13 @@
     "jsonlint",
     "jsonls",
     "keymap",
+    "lazygit",
     "lspconfig",
     "lucide",
     "mevisio",
     "nargs",
     "nestjs",
+    "nowait",
     "numhl",
     "nvim",
     "nvimtools",
@@ -49,7 +53,10 @@
     "shfmt",
     "significants",
     "sqlfluff",
+    "startinsert",
     "tanstack",
-    "texthl"
+    "termopen",
+    "texthl",
+    "winhl"
   ]
 }
