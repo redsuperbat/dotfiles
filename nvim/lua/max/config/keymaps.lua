@@ -74,6 +74,7 @@ end, { desc = "Floating terminal" })
 -- lazygit
 keymap("n", "<leader>gg", function()
   require("max.utils.terminal").open("lazygit", {
+    border = "none",
     on_buf_create = function(buf)
       -- To be able to use esc normally in lazygit
       vim.keymap.set({ "t", "n" }, "<esc>", "<esc>", { buffer = buf, nowait = true })

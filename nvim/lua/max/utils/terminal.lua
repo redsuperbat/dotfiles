@@ -4,11 +4,14 @@ local M = {}
 local terminals = {}
 
 ---@class FloatingTerminalOptions
----@field on_buf_create? function
+---@field on_buf_create? fun(buf: integer): nil
+---@field border? string
 ---@param cmd? string[]|string
 ---@param opts? FloatingTerminalOptions
 function M.open(cmd, opts)
   cmd = cmd or vim.o.shell
+  local border = (opts and opts.border) or "rounded"
+
   -- Get the editor's dimensions
   local editor_width = vim.o.columns
   local editor_height = vim.o.lines
@@ -40,7 +43,7 @@ function M.open(cmd, opts)
       col = col,
       row = row,
       style = "minimal",
-      border = "rounded",
+      border = border,
     })
     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1f1f28" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1f1f28" })
