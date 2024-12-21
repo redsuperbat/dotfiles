@@ -115,11 +115,15 @@ return {
       },
     })
 
-    vim.api.nvim_create_autocmd("TermClose", {
-      pattern = "*lazygit",
-      callback = function()
-        if package.loaded["neo-tree.sources.git_status"] then
-          require("neo-tree.sources.git_status").refresh()
+    -- When lazygit floating terminal is closed make sure to update neo-tree
+    vim.api.nvim_create_autocmd("WinClosed", {
+      pattern = "*",
+      callback = function(args)
+        local buffer_name = vim.fn.bufname(args.buf)
+        if buffer_name:match("lazygit") then
+          if package.loaded["neo-tree.sources.git_status"] then
+            require("neo-tree.sources.git_status").refresh()
+          end
         end
       end,
     })

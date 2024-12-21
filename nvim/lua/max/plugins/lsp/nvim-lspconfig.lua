@@ -4,6 +4,7 @@ return {
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   dependencies = {
     "antosha417/nvim-lsp-file-operations",
+    "folke/lazydev.nvim",
     "saghen/blink.cmp",
     "williamboman/mason-lspconfig.nvim",
   },
@@ -145,8 +146,8 @@ return {
         local files_to_not_start_lsp = {
           "deno.json",
         }
-        for _, filename in ipairs(files_to_not_start_lsp) do
-          if fs.find_file(filename, bufnr) then
+        for _, f_name in ipairs(files_to_not_start_lsp) do
+          if fs.find_file(f_name, bufnr) then
             return nil
           end
         end
