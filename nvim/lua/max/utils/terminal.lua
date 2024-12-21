@@ -10,23 +10,28 @@ local terminals = {}
 ---@param opts? FloatingTerminalOptions
 function M.open(cmd, opts)
   cmd = cmd or vim.o.shell
+  local terminal_key = vim.inspect({ cmd = cmd, count = vim.v.count1 })
+  local terminal = terminals[terminal_key]
   local border = (opts and opts.border) or "rounded"
 
-  -- Get the editor's dimensions
-  local editor_width = vim.o.columns
-  local editor_height = vim.o.lines
+  local function win_config()
+    local editor_width = vim.o.columns
+    local editor_height = vim.o.lines
+    local width = math.floor(editor_width * 0.8)
+    local height = math.floor(editor_height * 0.8)
+    local col = math.floor((editor_width - width) / 2)
+    local row = math.floor((editor_height - height) / 2)
 
-  -- Calculate the dimensions of the floating window
-  local width = math.floor(editor_width * 0.8)
-  local height = math.floor(editor_height * 0.8)
-
-  -- Calculate the starting position
-  local col = math.floor((editor_width - width) / 2)
-  local row = math.floor((editor_height - height) / 2)
-
-  local terminal_key = vim.inspect({ cmd = cmd, count = vim.v.count1 })
-
-  local terminal = terminals[terminal_key]
+    return {
+      relative = "editor",
+      style = "minimal",
+      border = border,
+      width = width,
+      height = height,
+      col = col,
+      row = row,
+    }
+  end
 
   ---@param buf integer
   local open_win = function(buf)
@@ -36,25 +41,31 @@ function M.open(cmd, opts)
         vim.cmd.startinsert()
       end,
     })
-    vim.api.nvim_open_win(buf, true, {
-      relative = "editor",
-      width = width,
-      height = height,
-      col = col,
-      row = row,
-      style = "minimal",
-      border = border,
-    })
+    local win = vim.api.nvim_open_win(buf, true, win_config())
     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1f1f28" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1f1f28" })
+    return win
+  end
+
+  ---@param buf integer
+  local function open_win_with_resize(buf)
+    local win = open_win(buf)
+    vim.api.nvim_create_autocmd("VimResized", {
+      callback = function()
+        if not vim.api.nvim_win_is_valid(win) then
+          return
+        end
+        vim.api.nvim_win_set_config(win, win_config())
+      end,
+    })
   end
 
   if vim.api.nvim_buf_is_valid(terminal or -1) then
-    return open_win(terminal)
+    return open_win_with_resize(terminal)
   end
 
   local buf = vim.api.nvim_create_buf(false, true)
-  open_win(buf)
+  open_win_with_resize(buf)
 
   vim.fn.termopen(cmd)
 
