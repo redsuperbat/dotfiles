@@ -1,6 +1,6 @@
 return {
   "gbprod/substitute.nvim",
-  event = { "BufEnter" },
+  event = { "VeryLazy" },
   config = function()
     local sub = require("substitute")
     sub.setup()

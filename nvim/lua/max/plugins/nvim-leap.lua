@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "ggandor/leap.nvim",
   event = "BufEnter",
   dependencies = {
