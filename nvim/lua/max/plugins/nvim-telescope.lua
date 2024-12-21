@@ -3,25 +3,19 @@ return {
   cmd = "Telescope",
   version = false, -- telescope did only one release, so use HEAD for now
   dependencies = {
+    "nvim-lua/plenary.nvim",
     {
-      "nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        config = function()
-          require("telescope").load_extension("fzf")
-        end,
-      },
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
     },
   },
   keys = {
-    {
-      "<leader>,",
-      "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
-      desc = "Switch Buffer",
-    },
-    { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (Root Dir)" },
     { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+
+    -- find
     {
       "<leader><space>",
       function()
@@ -32,7 +26,6 @@ return {
       end,
       desc = "Find Files (Root Dir)",
     },
-    -- find
     { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (Root Dir)" },
     { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
@@ -48,22 +41,12 @@ return {
     { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document Diagnostics" },
     { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
-
-    {
-      "<leader>sg",
-      function()
-        require("telescope.builtin").live_grep({
-          hidden = true,
-        })
-      end,
-      desc = "Grep (CWD Dir)",
-    },
+    { "<leader>sg", ":Telescope live_grep<cr>", desc = "Grep (CWD Dir)" },
     {
       "<leader>sG",
       function()
         require("telescope.builtin").live_grep({
           cwd = require("max.utils.fs").root(),
-          hidden = true,
         })
       end,
       desc = "Grep (Root Dir)",
@@ -89,7 +72,7 @@ return {
     local actions = require("telescope.actions")
 
     require("telescope").setup({
-      extensions_list = { "fzf" },
+      extensions = { "fzf" },
       defaults = {
         preview = {
           treesitter = true,
