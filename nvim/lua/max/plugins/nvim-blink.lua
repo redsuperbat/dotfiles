@@ -3,6 +3,7 @@ return {
   {
     "saghen/blink.cmp",
     dependencies = "rafamadriz/friendly-snippets",
+    event = { "VeryLazy" },
     version = "v0.8.0",
     config = function()
       require("blink.cmp").setup({
