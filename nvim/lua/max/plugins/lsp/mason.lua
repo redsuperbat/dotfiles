@@ -24,6 +24,7 @@ return {
         "tailwindcss",
         "svelte",
         "jsonls",
+        "solargraph",
         "intelephense",
         "lua_ls",
         "denols",

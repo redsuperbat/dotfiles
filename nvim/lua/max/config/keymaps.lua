@@ -78,8 +78,9 @@ keymap("n", "<leader>gg", function()
     on_buf_create = function(buf)
       -- To be able to use esc normally in lazygit
       vim.keymap.set({ "t", "n" }, "<esc>", "<esc>", { buffer = buf, nowait = true })
-      -- Closes lazygit in a single keystroke
-      vim.keymap.set("t", "q", "<cmd>q<CR>", { buffer = buf, nowait = true })
+      -- Close lazygit with leader q
+      vim.keymap.set("t", "<leader>q", "<cmd>q<CR>", { buffer = buf, nowait = true })
+      vim.keymap.set("t", "q", function() end, { buffer = buf, nowait = true })
     end,
   })
 end, { desc = "Lazygit" })

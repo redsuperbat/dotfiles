@@ -77,6 +77,9 @@ source "$HOME/.config/fish/k8s.fish"
 # Source theme
 source "$HOME/.config/fish/kanagawa.fish"
 
+# Source rvm
+source "$HOME/.config/fish/rvm.fish"
+
 # Aliases
 alias kc=kubectl
 alias gap="git add :/ -Ap"
