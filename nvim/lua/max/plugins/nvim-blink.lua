@@ -30,9 +30,10 @@ return {
       },
       appearance = {
         use_nvim_cmp_as_default = false,
+
         kind_icons = {
           Text = "󰉿",
-          Method = "󰊕",
+          Method = "",
           Function = "󰊕",
           Constructor = "󰒓",
 
@@ -40,14 +41,14 @@ return {
           Variable = "󰆦",
           Property = "󰖷",
 
-          Class = "󱡠",
-          Interface = "󱡠",
-          Struct = "󱡠",
+          Class = "",
+          Interface = "",
+          Struct = "",
           Module = "󰅩",
 
           Unit = "󰪚",
           Value = "󰦨",
-          Enum = "󰦨",
+          Enum = "",
           EnumMember = "󰦨",
 
           Keyword = "󰻾",
@@ -89,7 +90,7 @@ return {
           window = { border = "rounded" },
         },
       },
-      signature = { enabled = true },
+      signature = { enabled = true, window = { border = "rounded" } },
     })
     vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "#1f1f28" })
     vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "#1f1f28" })
