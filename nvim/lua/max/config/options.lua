@@ -71,6 +71,3 @@ opt.foldlevel = 99
 opt.foldmethod = "expr"
 opt.foldtext = ""
 opt.fillchars = "fold: "
-
--- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
