@@ -1,0 +1,6 @@
+macos-titlebar-style = hidden
+macos-non-native-fullscreen = true
+fullscreen = true
+window-padding-y = 5,0
+initial-command = /opt/homebrew/bin/tmux new-session -A -s main -c ~
+theme = Kanagawa Wave
