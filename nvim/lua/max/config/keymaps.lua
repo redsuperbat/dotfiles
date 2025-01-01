@@ -20,10 +20,11 @@ keymap(
   { desc = "Redraw / Clear hlsearch / Diff Update" }
 )
 
-keymap("n", "gl", "g_")
-keymap("n", "gh", "^")
-keymap("v", "gl", "g_")
-keymap("v", "gh", "^")
+-- Go to end of line and go to start of line
+keymap("n", "gl", "g_", { desc = "Go to end of line" })
+keymap("v", "gl", "g_", { desc = "Go to end of line" })
+keymap("n", "gh", "^", { desc = "Go to start of line" })
+keymap("v", "gh", "^", { desc = "Go to start of line" })
 
 keymap("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
 keymap("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
@@ -68,32 +69,30 @@ keymap("n", "<leader>gD", function()
 end, { desc = "Prev Diagnostic" })
 
 keymap("n", "<leader>ft", function()
-  require("max.utils.terminal").open()
+  require("max.utils.terminal").open({
+    on_buf_create = function(buf)
+      vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode", buffer = buf, nowait = true })
+    end,
+  })
 end, { desc = "Floating terminal" })
 
 -- lazygit
 keymap("n", "<leader>gg", function()
-  require("max.utils.terminal").open("lazygit", {
+  require("max.utils.terminal").open({
+    cmd = "lazygit",
     border = "none",
     on_buf_create = function(buf)
       -- Do nothing with q in lazygit
       vim.keymap.set("t", "q", function() end, { buffer = buf, nowait = true })
+      -- Quit lazygit when hitting esc + esc
+      vim.keymap.set("t", "<esc><esc>", "<cmd>q<CR>", { buffer = buf, nowait = true, desc = "Quit" })
     end,
   })
 end, { desc = "Lazygit" })
 
 -- quit
 keymap("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-
+-- Execute lua utils
 keymap("n", "<leader>xx", "<cmd>source %<CR>", { desc = "Source current buffer file" })
 keymap("n", "<leader>x", ":.lua<CR>", { desc = "Execute current line" })
 keymap("v", "<leader>x", ":lua<CR>", { desc = "Execute current visual selection" })
-
--- Terminal Mappings
-keymap("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
-keymap("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
-keymap("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
-keymap("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
-keymap("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
-keymap("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-keymap("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })

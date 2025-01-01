@@ -23,10 +23,10 @@ end
 ---@class FloatingTerminalOptions
 ---@field on_buf_create? fun(buf: integer): nil
 ---@field border? string
----@param cmd? string[]|string
+---@field cmd? string[]|string
 ---@param opts? FloatingTerminalOptions
-function M.open(cmd, opts)
-  cmd = cmd or vim.o.shell
+function M.open(opts)
+  local cmd = (opts and opts.cmd) or vim.o.shell
   local border = (opts and opts.border) or "rounded"
 
   local config = function()
@@ -65,7 +65,6 @@ function M.open(cmd, opts)
 
   vim.fn.termopen(cmd)
 
-  vim.keymap.set("t", "<esc><esc>", "<cmd>q<CR>", { buffer = buf, nowait = true })
   vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = buf, nowait = true })
 
   if opts and opts.on_buf_create then
