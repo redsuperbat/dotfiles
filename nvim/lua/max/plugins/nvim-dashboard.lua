@@ -1,7 +1,10 @@
 return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
-  opts = function()
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+  config = function()
     local logo = [[
 
 
@@ -10,7 +13,10 @@ return {
 
 
 
-.-') _   ('-.                     (`-.           _   .-')    
+
+
+
+     .-') _   ('-.                     (`-.           _   .-')    
     ( OO ) )_(  OO)                  _(OO  )_        ( '.( OO )_  
 ,--./ ,--,'(,------. .-'),-----. ,--(_/   ,. \ ,-.-') ,--.   ,--.)
 |   \ |  |\ |  .---'( OO'  .-.  '\   \   /(__/ |  |OO)|   `.'   | 
@@ -20,14 +26,10 @@ return {
 |  | \   |  |  `---.   `'  '-'  '    \   /   (_|  |   |  |   |  | 
 `--'  `--'  `------'     `-----'      `-'      `--'   `--'   `--' 
 
-
 ]]
 
     local opts = {
       theme = "doom",
-      hide = {
-        statusline = false,
-      },
       config = {
         header = vim.split(logo, "\n"),
         center = {
@@ -99,7 +101,10 @@ return {
         end,
       })
     end
+    vim.api.nvim_set_hl(0, "DashboardHeader", {
+      fg = "#F08080",
+    })
 
-    return opts
+    require("dashboard").setup(opts)
   end,
 }
