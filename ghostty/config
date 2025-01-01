@@ -4,7 +4,6 @@ fullscreen = true
 window-padding-y = 15,0
 initial-command = /opt/homebrew/bin/tmux attach-session
 theme = Kanagawa Wave
-macos-option-as-alt = left
 
 keybind = alt+shift+e=toggle_fullscreen
 keybind = alt+shift+r=reload_config

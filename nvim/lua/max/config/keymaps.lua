@@ -26,10 +26,18 @@ keymap("v", "gl", "g_", { desc = "Go to end of line" })
 keymap("n", "gh", "^", { desc = "Go to start of line" })
 keymap("v", "gh", "^", { desc = "Go to start of line" })
 
-keymap("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
-keymap("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
-keymap("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
-keymap("v", "<A-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
+-- move line up(n)
+-- option + j
+keymap("n", "√", ":m .+1<CR>==")
+-- move line down(n)
+-- option + k
+keymap("n", "ª", ":m .-2<CR>==")
+-- move selection up(v)
+-- option + j
+keymap("v", "√", ":m '>+1<CR>gv=gv")
+-- move selection down(v)
+-- option + k
+keymap("v", "ª", ":m '<-2<CR>gv=gv")
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 keymap("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
