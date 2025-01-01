@@ -4,3 +4,8 @@ fullscreen = true
 window-padding-y = 5,0
 initial-command = /opt/homebrew/bin/tmux new-session -A -s main -c ~
 theme = Kanagawa Wave
+
+keybind = alt+shift+e=toggle_fullscreen
+keybind = alt+shift+r=reload_config
+keybind = global:unconsumed:alt+j=unbind
+keybind = global:unconsumed:alt+k=unbind
