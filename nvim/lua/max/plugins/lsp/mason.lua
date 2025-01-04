@@ -48,7 +48,7 @@ return {
         "actionlint",
         "sqlfluff",
         "biome",
-        "taplo", -- markdown formatter?
+        "taplo", -- toml formatter
         "isort", -- python formatter
         "black", -- python formatter
         "pylint",
