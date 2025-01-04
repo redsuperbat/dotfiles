@@ -1,4 +1,4 @@
-default: neovim tmux ghostty fish
+default: neovim tmux ghostty fish packages
 
 CONFIG_DIR ?= $(HOME)/.config
 
@@ -21,6 +21,7 @@ $(BREW):
 .PHONY: homebrew
 homebrew: $(BREW)
 
+include packages/packages.mk
 include fish/fish.mk
 include tmux/tmux.mk
 include wezterm/wezterm.mk
