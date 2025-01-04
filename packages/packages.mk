@@ -11,6 +11,7 @@ packages: $(BREW)
 	$(BREW) install curl
 	$(BREW) install htop
 	$(BREW) install jq
+	$(BREW) install deno
 # Casks
 	$(BREW) install slack
 	$(BREW) install brave-browser
