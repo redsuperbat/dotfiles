@@ -45,6 +45,7 @@ return {
         "prettier",
         "cspell",
         "stylua",
+        "actionlint",
         "sqlfluff",
         "biome",
         "taplo", -- markdown formatter?
