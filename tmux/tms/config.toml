@@ -1,0 +1,6 @@
+display_full_path = true
+[[search_dirs]]
+path = "~/Projects"
+depth = 2
+[shortcuts]
+"ctrl-d" = "delete"
