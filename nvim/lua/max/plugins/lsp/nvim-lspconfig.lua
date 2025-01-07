@@ -1,4 +1,9 @@
 local fs = require("max.utils.fs")
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
+})
+
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
@@ -15,6 +20,8 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1f1f28" })
+        vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1f1f28" })
         local opts = { buffer = ev.buf, silent = true }
         opts.desc = "Lsp Info"
         keymap("n", "<leader>cl", "<cmd>LspInfo<cr>", opts)
