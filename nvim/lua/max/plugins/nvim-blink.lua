@@ -5,6 +5,11 @@ return {
   version = "v0.*",
   config = function()
     require("blink.cmp").setup({
+      enabled = function()
+        -- Disable in code-actions and code-renames
+        local disabled_filetypes = { "DressingInput", "TelescopePrompt" }
+        return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype)
+      end,
       keymap = {
         preset = "default",
         ["<CR>"] = { "select_and_accept", "fallback" },
