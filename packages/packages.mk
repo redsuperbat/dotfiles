@@ -14,6 +14,7 @@ packages: $(BREW)
 	$(BREW) install deno
 # Casks
 	$(BREW) install slack
+	$(BREW) install raycast
 	$(BREW) install brave-browser
 	$(BREW) install linear-linear
 
