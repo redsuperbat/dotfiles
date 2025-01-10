@@ -7,7 +7,11 @@ return {
     require("blink.cmp").setup({
       enabled = function()
         -- Disable in code-actions and code-renames
-        local disabled_filetypes = { "DressingInput", "TelescopePrompt" }
+        local disabled_filetypes = {
+          "DressingInput",
+          "TelescopePrompt",
+          "neo-tree-popup",
+        }
         return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype)
       end,
       keymap = {

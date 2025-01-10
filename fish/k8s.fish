@@ -1,4 +1,4 @@
-function purge_pods
+function k8s_purge_pods
     echo 'Deleting all pods which do not have status "Running"...'
     set NS $(kc get ns -o json | jq -r '.items[].metadata.name')
     for ns in $NS
@@ -7,4 +7,10 @@ function purge_pods
             | xargs kubectl delete pod -n $ns
     end
     echo 'Pods deleted'
+end
+
+function k8s_temp_pod
+    echo 'creating temp pod'
+    set RAND (random)
+    kubectl run tmp-debian-$RAND -i --tty --image debian:bullseye --restart=Never -- bash
 end
