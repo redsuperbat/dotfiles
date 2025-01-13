@@ -15,6 +15,7 @@ packages: $(BREW)
 # Casks
 	$(BREW) install slack
 	$(BREW) install raycast
+	$(BREW) install lazygit
 	$(BREW) install brave-browser
 	$(BREW) install linear-linear
 
