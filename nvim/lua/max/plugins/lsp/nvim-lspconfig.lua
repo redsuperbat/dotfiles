@@ -15,55 +15,6 @@ return {
   },
   opts = {},
   config = function()
-    local keymap = vim.keymap.set
-
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      callback = function(ev)
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1f1f28" })
-        vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1f1f28" })
-        local opts = { buffer = ev.buf, silent = true }
-        opts.desc = "Lsp Info"
-        keymap("n", "<leader>cl", "<cmd>LspInfo<cr>", opts)
-
-        opts.desc = "Go to definition"
-        keymap("n", "gd", function()
-          require("telescope.builtin").lsp_definitions({ no_ignore = true })
-        end, opts)
-
-        opts.desc = "Go to references"
-        keymap("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
-
-        opts.desc = "Go to declaration"
-        keymap("n", "gD", vim.lsp.buf.declaration, opts)
-
-        opts.desc = "Go to implementations"
-        keymap("n", "gi", function()
-          require("telescope.builtin").lsp_implementations({ reuse_win = true })
-        end, opts)
-
-        opts.desc = "Go to type definitions"
-        keymap("n", "gy", function()
-          require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
-        end, opts)
-
-        opts.desc = "Signature help"
-        keymap("n", "gK", vim.lsp.buf.signature_help, opts)
-
-        opts.desc = "Code action"
-        keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-
-        opts.desc = "Rename"
-        keymap("n", "<leader>cr", vim.lsp.buf.rename, opts)
-
-        opts.desc = "Run code lens"
-        keymap("n", "<leader>cc", vim.lsp.codelens.run, opts)
-
-        opts.desc = "Restart LSP"
-        keymap("n", "<leader>rs", ":LspRestart<CR>", opts)
-      end,
-    })
-
     local capabilities = vim.tbl_deep_extend(
       "force",
       {},

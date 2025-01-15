@@ -35,27 +35,31 @@ return {
         center = {
           {
             action = function()
-              require("telescope.builtin").find_files()
+              require("max.picker").files()
             end,
             desc = " Find File",
             icon = "🔍",
             key = "f",
           },
           {
-            action = "Telescope oldfiles",
+            action = function()
+              require("max.picker").recent()
+            end,
             desc = " Recent Files",
             icon = "📁",
             key = "r",
           },
           {
-            action = "Telescope live_grep",
+            action = function()
+              require("max.picker").grep()
+            end,
             desc = " Find Text",
             icon = "📗",
             key = "g",
           },
           {
             action = function()
-              require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+              require("max.picker").files({ cwd = vim.fn.stdpath("config") })
             end,
             desc = " Config",
             icon = "🤖",

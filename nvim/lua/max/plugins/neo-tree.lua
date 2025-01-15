@@ -1,4 +1,7 @@
+---@diagnostic disable: missing-fields
+
 local fs = require("max.utils.fs")
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
@@ -75,7 +78,7 @@ return {
               if not fs.is_dir(path) then
                 path = vim.fs.dirname(path)
               end
-              require("telescope.builtin").live_grep({ cwd = path })
+              require("snacks").picker.grep({ cwd = path })
             end,
           },
           ["F"] = {
@@ -84,7 +87,7 @@ return {
               if not fs.is_dir(path) then
                 path = vim.fs.dirname(path)
               end
-              require("telescope.builtin").find_files({ cwd = path })
+              require("snacks").picker.files({ cwd = path })
             end,
           },
           ["Y"] = {

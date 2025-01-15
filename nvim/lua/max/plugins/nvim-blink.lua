@@ -9,7 +9,7 @@ return {
         -- Disable in code-actions and code-renames
         local disabled_filetypes = {
           "DressingInput",
-          "TelescopePrompt",
+          "snacks_picker_input",
           "neo-tree-popup",
         }
         return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype)
