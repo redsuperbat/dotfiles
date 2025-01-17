@@ -12,6 +12,7 @@ packages: $(BREW)
 	$(BREW) install htop
 	$(BREW) install jq
 	$(BREW) install deno
+	$(BREW) install sponge
 # Casks
 	$(BREW) install slack
 	$(BREW) install raycast
