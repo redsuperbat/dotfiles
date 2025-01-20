@@ -2,7 +2,13 @@ return {
   "folke/snacks.nvim",
   ---@type snacks.Config
   opts = {
-    picker = {},
+    picker = {
+      sources = {
+        files = {
+          hidden = true,
+        },
+      },
+    },
   },
   keys = {
     {
