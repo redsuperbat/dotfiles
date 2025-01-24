@@ -12,5 +12,5 @@ end
 function k8s_temp_pod
     echo 'creating temp pod'
     set RAND (random)
-    kubectl run tmp-debian-$RAND -i --tty --image debian:bullseye --restart=Never -- bash
+    kubectl run tmp-debian-$RAND -i --rm --tty --image debian:bullseye --restart=Never -- bash
 end
