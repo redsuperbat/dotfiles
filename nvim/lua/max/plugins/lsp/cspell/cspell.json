@@ -20,6 +20,7 @@
     "augroup",
     "autocmd",
     "autowrite",
+    "bitwell",
     "bufhidden",
     "bufname",
     "bufnr",
