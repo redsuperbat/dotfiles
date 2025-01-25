@@ -25,6 +25,8 @@
     "bufname",
     "bufnr",
     "closeopen",
+    "cmdline",
+    "codecompanion",
     "colorschemes",
     "completeopt",
     "conceallevel",

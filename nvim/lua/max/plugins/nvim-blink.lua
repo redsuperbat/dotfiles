@@ -19,8 +19,14 @@ return {
         ["<CR>"] = { "select_and_accept", "fallback" },
       },
       sources = {
+        default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
         cmdline = {}, -- Disable sources for command-line mode
         providers = {
+          codecompanion = {
+            name = "CodeCompanion",
+            module = "codecompanion.providers.completion.blink",
+            enabled = true,
+          },
           lsp = {
             min_keyword_length = 0, -- Number of characters to trigger provider
             score_offset = 0, -- Boost/penalize the score of the items
