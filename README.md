@@ -1,9 +1,7 @@
 # Dotfiles
 
-My dotfiles.
+Installation instructions
 
-Installation instructions:
-
-```shell
+```sh
 ./make.sh
 ```

@@ -19,13 +19,16 @@ return {
         ["<CR>"] = { "select_and_accept", "fallback" },
       },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
+        default = { "lsp", "path", "snippets", "buffer", "codecompanion", "markdown" },
         cmdline = {}, -- Disable sources for command-line mode
         providers = {
+          markdown = {
+            name = "RenderMarkdown",
+            module = "render-markdown.integ.blink",
+          },
           codecompanion = {
             name = "CodeCompanion",
             module = "codecompanion.providers.completion.blink",
-            enabled = true,
           },
           lsp = {
             min_keyword_length = 0, -- Number of characters to trigger provider
