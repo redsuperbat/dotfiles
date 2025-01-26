@@ -2,21 +2,5 @@
 packages: $(BREW)
 
 packages: $(BREW)
-	$(BREW) install fzf
-	$(BREW) install rg
-	$(BREW) install fd
-	$(BREW) install eza
-	$(BREW) install ffmpeg
-	$(BREW) install bat
-	$(BREW) install curl
-	$(BREW) install htop
-	$(BREW) install jq
-	$(BREW) install deno
-	$(BREW) install sponge
-# Casks
-	$(BREW) install slack
-	$(BREW) install raycast
-	$(BREW) install lazygit
-	$(BREW) install brave-browser
-	$(BREW) install linear-linear
+	$(BREW) bundle --file $(PWD)/packages/Brewfile
 
