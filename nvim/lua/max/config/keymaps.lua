@@ -95,8 +95,13 @@ keymap("n", "<leader>gg", function()
     cmd = "lazygit",
     border = "none",
     on_buf_create = function(buf)
-      -- Do nothing with q in lazygit
-      vim.keymap.set("t", "q", function() end, { buffer = buf, nowait = true })
+      -- Close window if lazyvim exits
+      vim.api.nvim_create_autocmd("TermClose", {
+        buffer = buf,
+        callback = function()
+          vim.cmd("close")
+        end,
+      })
       -- Quit lazygit when hitting esc + esc
       vim.keymap.set("t", "<esc><esc>", "<cmd>q<CR>", { buffer = buf, nowait = true, desc = "Quit" })
     end,

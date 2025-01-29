@@ -20,7 +20,6 @@ return {
         "html",
         "cssls",
         "volar",
-        "emmet_language_server",
         "tailwindcss",
         "svelte",
         "jsonls",

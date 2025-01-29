@@ -13,6 +13,9 @@ if not vim.env.SSH_TTY then
   opt.clipboard = "unnamedplus" -- Sync with system clipboard
 end
 
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 0 -- Conceal nothing
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
@@ -64,10 +67,3 @@ opt.fillchars = {
 }
 
 opt.smoothscroll = true
-
--- Folding
-opt.foldlevel = 99
-
-opt.foldmethod = "expr"
-opt.foldtext = ""
-opt.fillchars = "fold: "

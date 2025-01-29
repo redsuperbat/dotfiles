@@ -47,8 +47,6 @@ return {
         },
       },
       appearance = {
-        use_nvim_cmp_as_default = false,
-
         kind_icons = {
           Text = "󰉿",
           Method = "",
