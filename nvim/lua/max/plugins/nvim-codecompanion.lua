@@ -29,12 +29,12 @@ return {
       },
     })
 
-    vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", {
+    vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", {
       desc = "Code companion actions",
       silent = true,
       noremap = true,
     })
-    vim.keymap.set({ "n", "v" }, "<leader>a", "<cmd>CodeCompanionChat Toggle<cr>", {
+    vim.keymap.set({ "n", "v" }, "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", {
       noremap = true,
       silent = true,
       desc = "Toggle code companion chat",

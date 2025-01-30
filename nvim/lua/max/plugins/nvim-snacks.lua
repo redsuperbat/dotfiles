@@ -9,8 +9,18 @@ return {
         },
       },
     },
+    gitbrowse = {},
+    -- Just for the styling haha
+    lazygit = {},
   },
   keys = {
+    {
+      "<leader>go",
+      function()
+        require("snacks").gitbrowse.open()
+      end,
+      desc = "Open file on github",
+    },
     {
       "<leader>fb",
       function()
