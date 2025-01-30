@@ -89,6 +89,7 @@ alias gap="git add :/ -Ap"
 alias vim=nvim
 alias cl="clear && tmux clear-history"
 alias ls='eza -la --group-directories-first --icons'
+alias lg=lazygit
 
 # Clear all logs in all windows
 function clw

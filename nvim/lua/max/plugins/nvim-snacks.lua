@@ -10,10 +10,15 @@ return {
       },
     },
     gitbrowse = {},
-    -- Just for the styling haha
     lazygit = {},
   },
   keys = {
+    {
+      "<leader>gfd",
+      function()
+        require("snacks").lazygit.log_file()
+      end,
+    },
     {
       "<leader>go",
       function()

@@ -4,8 +4,8 @@ local M = {}
 local function win_config(border)
   local editor_width = vim.o.columns
   local editor_height = vim.o.lines
-  local width = math.floor(editor_width * 0.8)
-  local height = math.floor(editor_height * 0.8)
+  local width = math.floor(editor_width * 0.9)
+  local height = math.floor(editor_height * 0.9)
   local col = math.floor((editor_width - width) / 2)
   local row = math.floor((editor_height - height) / 2)
 
