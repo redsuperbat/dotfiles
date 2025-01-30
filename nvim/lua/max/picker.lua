@@ -13,9 +13,4 @@ function M.grep(opts)
   require("snacks").picker.grep(opts)
 end
 
----@param opts? PickerOpts
-function M.recent(opts)
-  require("snacks").picker.recent(opts)
-end
-
 return M

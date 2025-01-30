@@ -43,7 +43,7 @@ return {
           },
           {
             action = function()
-              require("max.picker").recent()
+              require("snacks").picker.recent()
             end,
             desc = " Recent Files",
             icon = "📁",

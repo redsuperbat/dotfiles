@@ -14,12 +14,6 @@ return {
   },
   keys = {
     {
-      "<leader>gfd",
-      function()
-        require("snacks").lazygit.log_file()
-      end,
-    },
-    {
       "<leader>go",
       function()
         require("snacks").gitbrowse.open()

@@ -89,25 +89,6 @@ keymap("n", "<leader>ft", function()
   })
 end, { desc = "Floating terminal" })
 
--- lazygit
-keymap("n", "<leader>gg", function()
-  require("max.utils.terminal").open({
-    cmd = "lazygit",
-    border = "none",
-    on_buf_create = function(buf)
-      -- Close window if lazyvim exits
-      vim.api.nvim_create_autocmd("TermClose", {
-        buffer = buf,
-        callback = function()
-          vim.cmd("close")
-        end,
-      })
-      -- Quit lazygit when hitting esc + esc
-      vim.keymap.set("t", "<esc><esc>", "<cmd>q<CR>", { buffer = buf, nowait = true, desc = "Quit" })
-    end,
-  })
-end, { desc = "Lazygit" })
-
 -- quit
 keymap("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 -- Execute lua utils
