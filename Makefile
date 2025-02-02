@@ -1,10 +1,15 @@
-default: neovim tmux ghostty fish packages
+default: packages fish ghostty neovim tmux
 
 CONFIG_DIR ?= $(HOME)/.config
 
 .PHONY: $(CONFIG_DIR)
 $(CONFIG_DIR):
 	mkdir -p $(CONFIG_DIR)
+
+.PHONY: key-repeat
+key-repeat:
+	defaults write -g InitialKeyRepeat -int 10
+	defaults write -g KeyRepeat -int 1
 
 BIN_DIR_x86_64 = /usr/local/bin
 BIN_DIR_arm64 = /opt/homebrew/bin
