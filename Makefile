@@ -2,6 +2,7 @@ default: neovim tmux ghostty fish packages
 
 CONFIG_DIR ?= $(HOME)/.config
 
+.PHONY: $(CONFIG_DIR)
 $(CONFIG_DIR):
 	mkdir -p $(CONFIG_DIR)
 
