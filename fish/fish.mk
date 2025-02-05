@@ -4,7 +4,7 @@ FISHER = fish/fisher/functions/fisher.fish
 .PHONY: fish
 fish: $(FISH) $(FISHER)
 
-$(FISH): $(BREW)
+$(FISH): $(BREW) $(CONFIG_DIR)
 	ln -his $(PWD)/fish $(CONFIG_DIR)/fish
 	$(BREW) install fish
 

@@ -15,3 +15,6 @@ cask "slack"
 cask "raycast"
 cask "brave-browser"
 cask "linear-linear"
+
+tap  "hashicorp/tap"
+brew "hashicorp/tap/terraform"
