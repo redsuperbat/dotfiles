@@ -1,13 +1,11 @@
-default: packages fish ghostty neovim tmux
+default: packages osx-conf fish ghostty neovim tmux
 
 CONFIG_DIR ?= $(HOME)/.config
 
-.PHONY: $(CONFIG_DIR)
 $(CONFIG_DIR):
 	mkdir -p $(CONFIG_DIR)
 
-.PHONY: key-repeat
-key-repeat:
+osx-conf:
 	defaults write -g InitialKeyRepeat -int 10
 	defaults write -g KeyRepeat -int 1
 
@@ -20,6 +18,10 @@ BREW ?= $(BIN_DIR)/brew
 $(BREW):
 	HOMEBREW_NO_INSTALL_UPGRADE=1 HOMEBREW_NO_INSTALL_CLEANUP=1 \
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Add brew to path in current shell
+	echo >> /Users/max/.zprofile
+	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >› /Users/max/.zprofile
+	eval "$(/opt/homebrew/bin/brew  shellenv)"
 
 .PHONY: homebrew
 homebrew: $(BREW)

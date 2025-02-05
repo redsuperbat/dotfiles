@@ -1,0 +1,16 @@
+name: "test"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-setup:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3
+
+      - name: Run setup
+        run: ./make.sh

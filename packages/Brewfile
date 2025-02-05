@@ -8,6 +8,7 @@ brew "curl"
 brew "htop"
 brew "jq"
 brew "deno"
+brew "oven-sh/bun/bun"
 brew "sponge"
 brew "lazygit"
 
