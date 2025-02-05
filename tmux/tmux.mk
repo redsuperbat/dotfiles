@@ -14,4 +14,4 @@ $(TMUX): $(BREW) $(CONFIG_DIR) $(FISH)
 	ln -his "$(PWD)/tmux/tms" $(TMS_CONFIG_DIR)
 	[ -d $(TPM_DIR) ] || git clone https://github.com/tmux-plugins/tpm $(TPM_DIR)
 	# Ignore all errors
-	sh "$(TPM_DIR)/bin/install_plugins" || true
+	$(BIN_DIR)/fish "$(TPM_DIR)/bin/install_plugins" || true
