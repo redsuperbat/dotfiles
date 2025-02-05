@@ -8,9 +8,10 @@ on:
 jobs:
   run-setup:
     runs-on: macos-latest
+    name: 🔧 Test on Mac
     steps:
       - name: Checkout
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
 
       - name: Run setup
         run: ./make.sh
