@@ -7,6 +7,7 @@ fish: $(FISH) $(FISHER)
 $(FISH): $(BREW) $(CONFIG_DIR)
 	ln -his $(PWD)/fish $(CONFIG_DIR)/fish
 	$(BREW) install fish
+	sudo sh -c 'echo "/opt/homebrew/bin/fish" >> /etc/shells'
 	sudo chsh -s fish $$(whoami)
 
 

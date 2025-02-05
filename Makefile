@@ -18,6 +18,9 @@ BREW ?= $(BIN_DIR)/brew
 $(BREW):
 	HOMEBREW_NO_INSTALL_UPGRADE=1 HOMEBREW_NO_INSTALL_CLEANUP=1 \
 	/bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	eval "$$($(BREW) shellenv)"
+	echo 'eval "$$($(BREW) shellenv)"' >> $(HOME)/.bashrc
+	echo 'eval "$$($(BREW) shellenv)"' >> $(HOME)/.zshrc
 
 .PHONY: homebrew
 homebrew: $(BREW)
