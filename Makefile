@@ -27,6 +27,5 @@ homebrew: $(BREW)
 include packages/packages.mk
 include fish/fish.mk
 include tmux/tmux.mk
-include wezterm/wezterm.mk
 include ghostty/ghostty.mk
 include nvim/neovim.mk
