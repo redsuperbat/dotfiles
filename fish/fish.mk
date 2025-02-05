@@ -7,6 +7,8 @@ fish: $(FISH) $(FISHER)
 $(FISH): $(BREW) $(CONFIG_DIR)
 	ln -his $(PWD)/fish $(CONFIG_DIR)/fish
 	$(BREW) install fish
+	sudo chsh -s fish $$(whoami)
+
 
 $(FISHER): $(FISH)
 	$(BIN_DIR)fish -c 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher && fisher update'
