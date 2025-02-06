@@ -1,3 +1,5 @@
+--- @type number|false|snacks.win.Backdrop Opacity of the backdrop (default: 60)
+local backdrop = false
 return {
   "folke/snacks.nvim",
   ---@type snacks.Config
@@ -8,10 +10,62 @@ return {
           hidden = true,
         },
       },
+      layout = {
+        layout = {
+          box = "horizontal",
+          backdrop = false,
+          width = 0.8,
+          min_width = 120,
+          height = 0.8,
+          {
+            box = "vertical",
+            border = "rounded",
+            title = "{title} {live} {flags}",
+            backdrop = {
+              bg = "#FFFFFF",
+            },
+            {
+              win = "input",
+              height = 1,
+              border = "bottom",
+            },
+            {
+              win = "list",
+              border = "none",
+            },
+          },
+          {
+            win = "preview",
+            title = "{preview}",
+            border = "rounded",
+            width = 0.5,
+          },
+        },
+      },
     },
     gitbrowse = {},
     lazygit = {},
   },
+  init = function()
+    --- @param group string
+    local function set_hl(group)
+      vim.api.nvim_set_hl(0, group, { bg = "#1f1f28" })
+    end
+    set_hl("SnacksPickerFile")
+    set_hl("SnacksPickerList")
+    set_hl("SnacksPickerCode")
+    set_hl("SnacksPickerInput")
+    set_hl("SnacksPickerInputSearch")
+    set_hl("SnacksPickerBorder")
+    set_hl("SnacksPickerBoxBorder")
+    set_hl("SnacksPickerListBorder")
+    set_hl("SnacksPickerInputBorder")
+    set_hl("SnacksPickerPreview")
+    set_hl("SnacksPickerPreviewBorder")
+    set_hl("SnacksPickerPreviewCursorLine")
+    set_hl("SnacksPickerPreviewFooter")
+    set_hl("SnacksPickerPreviewTitle")
+  end,
   keys = {
     {
       "<leader>go",
