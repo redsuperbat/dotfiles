@@ -30,7 +30,7 @@ return {
     },
   },
   config = function()
-    local nls = require("null-ls")
+    local null_ls = require("null-ls")
     local cspell = require("cspell")
 
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -51,11 +51,11 @@ return {
       end,
     }
 
-    nls.setup({
+    null_ls.setup({
       sources = {
-        nls.builtins.code_actions.refactoring,
+        null_ls.builtins.code_actions.refactoring,
 
-        nls.builtins.diagnostics.actionlint,
+        null_ls.builtins.diagnostics.actionlint,
 
         cspell.diagnostics.with({
           config = cspell_config,
@@ -65,22 +65,22 @@ return {
         }),
         cspell.code_actions.with({ config = cspell_config }),
 
-        nls.builtins.formatting.sqlfluff.with({
+        null_ls.builtins.formatting.sqlfluff.with({
           extra_args = { "--dialect", "postgres" },
         }),
-        nls.builtins.diagnostics.sqlfluff.with({
+        null_ls.builtins.diagnostics.sqlfluff.with({
           extra_args = { "--dialect", "postgres" },
         }),
 
-        nls.builtins.formatting.shfmt,
+        null_ls.builtins.formatting.shfmt,
 
-        nls.builtins.formatting.terraform_fmt,
+        null_ls.builtins.formatting.terraform_fmt,
 
-        nls.builtins.formatting.rubocop,
-        nls.builtins.diagnostics.rubocop,
+        null_ls.builtins.formatting.rubocop,
+        null_ls.builtins.diagnostics.rubocop,
 
-        nls.builtins.formatting.stylua,
-        nls.builtins.formatting.biome.with({
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.biome.with({
           args = {
             "check",
             "--write",
@@ -89,10 +89,10 @@ return {
           },
         }),
 
-        nls.builtins.diagnostics.fish,
-        nls.builtins.formatting.fish_indent,
+        null_ls.builtins.diagnostics.fish,
+        null_ls.builtins.formatting.fish_indent,
 
-        nls.builtins.formatting.prettier.with({
+        null_ls.builtins.formatting.prettier.with({
           -- Exclude js/ts json because biome handles that
           disabled_filetypes = {
             "javascript",

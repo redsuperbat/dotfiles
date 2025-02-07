@@ -11,6 +11,7 @@ brew "deno"
 brew "sponge"
 brew "lazygit"
 brew "watchman"
+brew "shfmt"
 
 tap  "oven-sh/bun"
 brew "oven-sh/bun/bun"
