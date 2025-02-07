@@ -12,6 +12,13 @@ return {
     { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
     { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
   },
+  init = function()
+    --- @param group string
+    local function set_hl(group)
+      vim.api.nvim_set_hl(0, group, { bg = "#1f1f28" })
+    end
+    set_hl("BufferLineFill")
+  end,
   config = function()
     require("bufferline").setup({
       options = {
