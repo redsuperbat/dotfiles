@@ -62,6 +62,34 @@ return {
       },
     })
 
+    add_handler("solargraph", {
+      root_dir = function(filename)
+        local is_sorbet_configured = lspconfig.util.root_pattern("sorbet/rbi/gems")(filename)
+        -- We do not wanna start solargraph if sorbet is configured in the project
+        if is_sorbet_configured ~= nil then
+          return nil
+        end
+
+        return lspconfig.util.root_pattern("Gemfile")(filename)
+      end,
+    })
+
+    add_handler("sorbet", {
+      cmd = {
+        "bundle",
+        "exec",
+        "srb",
+        "tc",
+        "--lsp",
+        "--disable-watchman",
+        vim.fn.getcwd(),
+      },
+      root_dir = lspconfig.util.root_pattern("sorbet/rbi/gems"),
+      init_options = {
+        highlightUntyped = true,
+      },
+    })
+
     add_handler("denols", {
       root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
       single_file_support = false,

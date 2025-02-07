@@ -10,6 +10,7 @@ brew "jq"
 brew "deno"
 brew "sponge"
 brew "lazygit"
+brew "watchman"
 
 tap  "oven-sh/bun"
 brew "oven-sh/bun/bun"

@@ -1,5 +1,3 @@
---- @type number|false|snacks.win.Backdrop Opacity of the backdrop (default: 60)
-local backdrop = false
 return {
   "folke/snacks.nvim",
   ---@type snacks.Config
@@ -14,9 +12,9 @@ return {
         layout = {
           box = "horizontal",
           backdrop = false,
-          width = 0.8,
+          width = 0.9,
           min_width = 120,
-          height = 0.8,
+          height = 0.9,
           {
             box = "vertical",
             border = "rounded",
@@ -53,7 +51,6 @@ return {
     end
     set_hl("SnacksPickerFile")
     set_hl("SnacksPickerList")
-    set_hl("SnacksPickerCode")
     set_hl("SnacksPickerInput")
     set_hl("SnacksPickerInputSearch")
     set_hl("SnacksPickerBorder")
@@ -62,7 +59,6 @@ return {
     set_hl("SnacksPickerInputBorder")
     set_hl("SnacksPickerPreview")
     set_hl("SnacksPickerPreviewBorder")
-    set_hl("SnacksPickerPreviewCursorLine")
     set_hl("SnacksPickerPreviewFooter")
     set_hl("SnacksPickerPreviewTitle")
   end,
