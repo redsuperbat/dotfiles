@@ -108,10 +108,12 @@ return {
       },
       signature = { enabled = true, window = { border = "rounded" } },
     })
-    vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "#1f1f28" })
-    vim.api.nvim_set_hl(0, "BlinkCmpDoc", { bg = "#1f1f28" })
-    vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = "#1f1f28" })
-    vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = "#1f1f28" })
-    vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = "#1f1f28" })
+    require("max.utils.theme").set_hl({
+      "BlinkCmpMenu",
+      "BlinkCmpDoc",
+      "BlinkCmpDocSeparator",
+      "BlinkCmpDocBorder",
+      "BlinkCmpMenuBorder",
+    })
   end,
 }

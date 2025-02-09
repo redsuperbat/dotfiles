@@ -41,10 +41,7 @@ function M.open(opts)
         vim.cmd.startinsert()
       end,
     })
-    local win = vim.api.nvim_open_win(buf, true, config())
-    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1f1f28" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1f1f28" })
-    return win
+    return vim.api.nvim_open_win(buf, true, config())
   end
 
   ---@param buf integer

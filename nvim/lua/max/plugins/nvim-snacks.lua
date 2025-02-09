@@ -45,22 +45,20 @@ return {
     lazygit = {},
   },
   init = function()
-    --- @param group string
-    local function set_hl(group)
-      vim.api.nvim_set_hl(0, group, { bg = "#1f1f28" })
-    end
-    set_hl("SnacksPickerFile")
-    set_hl("SnacksPickerList")
-    set_hl("SnacksPickerInput")
-    set_hl("SnacksPickerInputSearch")
-    set_hl("SnacksPickerBorder")
-    set_hl("SnacksPickerBoxBorder")
-    set_hl("SnacksPickerListBorder")
-    set_hl("SnacksPickerInputBorder")
-    set_hl("SnacksPickerPreview")
-    set_hl("SnacksPickerPreviewBorder")
-    set_hl("SnacksPickerPreviewFooter")
-    set_hl("SnacksPickerPreviewTitle")
+    require("max.utils.theme").set_hl({
+      "SnacksPickerFile",
+      "SnacksPickerList",
+      "SnacksPickerInput",
+      "SnacksPickerInputSearch",
+      "SnacksPickerBorder",
+      "SnacksPickerBoxBorder",
+      "SnacksPickerListBorder",
+      "SnacksPickerInputBorder",
+      "SnacksPickerPreview",
+      "SnacksPickerPreviewBorder",
+      "SnacksPickerPreviewFooter",
+      "SnacksPickerPreviewTitle",
+    })
   end,
   keys = {
     {
