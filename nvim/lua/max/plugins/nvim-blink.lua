@@ -108,7 +108,7 @@ return {
       },
       signature = { enabled = true, window = { border = "rounded" } },
     })
-    require("max.utils.theme").set_hl({
+    require("max.utils.theme").set_bg({
       "BlinkCmpMenu",
       "BlinkCmpDoc",
       "BlinkCmpDocSeparator",

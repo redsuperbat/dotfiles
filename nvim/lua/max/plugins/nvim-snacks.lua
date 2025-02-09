@@ -45,7 +45,7 @@ return {
     lazygit = {},
   },
   init = function()
-    require("max.utils.theme").set_hl({
+    require("max.utils.theme").set_bg({
       "SnacksPickerFile",
       "SnacksPickerList",
       "SnacksPickerInput",
