@@ -11,6 +11,12 @@ local function set_hl(group)
   end
 end
 
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    set_hl({ "FloatBorder", "NormalFloat" })
+  end,
+})
+
 return {
   bg = bg,
   set_hl = set_hl,
