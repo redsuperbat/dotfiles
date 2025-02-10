@@ -13,8 +13,6 @@ local function lazygit_term(cmd)
           vim.cmd("close")
         end,
       })
-      -- Quit lazygit when hitting esc + esc
-      vim.keymap.set("t", "<esc><esc>", "<cmd>q<CR>", { buffer = buf, nowait = true, desc = "Quit" })
     end,
   })
 end
