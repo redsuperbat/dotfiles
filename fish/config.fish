@@ -80,20 +80,22 @@ source "$HOME/.config/fish/kanagawa.fish"
 # Source rvm
 source "$HOME/.config/fish/rvm.fish"
 
-# Load config for fzf
-source "$HOME/.config/fish/fzf.fish"
-
 # Aliases
 alias kc=kubectl
 alias gap="git add :/ -Ap"
 alias vim=nvim
-alias cl="clear && tmux clear-history"
 alias ls='eza -la --group-directories-first --icons'
 alias lg=lazygit
+
+function cl
+    clear
+    tmux clear-history
+end
 
 # Clear all logs in all windows
 function clw
     for pane in (tmux list-panes -F '#{pane_id}')
         tmux send-keys -t $pane C-z cl Enter
+        tmux clear-history -t $pane
     end
 end
