@@ -2,7 +2,8 @@ macos-titlebar-style = hidden
 macos-non-native-fullscreen = true
 fullscreen = true
 window-padding-y = 10,0
-initial-command = /opt/homebrew/bin/tmux attach-session
+initial-command = /opt/homebrew/bin/fish -c 'tmux a'
+
 theme = Kanagawa Wave
 
 keybind = alt+shift+e=toggle_fullscreen
