@@ -95,7 +95,7 @@ end
 # Clear all logs in all windows
 function clw
     for pane in (tmux list-panes -F '#{pane_id}')
-        tmux send-keys -t $pane C-z cl Enter
+        tmux send-keys -t $pane C-z clear Enter
         tmux clear-history -t $pane
     end
 end
