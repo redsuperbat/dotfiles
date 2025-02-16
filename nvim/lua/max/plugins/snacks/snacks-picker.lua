@@ -1,3 +1,5 @@
+---@diagnostic disable: missing-fields
+
 return {
   "folke/snacks.nvim",
   ---@type snacks.Config
@@ -41,8 +43,6 @@ return {
         },
       },
     },
-    gitbrowse = {},
-    lazygit = {},
   },
   init = function()
     require("max.utils.theme").set_bg({

@@ -19,6 +19,7 @@ require("lazy").setup({
   },
   spec = {
     { import = "max.plugins" },
+    { import = "max.plugins.snacks" },
     { import = "max.plugins.lsp" },
   },
   defaults = {

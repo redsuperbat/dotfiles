@@ -1,7 +1,4 @@
 return {
-  "tpope/vim-surround",
-  dependencies = {
-    "tpope/vim-repeat",
-  },
-  event = "BufReadPre",
+  { "tpope/vim-repeat", lazy = true },
+  { "tpope/vim-surround", event = "BufReadPre" },
 }
