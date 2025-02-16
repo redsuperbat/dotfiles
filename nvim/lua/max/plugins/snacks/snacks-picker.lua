@@ -51,7 +51,7 @@ return {
     {
       "<leader>sG",
       function()
-        require("max.picker").grep({ cwd = require("max.utils.fs").root() })
+        require("snacks").picker.grep({ cwd = require("max.utils.fs").root() })
       end,
       desc = "Grep",
     },
@@ -72,14 +72,14 @@ return {
     {
       "<leader>fc",
       function()
-        require("max.picker").files({ cwd = vim.fn.stdpath("config") })
+        require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
       end,
       desc = "Find Config File",
     },
     {
       "<leader>ff",
       function()
-        require("max.picker").files()
+        require("snacks").picker.files()
       end,
       desc = "Find Files",
     },
@@ -130,7 +130,7 @@ return {
     {
       "<leader>sg",
       function()
-        require("max.picker").grep()
+        require("snacks").picker.grep()
       end,
       desc = "Grep",
     },
