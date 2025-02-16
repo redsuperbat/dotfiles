@@ -20,7 +20,10 @@ return {
           ["<CR>"] = { "select_and_accept", "fallback" },
         },
         cmdline = {
-          sources = {}, -- Disable sources for command-line mode
+          keymap = {
+            ["<S-Tab>"] = { "select_prev", "fallback" },
+            ["<Tab>"] = { "select_next", "fallback" },
+          },
         },
         sources = {
           default = { "lsp", "path", "snippets", "buffer", "codecompanion", "markdown" },
