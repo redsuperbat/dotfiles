@@ -12,34 +12,7 @@ return {
       },
       layout = {
         layout = {
-          box = "horizontal",
           backdrop = false,
-          width = 0.9,
-          min_width = 120,
-          height = 0.9,
-          {
-            box = "vertical",
-            border = "rounded",
-            title = "{title} {live} {flags}",
-            backdrop = {
-              bg = "#FFFFFF",
-            },
-            {
-              win = "input",
-              height = 1,
-              border = "bottom",
-            },
-            {
-              win = "list",
-              border = "none",
-            },
-          },
-          {
-            win = "preview",
-            title = "{preview}",
-            border = "rounded",
-            width = 0.5,
-          },
         },
       },
     },
@@ -92,7 +65,7 @@ return {
     {
       "<leader><space>",
       function()
-        require("max.picker").files({ cwd = require("max.utils.fs").root() })
+        require("snacks").picker.files({ cwd = require("max.utils.fs").root() })
       end,
       desc = "Find Files",
     },

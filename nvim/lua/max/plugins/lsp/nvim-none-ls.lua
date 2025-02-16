@@ -63,6 +63,10 @@ return {
             diagnostics_postprocess = function(diagnostic)
               diagnostic.severity = vim.diagnostic.severity.HINT
             end,
+            -- Cspell does not handle large buffers well.
+            runtime_condition = function()
+              return vim.fn.wordcount().bytes < 50000
+            end,
           }),
           cspell.code_actions.with({ config = cspell_config }),
 
