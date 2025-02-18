@@ -62,10 +62,13 @@ return {
       },
     })
 
-    add_handler("solargraph", {
+    add_handler("ruby_lsp", {
+      init_options = {
+        formatter = false,
+      },
       root_dir = function(filename)
         local is_sorbet_configured = lspconfig.util.root_pattern("sorbet/rbi/gems")(filename)
-        -- We do not wanna start solargraph if sorbet is configured in the project
+        -- We do not wanna start this lsp if sorbet is configured in the project
         if is_sorbet_configured ~= nil then
           return nil
         end

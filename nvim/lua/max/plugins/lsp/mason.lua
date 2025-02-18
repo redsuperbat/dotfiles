@@ -24,7 +24,7 @@ return {
           "svelte",
           "jsonls",
           "sorbet",
-          "solargraph",
+          "ruby_lsp",
           "intelephense",
           "lua_ls",
           "denols",
