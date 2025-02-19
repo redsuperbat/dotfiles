@@ -35,13 +35,6 @@ return {
   end,
   keys = {
     {
-      "<leader>go",
-      function()
-        require("snacks").gitbrowse.open()
-      end,
-      desc = "Open file on github",
-    },
-    {
       "<leader>fb",
       function()
         require("snacks").picker.buffers()

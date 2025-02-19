@@ -6,4 +6,13 @@ return {
   opts = {
     gitbrowse = {},
   },
+  keys = {
+    {
+      "<leader>go",
+      function()
+        require("snacks").gitbrowse.open()
+      end,
+      desc = "Open file on github",
+    },
+  },
 }
