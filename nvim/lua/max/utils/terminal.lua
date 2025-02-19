@@ -21,9 +21,9 @@ local function win_config(border)
 end
 
 ---@class FloatingTerminalOptions
----@field on_buf_create? fun(buf: integer): nil
----@field border? string
----@field cmd? string[]|string
+---@field on_buf_create? fun(buf: integer): nil -- Callback when the buffer inside the terminal is created
+---@field border? string -- Which border to show
+---@field cmd? string[]|string Command to execute in terminal
 ---@param opts? FloatingTerminalOptions
 function M.open(opts)
   local cmd = (opts and opts.cmd) or vim.o.shell

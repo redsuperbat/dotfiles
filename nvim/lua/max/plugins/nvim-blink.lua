@@ -11,6 +11,7 @@ return {
           local disabled_filetypes = {
             "DressingInput",
             "snacks_picker_input",
+            "snacks_input",
             "neo-tree-popup",
           }
           return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype)

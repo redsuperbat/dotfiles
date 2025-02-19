@@ -62,7 +62,7 @@ return {
       },
     })
 
-    add_handler("ruby_lsp", {
+    lspconfig.ruby_lsp.setup({
       init_options = {
         formatter = false,
       },

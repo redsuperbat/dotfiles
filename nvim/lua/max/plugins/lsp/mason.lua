@@ -24,7 +24,6 @@ return {
           "svelte",
           "jsonls",
           "sorbet",
-          "ruby_lsp",
           "intelephense",
           "lua_ls",
           "denols",
