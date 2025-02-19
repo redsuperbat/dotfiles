@@ -2,7 +2,7 @@ return {
   { "rafamadriz/friendly-snippets", lazy = true },
   {
     "saghen/blink.cmp",
-    event = { "VeryLazy" },
+    event = { "BufEnter" },
     version = "v0.*",
     config = function()
       require("blink.cmp").setup({
@@ -21,10 +21,7 @@ return {
           ["<CR>"] = { "select_and_accept", "fallback" },
         },
         cmdline = {
-          keymap = {
-            ["<S-Tab>"] = { "select_prev", "fallback" },
-            ["<Tab>"] = { "select_next", "fallback" },
-          },
+          enabled = false,
         },
         sources = {
           default = { "lsp", "path", "snippets", "buffer", "codecompanion", "markdown" },
