@@ -30,7 +30,7 @@
   "oil.nvim": { "branch": "master", "commit": "975a77cce3c8cb742bc1b3629f4328f5ca977dad" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "render-markdown.nvim": { "branch": "main", "commit": "4a28c135bc3548e398ba38178fec3f705cb26fe6" },
-  "snacks.nvim": { "branch": "main", "commit": "d389c5df14d83b6aff9eb6734906888780e8ca71" },
+  "snacks.nvim": { "branch": "main", "commit": "77312bbaa1dcb9146d457bdac6fc27bce6a9202f" },
   "substitute.nvim": { "branch": "main", "commit": "97f49d16f8eea7967d41db4f657dd63af53eeba1" },
   "tree-sitter-nu": { "branch": "main", "commit": "2a153c88d5d44d96653057c7cc14292f4e641bef" },
   "vim-be-good": { "branch": "master", "commit": "0ae3de14eb8efc6effe7704b5e46495e91931cc5" },
