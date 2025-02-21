@@ -50,19 +50,25 @@ function M.root()
     "Cargo.toml",
   }
 
-  for _, name in ipairs(filenames) do
-    local path = vim.fs.find(name, {
+  -- Start from the current directory
+  local starting_dir = vim.api.nvim_buf_get_name(0)
+
+  -- Traverse upwards until we find one of the files or reach the root
+  for _, filename in ipairs(filenames) do
+    local file_path = vim.fs.find(filename, {
       upward = true,
-      path = vim.api.nvim_buf_get_name(0),
+      path = starting_dir,
       type = "file",
     })[1]
 
-    if path then
-      return vim.fs.dirname(path)
+    if file_path then
+      local directory = vim.fs.dirname(file_path)
+      if directory == "." then
+        return vim.fn.getcwd()
+      end
+      return directory
     end
   end
-
-  return vim.fn.getcwd()
 end
 
 function M.git()
