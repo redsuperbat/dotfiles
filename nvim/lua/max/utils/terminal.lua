@@ -24,9 +24,11 @@ end
 ---@field on_buf_create? fun(buf: integer): nil -- Callback when the buffer inside the terminal is created
 ---@field border? string -- Which border to show
 ---@field cmd? string[]|string Command to execute in terminal
+---@field cwd? string The working directory of the terminal
 ---@param opts? FloatingTerminalOptions
 function M.open(opts)
   local cmd = (opts and opts.cmd) or vim.o.shell
+  local cwd = (opts and opts.cwd) or vim.fn.getcwd()
   local border = (opts and opts.border) or "rounded"
 
   local config = function()
@@ -60,7 +62,7 @@ function M.open(opts)
   local buf = vim.api.nvim_create_buf(false, true)
   open_win_with_resize(buf)
 
-  vim.fn.termopen(cmd)
+  vim.fn.termopen(cmd, { cwd = cwd })
 
   vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = buf, nowait = true })
 

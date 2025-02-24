@@ -11,13 +11,6 @@ local function file_path()
   return filepath
 end
 
---- @param buf number
-local function handle_buf_create(buf)
-  vim.keymap.set("t", "q", function()
-    vim.cmd("close")
-  end, { desc = "Quit rspec terminal", buffer = buf, nowait = true })
-end
-
 function M.run_test_under_cursor()
   local filepath = file_path()
   if filepath == nil then
@@ -28,7 +21,13 @@ function M.run_test_under_cursor()
 
   require("max.utils.terminal").open({
     cmd = string.format("rspec %s:%d", filepath, row),
-    on_buf_create = handle_buf_create,
+  })
+end
+
+--- @param filepath string
+function M.run_test_at(filepath)
+  require("max.utils.terminal").open({
+    cmd = string.format("rspec %s", filepath),
   })
 end
 
@@ -40,7 +39,6 @@ function M.run_current_buffer()
 
   require("max.utils.terminal").open({
     cmd = string.format("rspec %s", filepath),
-    on_buf_create = handle_buf_create,
   })
 end
 

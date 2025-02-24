@@ -80,6 +80,12 @@ return {
                 require("snacks").picker.grep({ cwd = path })
               end,
             },
+            ["T"] = {
+              function(state)
+                local path = state.tree:get_node().path
+                require("max.nuggets.rspec").run_test_at(path)
+              end,
+            },
             ["F"] = {
               function(state)
                 local path = state.tree:get_node().path
