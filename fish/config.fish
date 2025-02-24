@@ -1,11 +1,9 @@
 # Homebrew programs
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export PATH="/opt/homebrew/opt/dnsmasq/sbin:$PATH"
+export PATH="$(brew --prefix dnsmasq)/sbin:$PATH"
 
 # Deno
 export DENO_INSTALL="$HOME/.deno"
@@ -24,9 +22,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# pnpm
-export PNPM_HOME="/Users/maxnetterberg/Library/pnpm"
 
 # Set default editor to neovim
 export EDITOR="nvim"
