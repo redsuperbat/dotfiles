@@ -95,3 +95,8 @@ function clw
         tmux clear-history -t $pane
     end
 end
+
+function nvim_clear
+    rm -rf ~/.local/share/nvim
+    rm -rf ~/.local/state/nvim
+end
