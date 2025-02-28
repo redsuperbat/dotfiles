@@ -130,7 +130,8 @@ return {
           nerd_font_variant = "mono",
         },
         completion = {
-          ghost_text = { enabled = true },
+          -- Ghost-text breaks sometimes
+          ghost_text = { enabled = false },
           menu = {
             border = "rounded",
             draw = {
