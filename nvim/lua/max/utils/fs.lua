@@ -1,8 +1,11 @@
 local M = {}
 
+--- Check if the given path is a directory
+--- @param path string: The path to check
+--- @return boolean: True if the path is a directory, false otherwise
 function M.is_dir(path)
   local stat = vim.uv.fs_stat(path)
-  return stat and stat.type == "directory"
+  return stat ~= nil and stat.type == "directory"
 end
 
 --- Check if the path exists using the Neovim uv library
