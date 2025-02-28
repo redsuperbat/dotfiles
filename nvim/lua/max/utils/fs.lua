@@ -5,8 +5,11 @@ function M.is_dir(path)
   return stat and stat.type == "directory"
 end
 
+--- Check if the path exists using the Neovim uv library
+--- @param path string: The file system path to check
+--- @return boolean: Returns a boolean if the path exists, nil otherwise
 function M.path_exists(path)
-  return vim.uv.fs_stat(path)
+  return vim.uv.fs_stat(path) ~= nil
 end
 
 --- This function searches for a file by its name starting from the directory of the given buffer.
@@ -68,16 +71,6 @@ function M.root()
       end
       return directory
     end
-  end
-end
-
-function M.git()
-  local git_dir = vim.fs.find(".git", { upward = true, type = "directory" })
-
-  if #git_dir > 0 then
-    return vim.fs.dirname(git_dir[1])
-  else
-    return nil
   end
 end
 
