@@ -17,6 +17,8 @@ return {
       {
         "rafamadriz/friendly-snippets",
         config = function()
+          require("luasnip").filetype_extend("typescriptreact", { "html" })
+          require("luasnip").filetype_extend("javascriptreact", { "html" })
           require("luasnip.loaders.from_vscode").lazy_load()
           require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
         end,
@@ -36,7 +38,6 @@ return {
         enabled = function()
           -- Disable in code-actions and code-renames
           local disabled_filetypes = {
-            "DressingInput",
             "snacks_picker_input",
             "snacks_input",
             "neo-tree-popup",
@@ -78,7 +79,7 @@ return {
             snippets = {
               name = "Snippets",
               module = "blink.cmp.sources.snippets",
-              min_keyword_length = 2,
+              min_keyword_length = 1,
               score_offset = 60,
             },
             buffer = {
