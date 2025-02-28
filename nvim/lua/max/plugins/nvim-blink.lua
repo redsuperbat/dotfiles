@@ -1,5 +1,32 @@
 return {
-  { "rafamadriz/friendly-snippets", lazy = true },
+  {
+    "folke/lazydev.nvim",
+    lazy = true,
+    ft = "lua", -- only load on lua files
+    dependencies = { "Bilal2453/luvit-meta" },
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    lazy = true,
+    dependencies = {
+      {
+        "rafamadriz/friendly-snippets",
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+          require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+        end,
+      },
+    },
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
+  },
   {
     "saghen/blink.cmp",
     event = { "BufEnter" },
@@ -23,30 +50,46 @@ return {
         cmdline = {
           enabled = false,
         },
+        snippets = {
+          preset = "luasnip",
+        },
         sources = {
-          default = { "lsp", "path", "snippets", "buffer", "codecompanion", "markdown" },
+          default = { "lsp", "path", "snippets", "buffer", "markdown", "lazydev" },
           providers = {
             markdown = {
               name = "RenderMarkdown",
               module = "render-markdown.integ.blink",
             },
-            codecompanion = {
-              name = "CodeCompanion",
-              module = "codecompanion.providers.completion.blink",
-            },
             lsp = {
+              name = "LSP",
+              module = "blink.cmp.sources.lsp",
+              score_offset = 150, -- the higher the number, the higher the priority
               min_keyword_length = 0, -- Number of characters to trigger provider
-              score_offset = 0, -- Boost/penalize the score of the items
             },
             path = {
-              min_keyword_length = 0,
+              name = "Path",
+              module = "blink.cmp.sources.path",
+              score_offset = 25,
+              opts = {
+                trailing_slash = false,
+                label_trailing_slash = true,
+              },
             },
             snippets = {
-              min_keyword_length = 1,
+              name = "Snippets",
+              module = "blink.cmp.sources.snippets",
+              min_keyword_length = 2,
+              score_offset = 60,
             },
             buffer = {
-              min_keyword_length = 5,
-              max_items = 5,
+              name = "Buffer",
+              module = "blink.cmp.sources.buffer",
+              min_keyword_length = 3,
+              score_offset = 15, -- the higher the number, the higher the priority
+            },
+            lazydev = {
+              name = "LazyDev",
+              module = "lazydev.integrations.blink",
             },
           },
         },
@@ -86,6 +129,7 @@ return {
           nerd_font_variant = "mono",
         },
         completion = {
+          ghost_text = { enabled = true },
           menu = {
             border = "rounded",
             draw = {
