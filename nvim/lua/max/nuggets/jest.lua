@@ -62,9 +62,10 @@ function M.run_test_under_cursor()
   if name == nil then
     return
   end
-
+  local cmd = string.format("npx jest -i %s -t %s", filepath, name)
+  vim.print(cmd)
   require("max.utils.terminal").open({
-    cmd = string.format("npx jest -i %s -t %s", filepath, name),
+    cmd = cmd,
     cwd = root,
   })
 end
@@ -72,8 +73,10 @@ end
 function M.run_current_buffer()
   local root = require("max.utils.fs").root()
   local filepath = vim.api.nvim_buf_get_name(0)
+  local cmd = string.format("npx jest -i %s", filepath)
+  vim.print(cmd)
   require("max.utils.terminal").open({
-    cmd = string.format("npx jest -i %s", filepath),
+    cmd = cmd,
     cwd = root,
   })
 end
