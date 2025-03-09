@@ -26,13 +26,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Set default editor to neovim
 export EDITOR="nvim"
 
-
-
 # Kill process on port
 function kill_port
     kill -9 $(lsof -ti:$argv[1])
 end
-
 
 # Prompt
 function fish_prompt
@@ -66,7 +63,6 @@ function fish_prompt
     echo -n -s $status_color $suffix ' ' $normal
 end
 
-
 # Source k8s functions
 source "$HOME/.config/fish/k8s.fish"
 
@@ -75,6 +71,9 @@ source "$HOME/.config/fish/kanagawa.fish"
 
 # Source rvm
 source "$HOME/.config/fish/rvm.fish"
+
+# Load node on shell start
+nvm use lts >>/dev/null
 
 # Aliases
 alias kc=kubectl
