@@ -6,6 +6,8 @@ return {
   opts = {
     scratch = {
       win = {
+        height = 0.9,
+        width = 0.9,
         backdrop = false,
       },
     },
