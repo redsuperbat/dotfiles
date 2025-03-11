@@ -265,7 +265,7 @@ return {
       desc = "References",
     },
     {
-      "gI",
+      "gi",
       function()
         require("snacks").picker.lsp_implementations()
       end,

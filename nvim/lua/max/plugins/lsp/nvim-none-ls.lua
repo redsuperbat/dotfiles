@@ -16,7 +16,6 @@ end
 return {
   { "nvimtools/none-ls-extras.nvim", lazy = true },
   { "davidmh/cspell.nvim", lazy = true },
-
   {
     "nvimtools/none-ls.nvim",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
@@ -93,7 +92,22 @@ return {
           null_ls.builtins.formatting.rubocop,
           null_ls.builtins.diagnostics.rubocop,
 
-          require("none-ls.diagnostics.eslint"),
+          require("none-ls.diagnostics.eslint").with({
+            condition = function(utils)
+              return utils.root_has_file({
+                "eslint.config.js",
+                "eslint.config.mjs",
+                "eslint.config.cjs",
+                "eslint.config.ts",
+                "eslint.config.mts",
+                "eslint.config.cts",
+                ".eslint.js",
+                ".eslint.cjs",
+                ".eslint.json",
+                ".eslint.yml",
+              })
+            end,
+          }),
 
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.biome.with({
