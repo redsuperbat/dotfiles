@@ -111,6 +111,9 @@ return {
 
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.biome.with({
+            condition = function(utils)
+              return utils.root_has_file({ "biome.json" })
+            end,
             args = {
               "check",
               "--write",
@@ -123,15 +126,16 @@ return {
           null_ls.builtins.formatting.fish_indent,
 
           null_ls.builtins.formatting.prettier.with({
-            -- Exclude js/ts json because biome handles that
-            disabled_filetypes = {
-              "javascript",
-              "typescript",
-              "javascriptreact",
-              "typescriptreact",
-              "json",
-              "jsonc",
-            },
+            condition = function(utils)
+              return utils.root_has_file({
+                ".prettierrc",
+                ".prettierrc.json",
+                ".prettierrc.yml",
+                ".prettierrc.yaml",
+                ".prettierrc.js",
+                ".prettierrc.js",
+              })
+            end,
           }),
         },
       })
