@@ -1,5 +1,11 @@
 local M = {}
 
+--- @param filepath string
+local function encode_fish_filepath(filepath)
+  local encoded = filepath:gsub("([()%s!#$&'*;<=>?`{|}])", "\\%1")
+  return encoded
+end
+
 --- @param cmd string
 local function lazygit_term(cmd)
   require("max.utils.terminal").open({
@@ -23,6 +29,7 @@ end
 
 function M.reflog()
   local file = vim.trim(vim.api.nvim_buf_get_name(0))
+  file = encode_fish_filepath(file)
   lazygit_term(string.format("lazygit -f %s", file))
 end
 

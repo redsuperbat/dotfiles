@@ -54,9 +54,21 @@ local function test_name()
   end
 end
 
+--- @param filepath string
+local function trim_path_after_last_paren(filepath)
+  -- Find the last occurrence of ')'
+  local last_paren_index = filepath:match(".*()%)")
+
+  if last_paren_index then
+    return filepath:sub(last_paren_index + 1)
+  else
+    return filepath
+  end
+end
+
 function M.run_test_under_cursor()
   local root = require("max.utils.fs").root()
-  local filepath = vim.api.nvim_buf_get_name(0)
+  local filepath = trim_path_after_last_paren(vim.api.nvim_buf_get_name(0))
   local name = test_name()
 
   if name == nil then
@@ -72,7 +84,7 @@ end
 
 function M.run_current_buffer()
   local root = require("max.utils.fs").root()
-  local filepath = vim.api.nvim_buf_get_name(0)
+  local filepath = trim_path_after_last_paren(vim.api.nvim_buf_get_name(0))
   local cmd = string.format("npx jest -i %s", filepath)
   vim.print(cmd)
   require("max.utils.terminal").open({
