@@ -92,22 +92,23 @@ return {
           null_ls.builtins.formatting.rubocop,
           null_ls.builtins.diagnostics.rubocop,
 
-          require("none-ls.diagnostics.eslint").with({
-            condition = function(utils)
-              return utils.root_has_file({
-                "eslint.config.js",
-                "eslint.config.mjs",
-                "eslint.config.cjs",
-                "eslint.config.ts",
-                "eslint.config.mts",
-                "eslint.config.cts",
-                ".eslint.js",
-                ".eslint.cjs",
-                ".eslint.json",
-                ".eslint.yml",
-              })
-            end,
-          }),
+          -- Disabled eslint for now since it destroys my computer
+          -- require("none-ls.diagnostics.eslint").with({
+          --   condition = function(utils)
+          --     return utils.root_has_file({
+          --       "eslint.config.js",
+          --       "eslint.config.mjs",
+          --       "eslint.config.cjs",
+          --       "eslint.config.ts",
+          --       "eslint.config.mts",
+          --       "eslint.config.cts",
+          --       ".eslint.js",
+          --       ".eslint.cjs",
+          --       ".eslint.json",
+          --       ".eslint.yml",
+          --     })
+          --   end,
+          -- }),
 
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.biome.with({
