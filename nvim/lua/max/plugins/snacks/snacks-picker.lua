@@ -12,6 +12,8 @@ return {
       },
       layout = {
         layout = {
+          height = 0.95,
+          width = 0.95,
           backdrop = false,
         },
       },
