@@ -109,7 +109,11 @@ return {
     {
       "<leader>sb",
       function()
-        require("snacks").picker.lines()
+        require("snacks").picker.lines({
+          matcher = {
+            regex = true,
+          },
+        })
       end,
       desc = "Buffer Lines",
     },
