@@ -1,4 +1,5 @@
 display_full_path = true
+session_sort_order = "LastAttached"
 [[search_dirs]]
 path = "~/Projects"
 depth = 2
