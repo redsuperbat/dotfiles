@@ -9,49 +9,48 @@ local test_fns = {
 }
 
 ---@param node TSNode | nil
----@return TSNode | nil
-local function find_test_fn(node)
+---@param name string
+---@return string
+local function construct_test_name(node, name)
   if node == nil then
-    return
+    return name
   end
 
   if node:type() ~= "call_expression" then
-    return find_test_fn(node:parent())
+    return construct_test_name(node:parent(), name)
   end
 
   local identifier_node = node:field("function")[1]
 
   if identifier_node == nil then
-    return find_test_fn(node:parent())
+    return construct_test_name(node:parent(), name)
   end
 
   local function_name = ts.get_node_text(identifier_node, 0)
-  if vim.tbl_contains(test_fns, function_name) then
-    return node
+  if not vim.tbl_contains(test_fns, function_name) then
+    return construct_test_name(node:parent(), name)
   end
 
-  return find_test_fn(node:parent())
-end
-
----@return string|nil
-local function test_name()
-  local root_node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
-  -- Traverse upwards until a function with name "it", "describe" or "test is found"
-  local node = find_test_fn(root_node)
-
-  if node == nil then
-    return
-  end
-
-  -- Get first argument of the test function
   local args = node:field("arguments")[1]
-  if args and args:named_child_count() > 0 then
-    local first_arg_node = args:named_child(0)
-    if first_arg_node == nil then
-      return
-    end
-    return ts.get_node_text(first_arg_node, 0)
+
+  if args == nil then
+    return construct_test_name(node:parent(), name)
   end
+
+  if args:named_child_count() == 0 then
+    return construct_test_name(node:parent(), name)
+  end
+
+  local first_arg_node = args:named_child(0)
+
+  if first_arg_node == nil then
+    return construct_test_name(node:parent(), name)
+  end
+
+  -- Remove the leading and trailing quotation marks
+  local first_arg_text = ts.get_node_text(first_arg_node, 0):sub(2, -2)
+  -- Conditionally append space only when `name` is not empty
+  return construct_test_name(node:parent(), first_arg_text) .. (name ~= "" and " " .. name or "")
 end
 
 --- @param filepath string
@@ -69,12 +68,15 @@ end
 function M.run_test_under_cursor()
   local root = require("max.utils.fs").root()
   local filepath = trim_path_after_last_paren(vim.api.nvim_buf_get_name(0))
-  local name = test_name()
+  local root_node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
+  local name = construct_test_name(root_node, "")
 
-  if name == nil then
+  if #name == 0 then
+    vim.notify("No test found", vim.log.levels.ERROR)
     return
   end
-  local cmd = string.format("npx jest -i %s -t %s", filepath, name)
+
+  local cmd = string.format("npx jest -i %s -t '%s'", filepath, name)
   vim.print(cmd)
   require("max.utils.terminal").open({
     cmd = cmd,
