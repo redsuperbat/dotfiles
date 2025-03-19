@@ -1,4 +1,4 @@
-default: packages osx-conf fish ghostty neovim tmux
+default: packages osx-conf fish ghostty neovim tmux macos
 
 CONFIG_DIR ?= $(HOME)/.config
 
@@ -30,3 +30,4 @@ include fish/fish.mk
 include tmux/tmux.mk
 include ghostty/ghostty.mk
 include nvim/neovim.mk
+include macos/macos.mk

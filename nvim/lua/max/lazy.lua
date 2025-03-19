@@ -14,6 +14,16 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
 
 require("lazy").setup({
+
+  ui = {
+    backdrop = 100,
+    border = "rounded",
+    size = { width = 0.85, height = 0.85 },
+    custom_keys = {
+      ["K"] = false,
+    },
+  },
+
   rocks = {
     enabled = false,
   },
@@ -29,7 +39,6 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
   },
   checker = { enabled = true, notify = false }, -- automatically check for plugin updates
-
   change_detection = {
     notify = false,
   },
