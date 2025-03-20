@@ -1,4 +1,4 @@
-default: packages osx-conf fish ghostty neovim tmux macos
+default: packages macos fish ghostty neovim tmux
 
 CONFIG_DIR ?= $(HOME)/.config
 
