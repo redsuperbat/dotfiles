@@ -72,9 +72,6 @@ source "$HOME/.config/fish/kanagawa.fish"
 # Source rvm
 source "$HOME/.config/fish/rvm.fish"
 
-# Load node on shell start
-nvm use lts >>/dev/null
-
 # Aliases
 alias kc=kubectl
 alias gap="git add :/ -Ap"

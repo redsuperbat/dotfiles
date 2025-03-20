@@ -5,9 +5,6 @@ CONFIG_DIR ?= $(HOME)/.config
 $(CONFIG_DIR):
 	mkdir -p $(CONFIG_DIR)
 
-osx-conf:
-	defaults write -g InitialKeyRepeat -int 10
-	defaults write -g KeyRepeat -int 1
 
 BIN_DIR_x86_64 = /usr/local/bin
 BIN_DIR_arm64 = /opt/homebrew/bin
