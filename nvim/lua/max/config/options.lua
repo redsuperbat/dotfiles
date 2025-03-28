@@ -13,9 +13,9 @@ if not vim.env.SSH_TTY then
   opt.clipboard = "unnamedplus" -- Sync with system clipboard
 end
 
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-opt.foldtext = "v:lua.vim.treesitter.foldtext()"
-
+vim.o.winborder = "rounded" -- Rounded floating window border
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldtext = "v:lua.vim.treesitter.foldtext()"
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 0 -- Conceal nothing
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
