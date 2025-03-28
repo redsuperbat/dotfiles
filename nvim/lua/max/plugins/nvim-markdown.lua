@@ -5,8 +5,8 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   ft = { "md", "markdown", "codecompanion" },
-  config = function()
-    require("render-markdown").config()
+  opts = {},
+  init = function()
     require("max.utils.theme").set_bg("RenderMarkdownCode")
   end,
 }
