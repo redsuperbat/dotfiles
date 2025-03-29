@@ -24,6 +24,7 @@ brew "stylua"
 brew "taplo"
 brew "watch"
 brew "watchman"
+brew "rbenv"
 
 # Language servers
 brew "lua-language-server"
