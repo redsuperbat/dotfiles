@@ -7,6 +7,7 @@ vim.lsp.enable({
   "rustproof",
   "tailwindcss",
   "rust-analyzer",
+  "terraformls",
   "ts_ls",
   "volar",
 })
