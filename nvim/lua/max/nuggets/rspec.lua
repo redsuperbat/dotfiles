@@ -4,7 +4,7 @@ local function file_path()
   local filepath = vim.api.nvim_buf_get_name(0)
 
   if not filepath:match("spec%.rb$") then
-    vim.api.nvim_err_writeln("Invalid test file")
+    vim.notify("Invalid test file", vim.log.levels.ERROR)
     return
   end
 

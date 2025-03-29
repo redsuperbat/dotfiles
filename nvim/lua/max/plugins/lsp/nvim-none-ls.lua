@@ -2,7 +2,13 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     async = false,
     filter = function(client)
-      local accepted_clients = vim.iter({ "null-ls", "prismals", "rust_analyzer", "denols" })
+      local accepted_clients = vim.iter({
+        "null-ls",
+        "prismals",
+        "rust_analyzer",
+        "denols",
+        "marksman",
+      })
       local is_accepted = accepted_clients:any(function(c)
         return c == client.name
       end)
@@ -88,6 +94,8 @@ return {
           null_ls.builtins.formatting.shfmt,
 
           null_ls.builtins.formatting.terraform_fmt,
+
+          null_ls.builtins.formatting.mdformat,
 
           null_ls.builtins.formatting.rubocop,
           null_ls.builtins.diagnostics.rubocop,

@@ -10,6 +10,9 @@ return {
     "vue",
     "markdown",
     "json",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
   },
   root_dir = vim.fn.getcwd(),
   init_options = {

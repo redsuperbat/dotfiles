@@ -18,7 +18,7 @@ return {
       textobjects = {
         select = {
           enable = true,
-          -- Automatically jump forward to textobj, similar to targets.vim
+          -- Automatically jump forward to text obj, similar to targets.vim
           lookahead = true,
 
           keymaps = {
@@ -69,7 +69,7 @@ return {
         },
         move = {
           enable = true,
-          set_jumps = true, -- whether to set jumps in the jumplist
+          set_jumps = true, -- whether to set jumps in the jump list
           goto_next_start = {
             ["]f"] = { query = "@call.outer", desc = "Next function call start" },
             ["]m"] = { query = "@function.outer", desc = "Next method/function def start" },
