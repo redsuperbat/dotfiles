@@ -1,4 +1,4 @@
-local lsp_formatting = function(bufnr)
+local format_current_buf = function()
   vim.lsp.buf.format({
     async = false,
     filter = function(client)
@@ -15,7 +15,7 @@ local lsp_formatting = function(bufnr)
 
       return is_accepted
     end,
-    bufnr = bufnr,
+    bufnr = vim.api.nvim_get_current_buf(),
   })
 end
 
@@ -26,9 +26,7 @@ return {
   keys = {
     {
       "<leader>cf",
-      function()
-        lsp_formatting(vim.api.nvim_get_current_buf())
-      end,
+      format_current_buf,
       mode = { "n" },
       desc = "Format buffer",
     },
@@ -38,16 +36,14 @@ return {
 
     vim.api.nvim_create_user_command("NullLsEnable", function(ctx)
       null_ls.enable({ name = ctx.args })
-    end, { desc = "Disable source", nargs = 1 })
+    end, { desc = "Enable null ls source", nargs = 1 })
 
     vim.api.nvim_create_user_command("NullLsDisable", function(ctx)
       null_ls.disable({ name = ctx.args })
-    end, { desc = "Disable source", nargs = 1 })
+    end, { desc = "Disable null ls source", nargs = 1 })
 
     vim.api.nvim_create_autocmd("BufWritePre", {
-      callback = function()
-        lsp_formatting(vim.api.nvim_get_current_buf())
-      end,
+      callback = format_current_buf,
     })
 
     null_ls.setup({
