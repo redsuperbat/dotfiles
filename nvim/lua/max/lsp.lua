@@ -6,8 +6,16 @@ vim.lsp.enable({
   "ruby_lsp",
   "rustproof",
   "tailwindcss",
+  "rust-analyzer",
   "ts_ls",
   "volar",
+})
+
+vim.api.nvim_create_user_command("LspLog", function()
+  local path = vim.fn.stdpath("state") .. "/lsp.log"
+  vim.cmd(string.format("view %s", path))
+end, {
+  desc = "Open lsp logs",
 })
 
 vim.api.nvim_create_user_command("LspInfo", ":checkhealth vim.lsp", {
