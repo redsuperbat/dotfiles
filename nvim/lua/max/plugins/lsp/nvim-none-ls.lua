@@ -21,7 +21,6 @@ end
 
 return {
   { "nvimtools/none-ls-extras.nvim", lazy = true },
-  { "davidmh/cspell.nvim", lazy = true },
   {
     "nvimtools/none-ls.nvim",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
@@ -38,7 +37,6 @@ return {
     },
     config = function()
       local null_ls = require("null-ls")
-      local cspell = require("cspell")
 
       vim.api.nvim_create_user_command("NullLsEnable", function(ctx)
         null_ls.enable({ name = ctx.args })
@@ -54,35 +52,11 @@ return {
         end,
       })
 
-      local cspell_config = {
-        cspell_config_dirs = { "~/.config/nvim/lua/max/plugins/lsp/cspell/" },
-        on_add_to_json = function(payload)
-          local command = string.format(
-            "jq -S '.words |= sort' %s | sponge %s ",
-            payload.cspell_config_path,
-            payload.cspell_config_path
-          )
-          os.execute(command)
-        end,
-      }
-
       null_ls.setup({
         sources = {
           null_ls.builtins.code_actions.refactoring,
 
           null_ls.builtins.diagnostics.actionlint,
-
-          cspell.diagnostics.with({
-            config = cspell_config,
-            diagnostics_postprocess = function(diagnostic)
-              diagnostic.severity = vim.diagnostic.severity.HINT
-            end,
-            -- Cspell does not handle large buffers well.
-            runtime_condition = function()
-              return vim.fn.wordcount().bytes < 50000
-            end,
-          }),
-          cspell.code_actions.with({ config = cspell_config }),
 
           null_ls.builtins.formatting.sqlfluff.with({
             extra_args = { "--dialect", "postgres" },
@@ -99,24 +73,6 @@ return {
 
           null_ls.builtins.formatting.rubocop,
           null_ls.builtins.diagnostics.rubocop,
-
-          -- Disabled eslint for now since it destroys my computer
-          -- require("none-ls.diagnostics.eslint").with({
-          --   condition = function(utils)
-          --     return utils.root_has_file({
-          --       "eslint.config.js",
-          --       "eslint.config.mjs",
-          --       "eslint.config.cjs",
-          --       "eslint.config.ts",
-          --       "eslint.config.mts",
-          --       "eslint.config.cts",
-          --       ".eslint.js",
-          --       ".eslint.cjs",
-          --       ".eslint.json",
-          --       ".eslint.yml",
-          --     })
-          --   end,
-          -- }),
 
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.biome.with({
