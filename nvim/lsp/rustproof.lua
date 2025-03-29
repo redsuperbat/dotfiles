@@ -1,7 +1,7 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { "rustproof" },
   name = "rustproof",
+  cmd = { "rustproof" },
   filetypes = {
     "rust",
     "lua",
@@ -17,7 +17,7 @@ return {
   },
   root_dir = vim.fn.getcwd(),
   init_options = {
-    dict_path = "~/.config/nvim/lua/max/plugins/lsp/rustproof/dict.txt",
+    dict_path = "~/.config/nvim/lsp/rustproof-dict.txt",
     diagnostic_severity = "warning",
     dictionaries = {
       {

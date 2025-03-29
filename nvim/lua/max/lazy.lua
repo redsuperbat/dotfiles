@@ -14,7 +14,6 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazy_path)
 
 require("lazy").setup({
-
   ui = {
     backdrop = 100,
     border = "rounded",
@@ -23,14 +22,12 @@ require("lazy").setup({
       ["K"] = false,
     },
   },
-
   rocks = {
     enabled = false,
   },
   spec = {
     { import = "max.plugins" },
     { import = "max.plugins.snacks" },
-    { import = "max.plugins.lsp" },
   },
   defaults = {
     lazy = true,
