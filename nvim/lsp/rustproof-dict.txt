@@ -248,3 +248,7 @@ foldexpr
 winborder
 tcqj
 jobstart
+gopls
+gomod
+gotmpl
+gowork
