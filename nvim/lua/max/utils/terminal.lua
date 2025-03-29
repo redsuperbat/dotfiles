@@ -77,7 +77,7 @@ function M.open(opts)
   local buf = vim.api.nvim_create_buf(false, true)
   open_win_with_resize(buf)
 
-  vim.fn.termopen(cmd, { cwd = cwd })
+  vim.fn.jobstart(cmd, { cwd = cwd, term = true })
 
   vim.keymap.set("n", "q", "<cmd>q<CR>", { buffer = buf, nowait = true })
 
