@@ -14,6 +14,13 @@ vim.api.nvim_create_user_command("LspInfo", ":checkhealth vim.lsp", {
   desc = "Language server info",
 })
 
+vim.api.nvim_create_user_command("LspStop", function(ctx)
+  vim.lsp.stop_client(vim.lsp.get_clients({ name = ctx.args }))
+end, {
+  desc = "Stop lsp client",
+  nargs = 1,
+})
+
 vim.api.nvim_create_user_command("LspRestart", function()
   vim.lsp.stop_client(vim.lsp.get_clients())
   vim.defer_fn(function()

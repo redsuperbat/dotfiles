@@ -12,6 +12,13 @@ return {
   root_markers = {
     "deno.json",
   },
+  root_dir = function(buf, cb)
+    local found = vim.fs.root(buf, { "deno.json" })
+    if found == nil then
+      return
+    end
+    cb(found)
+  end,
   settings = {
     deno = {
       enable = true,
