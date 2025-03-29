@@ -193,3 +193,8 @@ isort
 stylua
 actionlint
 taplo
+prettierrc
+mdformat
+postgres
+rubocop
+builtins
