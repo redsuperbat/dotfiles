@@ -139,19 +139,6 @@ return {
         return lspconfig.util.root_pattern("package.json")(filename)
       end,
       single_file_support = false,
-      commands = {
-        OrganizeImports = {
-          function()
-            local params = {
-              command = "_typescript.organizeImports",
-              arguments = { vim.api.nvim_buf_get_name(0) },
-              title = "Organize Imports",
-            }
-            vim.lsp.buf.execute_command(params)
-          end,
-          description = "Organize Imports",
-        },
-      },
     })
 
     add_handler("volar", {
@@ -195,5 +182,6 @@ return {
     })
 
     mason_lspconfig.setup_handlers(handlers)
+    vim.lsp.enable("rustproof")
   end,
 }
