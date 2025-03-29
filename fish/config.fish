@@ -69,9 +69,6 @@ source "$HOME/.config/fish/k8s.fish"
 # Source theme
 source "$HOME/.config/fish/kanagawa.fish"
 
-# Source rvm
-source "$HOME/.config/fish/rvm.fish"
-
 # Aliases
 alias kc=kubectl
 alias gap="git add :/ -Ap"
@@ -96,3 +93,6 @@ function nvim_clear
     rm -rf ~/.local/share/nvim
     rm -rf ~/.local/state/nvim
 end
+
+# Added by `rbenv init` on Sun Mar 30 00:31:37 CET 2025
+status --is-interactive; and rbenv init - --no-rehash fish | source
