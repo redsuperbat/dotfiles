@@ -8,6 +8,7 @@ local format_current_buf = function()
         "rust-analyzer",
         "denols",
         "marksman",
+        "biome",
       })
       local is_accepted = accepted_clients:any(function(c)
         return c == client.name
@@ -65,18 +66,6 @@ return {
         null_ls.builtins.diagnostics.rubocop,
 
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.biome.with({
-          condition = function(utils)
-            return utils.root_has_file({ "biome.json" })
-          end,
-          args = {
-            "check",
-            "--write",
-            "--stdin-file-path",
-            "$FILENAME",
-          },
-        }),
-
         null_ls.builtins.diagnostics.fish,
         null_ls.builtins.formatting.fish_indent,
 

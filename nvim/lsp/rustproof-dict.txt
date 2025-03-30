@@ -256,3 +256,8 @@ noreferrer
 println
 swiss
 wikipedia
+franskavinlistan
+upsert
+autoplay
+playsinline
+keyof

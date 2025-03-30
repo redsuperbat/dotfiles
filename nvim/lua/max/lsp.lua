@@ -1,14 +1,15 @@
 vim.lsp.enable({
-  "lua_ls",
+  "biome",
   "denols",
   "jsonls",
   "lua_ls",
+  "lua_ls",
+  "marksman",
   "ruby_lsp",
+  "rust-analyzer",
   "rustproof",
   "tailwindcss",
-  "rust-analyzer",
   "terraformls",
-  "marksman",
   "ts_ls",
   "volar",
 })
