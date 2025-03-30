@@ -40,6 +40,10 @@ source "$HOME/.config/fish/kanagawa.fish"
 # Source prompt
 source "$HOME/.config/fish/fish_prompt.fish"
 
+# Do not print fish greeting
+function fish_greeting
+end
+
 # Aliases
 alias kc=kubectl
 alias gap="git add :/ -Ap"

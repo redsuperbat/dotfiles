@@ -252,3 +252,7 @@ gopls
 gomod
 gotmpl
 gowork
+noreferrer
+println
+swiss
+wikipedia

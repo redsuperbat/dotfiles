@@ -5,7 +5,7 @@ local format_current_buf = function()
       local accepted_clients = vim.iter({
         "null-ls",
         "prismals",
-        "rust_analyzer",
+        "rust-analyzer",
         "denols",
         "marksman",
       })
@@ -60,8 +60,6 @@ return {
         null_ls.builtins.formatting.shfmt,
 
         null_ls.builtins.formatting.terraform_fmt,
-
-        null_ls.builtins.formatting.mdformat,
 
         null_ls.builtins.formatting.rubocop,
         null_ls.builtins.diagnostics.rubocop,

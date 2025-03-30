@@ -8,6 +8,7 @@ vim.lsp.enable({
   "tailwindcss",
   "rust-analyzer",
   "terraformls",
+  "marksman",
   "ts_ls",
   "volar",
 })

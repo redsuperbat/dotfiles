@@ -18,7 +18,7 @@ return {
   root_dir = vim.fn.getcwd(),
   init_options = {
     dict_path = "~/.config/nvim/lsp/rustproof-dict.txt",
-    diagnostic_severity = "warning",
+    diagnostic_severity = "info",
     dictionaries = {
       {
         language = "en",
