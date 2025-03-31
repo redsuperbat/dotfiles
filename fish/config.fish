@@ -5,6 +5,9 @@ export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export PATH="$(brew --prefix dnsmasq)/sbin:$PATH"
 
+# Local user binaries
+export PATH="$HOME/.local/bin:$PATH"
+
 # Deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
