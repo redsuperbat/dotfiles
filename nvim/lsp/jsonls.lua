@@ -11,7 +11,16 @@ return {
       format = {
         enable = false,
       },
+      schemas = {
+        {
+          fileMatch = { "tsconfig.json" },
+          url = "https://json.schemastore.org/tsconfig.json",
+        },
+        {
+          fileMatch = { "package.json" },
+          url = "https://raw.githubusercontent.com/SchemaStore/schemastore/refs/heads/master/src/schemas/json/package.json",
+        },
+      },
     },
-    validate = { enable = true },
   },
 }

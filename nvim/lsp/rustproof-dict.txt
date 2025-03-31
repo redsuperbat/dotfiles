@@ -261,3 +261,4 @@ upsert
 autoplay
 playsinline
 keyof
+schemastore
