@@ -262,3 +262,13 @@ autoplay
 playsinline
 keyof
 schemastore
+SAML
+Unprocessable
+SCIM
+downcase
+Sidekiq
+Categorizer
+camelize
+Serializer
+Hasher
+updaters

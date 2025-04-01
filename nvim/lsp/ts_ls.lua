@@ -9,11 +9,17 @@ return {
     "typescriptreact",
     "typescript.tsx",
   },
-  root_markers = {
-    "package.json",
-    "tsconfig.json",
-    ".git",
-  },
+  root_dir = function(buf, cb)
+    local found = vim.fs.root(buf, {
+      "package.json",
+      "tsconfig.json",
+      ".git",
+    })
+    if found == nil then
+      return
+    end
+    cb(found)
+  end,
   init_options = {
     hostInfo = "neovim",
   },
