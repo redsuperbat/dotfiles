@@ -107,3 +107,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+-- Quit on capital Q
+vim.api.nvim_create_user_command("Q", "q", {})
+-- Write on capital W
+vim.api.nvim_create_user_command("W", "w", {})
