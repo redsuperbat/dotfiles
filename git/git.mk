@@ -1,5 +1,5 @@
 .PHONY: git
 
-macos:
+git:
 	sh $(PWD)/git/setup.sh
 
