@@ -13,9 +13,11 @@ return {
     "json",
     "typescript",
     "typescriptreact",
+    "text",
     "javascriptreact",
   },
   root_dir = vim.fn.getcwd(),
+  cmd_env = { RUST_LOG = "info" },
   init_options = {
     dict_path = "~/.config/nvim/lsp/rustproof-dict.txt",
     diagnostic_severity = "info",
