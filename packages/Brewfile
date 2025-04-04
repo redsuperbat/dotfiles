@@ -43,6 +43,7 @@ cask "slack"
 cask "raycast"
 cask "brave-browser"
 cask "linear-linear"
+cask "bitwarden"
 
 tap  "hashicorp/tap"
 brew "hashicorp/tap/terraform"
