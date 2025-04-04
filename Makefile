@@ -1,4 +1,4 @@
-default: packages macos fish ghostty neovim tmux
+default: packages macos git fish ghostty neovim tmux
 
 CONFIG_DIR ?= $(HOME)/.config
 
@@ -23,8 +23,9 @@ $(BREW):
 homebrew: $(BREW)
 
 include packages/packages.mk
+include macos/macos.mk
+include git/git.mk
 include fish/fish.mk
 include tmux/tmux.mk
 include ghostty/ghostty.mk
 include nvim/neovim.mk
-include macos/macos.mk
