@@ -14,7 +14,11 @@ return {
     "typescriptreact",
     "vue",
   },
-  root_markers = {
-    "biome.json",
-  },
+  root_dir = function(buf, cb)
+    local found = vim.fs.root(buf, { "biome.json" })
+    if found == nil then
+      return
+    end
+    cb(found)
+  end,
 }
