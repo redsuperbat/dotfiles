@@ -1,4 +1,4 @@
-default: packages macos git fish karabiner ghostty neovim tmux
+default: packages macos git lazygit fish karabiner ghostty neovim tmux
 
 CONFIG_DIR ?= $(HOME)/.config
 
@@ -30,3 +30,4 @@ include tmux/tmux.mk
 include ghostty/ghostty.mk
 include nvim/neovim.mk
 include karabiner/karabiner.mk
+include lazygit/lazygit.mk
