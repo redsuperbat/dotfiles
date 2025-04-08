@@ -279,3 +279,4 @@ tokenize
 Graphemes
 Peekable
 revalidate
+discoverable
