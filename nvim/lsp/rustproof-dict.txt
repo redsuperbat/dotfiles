@@ -278,3 +278,4 @@ harper
 tokenize
 Graphemes
 Peekable
+revalidate
