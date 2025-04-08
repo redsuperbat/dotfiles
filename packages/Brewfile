@@ -25,6 +25,7 @@ brew "watch"
 brew "watchman"
 brew "rbenv"
 brew "marksman"
+brew "bottom"
 
 # Language servers
 brew "lua-language-server"

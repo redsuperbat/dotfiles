@@ -53,6 +53,7 @@ alias gap="git add :/ -Ap"
 alias vim=nvim
 alias ls='eza -la --group-directories-first --icons'
 alias lg=lazygit
+alias htop=btm
 
 function cl
     clear
