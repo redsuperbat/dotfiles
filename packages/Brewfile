@@ -35,6 +35,7 @@ brew "typescript-language-server"
 brew "vscode-langservers-extracted"
 brew "vue-language-server"
 brew "ruby-lsp"
+brew "gopls"
 
 tap  "oven-sh/bun"
 brew "oven-sh/bun/bun"
