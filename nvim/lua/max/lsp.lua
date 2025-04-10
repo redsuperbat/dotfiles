@@ -6,6 +6,7 @@ vim.lsp.enable({
   "lua_ls",
   "marksman",
   "ruby_lsp",
+  "gopls",
   "rust-analyzer",
   "rustproof",
   "tailwindcss",
