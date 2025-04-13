@@ -289,3 +289,4 @@ UNSPLASH
 dropzone
 Frontmatter
 formatters
+gofmt
