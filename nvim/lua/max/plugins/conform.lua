@@ -1,6 +1,7 @@
 return {
   "stevearc/conform.nvim",
   event = "VeryLazy",
+  --- @module "conform"
   --- @type conform.setupOpts
   opts = {
     format_on_save = {},
