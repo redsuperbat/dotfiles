@@ -75,11 +75,8 @@ keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actio
 keymap("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restart LSP" })
 keymap("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
 keymap("n", "<leader>gd", function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1 })
 end, { desc = "Next Diagnostic" })
-keymap("n", "<leader>gD", function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end, { desc = "Prev Diagnostic" })
 
 keymap("n", "<leader>ft", function()
   require("max.utils.terminal").open({

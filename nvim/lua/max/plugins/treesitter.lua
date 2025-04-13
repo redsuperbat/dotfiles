@@ -18,9 +18,6 @@ return {
       { "<c-space>", desc = "Increment Selection" },
       { "<bs>", desc = "Decrement Selection", mode = "x" },
     },
-    dependencies = {
-      { "nushell/tree-sitter-nu" },
-    },
     config = function()
       require("nvim-treesitter.configs").setup({
         ignore_install = {},
