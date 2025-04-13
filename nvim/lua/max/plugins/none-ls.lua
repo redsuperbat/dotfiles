@@ -49,38 +49,13 @@ return {
 
     null_ls.setup({
       sources = {
+        -- Github actions
         null_ls.builtins.diagnostics.actionlint,
-
-        null_ls.builtins.formatting.sqlfluff.with({
-          extra_args = { "--dialect", "postgres" },
-        }),
-        null_ls.builtins.diagnostics.sqlfluff.with({
-          extra_args = { "--dialect", "postgres" },
-        }),
-
-        null_ls.builtins.formatting.shfmt,
-
-        null_ls.builtins.formatting.terraform_fmt,
-
-        null_ls.builtins.formatting.rubocop,
+        -- Dockerfile
+        null_ls.builtins.diagnostics.hadolint,
+        null_ls.builtins.diagnostics.sqlfluff.with({ extra_args = { "--dialect", "postgres" } }),
         null_ls.builtins.diagnostics.rubocop,
-
-        null_ls.builtins.formatting.stylua,
         null_ls.builtins.diagnostics.fish,
-        null_ls.builtins.formatting.fish_indent,
-
-        null_ls.builtins.formatting.prettier.with({
-          condition = function(utils)
-            return utils.root_has_file({
-              ".prettierrc",
-              ".prettierrc.json",
-              ".prettierrc.yml",
-              ".prettierrc.yaml",
-              ".prettierrc.js",
-              ".prettierrc.js",
-            })
-          end,
-        }),
       },
     })
   end,
