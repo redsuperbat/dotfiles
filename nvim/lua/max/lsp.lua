@@ -29,7 +29,7 @@ vim.api.nvim_create_user_command("LspStart", function(ctx)
   local config = vim.lsp.config[ctx.args]
   vim.lsp.start(config)
 end, {
-  desc = "Open lsp logs",
+  desc = "Start lsp with name",
   nargs = 1,
 })
 
