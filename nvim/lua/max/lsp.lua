@@ -1,19 +1,15 @@
-vim.lsp.enable({
-  "biome",
-  "denols",
-  "jsonls",
-  "lua_ls",
-  "lua_ls",
-  "marksman",
-  "ruby_lsp",
-  "gopls",
-  "rust-analyzer",
-  "rustproof",
-  "tailwindcss",
-  "terraformls",
-  "ts_ls",
-  "volar",
-})
+--- This code enables all language servers
+--- with configuration in the lsp directory
+local lsp_dir = vim.fs.joinpath(vim.fn.stdpath("config"), "lsp")
+--- @type string[]
+local language_servers_to_enable = {}
+for filename in vim.fs.dir(lsp_dir) do
+  local lsp_name = filename:gsub("%.lua$", "")
+  if filename:match("%.lua$") then
+    table.insert(language_servers_to_enable, lsp_name)
+  end
+end
+vim.lsp.enable(language_servers_to_enable)
 
 vim.api.nvim_create_user_command("LspLog", function()
   vim.cmd(string.format("view %s", vim.lsp.get_log_path()))
