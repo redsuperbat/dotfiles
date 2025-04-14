@@ -72,8 +72,6 @@ keymap("n", "<leader>k", vim.lsp.buf.hover, { desc = "Hover over" })
 keymap("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 
-keymap("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restart LSP" })
-keymap("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
 keymap("n", "<leader>gd", function()
   vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1 })
 end, { desc = "Next Diagnostic" })

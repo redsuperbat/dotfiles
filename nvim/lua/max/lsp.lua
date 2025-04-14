@@ -44,3 +44,6 @@ vim.api.nvim_create_user_command("LspRestart", function()
 end, {
   desc = "Restart all language servers",
 })
+
+vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restart LSP" })
+vim.keymap.set("n", "<leader>li", ":LspInfo<CR>", { desc = "LSP Info" })
