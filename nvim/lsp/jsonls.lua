@@ -8,9 +8,6 @@ return {
   },
   settings = {
     json = {
-      format = {
-        enable = false,
-      },
       schemas = {
         {
           fileMatch = { "tsconfig.json" },
