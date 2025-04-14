@@ -290,3 +290,5 @@ dropzone
 Frontmatter
 formatters
 gofmt
+zustand
+clsx
