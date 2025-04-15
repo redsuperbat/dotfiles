@@ -17,6 +17,10 @@ return {
           fileMatch = { "package.json" },
           url = "https://raw.githubusercontent.com/SchemaStore/schemastore/refs/heads/master/src/schemas/json/package.json",
         },
+        {
+          fileMatch = { "postgrestools.jsonc" },
+          url = "https://pgtools.dev/schemas/0.0.0/schema.json",
+        },
       },
     },
   },
