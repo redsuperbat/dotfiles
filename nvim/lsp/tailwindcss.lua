@@ -21,6 +21,7 @@ return {
     "tailwind.config.cjs",
     "tailwind.config.mjs",
     "tailwind.config.ts",
+    "package.json",
   },
   init_options = {
     tailwindCSS = {

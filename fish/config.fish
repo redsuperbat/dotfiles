@@ -1,30 +1,18 @@
-# Homebrew programs
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-export PATH="/opt/homebrew/opt/bison/bin:$PATH"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export PATH="$(brew --prefix dnsmasq)/sbin:$PATH"
+# Homebrew specific formulae
+fish_add_path --path (brew --prefix libpq)/bin
+fish_add_path --path (brew --prefix llvm)/bin
+
+# Homebrew system binaries
+fish_add_path --path (brew --prefix)/sbin
 
 # Local user binaries
-export PATH="$HOME/.local/bin:$PATH"
-
-# Deno
-export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+fish_add_path --path $HOME/.local/bin
 
 # Scripts
-export PATH="$HOME/Scripts:$PATH"
-
-# Go
-export GOPATH=$HOME/go
-export PATH="$PATH:$GOPATH/bin"
-
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+fish_add_path --path $HOME/Scripts
 
 # Rust
-export PATH="$HOME/.cargo/bin:$PATH"
+fish_add_path --path $HOME/.cargo/bin
 
 # Set default editor to neovim
 export EDITOR="nvim"
@@ -35,13 +23,13 @@ function kill_port
 end
 
 # Source k8s functions
-source "$HOME/.config/fish/k8s.fish"
+source $HOME/.config/fish/k8s.fish
 
 # Source theme
-source "$HOME/.config/fish/kanagawa.fish"
+source $HOME/.config/fish/kanagawa.fish
 
 # Source prompt
-source "$HOME/.config/fish/fish_prompt.fish"
+source $HOME/.config/fish/fish_prompt.fish
 
 # Do not print fish greeting
 function fish_greeting
@@ -51,7 +39,7 @@ end
 alias kc=kubectl
 alias gap="git add :/ -Ap"
 alias vim=nvim
-alias ls='eza -la --group-directories-first --icons'
+alias ls="eza -la --group-directories-first --icons"
 alias lg=lazygit
 alias htop=btm
 
@@ -62,7 +50,7 @@ end
 
 # Clear all logs in all windows
 function clw
-    for pane in (tmux list-panes -F '#{pane_id}')
+    for pane in (tmux list-panes -F "#{pane_id}")
         tmux send-keys -t $pane C-z clear Enter
         tmux clear-history -t $pane
     end
