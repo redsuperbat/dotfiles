@@ -7,9 +7,7 @@ TPM_DIR = $(TMUX_CONFIG_DIR)/plugins/tpm
 tmux: $(TMUX)
 
 
-$(TMUX): $(BREW) $(CONFIG_DIR) $(FISH)
-	$(BREW) install tmux
-	$(BREW) install tmux-sessionizer
+$(TMUX): $(CONFIG_DIR) $(FISH)
 	ln -his "$(PWD)/tmux" $(TMUX_CONFIG_DIR)
 	ln -his "$(PWD)/tmux/tms" $(TMS_CONFIG_DIR)
 	[ -d $(TPM_DIR) ] || git clone https://github.com/tmux-plugins/tpm $(TPM_DIR)

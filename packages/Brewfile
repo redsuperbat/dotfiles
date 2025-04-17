@@ -28,6 +28,8 @@ brew "marksman"
 brew "bottom"
 brew "neovim"
 brew "fish"
+brew "tmux"
+brew "tmux-sessionizer"
 
 # Language servers
 brew "lua-language-server"
