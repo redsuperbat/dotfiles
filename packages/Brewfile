@@ -26,6 +26,8 @@ brew "watchman"
 brew "rbenv"
 brew "marksman"
 brew "bottom"
+brew "neovim"
+brew "fish"
 
 # Language servers
 brew "lua-language-server"

@@ -1,9 +1,10 @@
-# Homebrew specific formulae
-fish_add_path --path (brew --prefix libpq)/bin
-fish_add_path --path (brew --prefix llvm)/bin
-
-# Homebrew system binaries
-fish_add_path --path (brew --prefix)/sbin
+if type -q brew
+    # Homebrew specific formulae
+    fish_add_path --path (brew --prefix libpq)/bin
+    fish_add_path --path (brew --prefix llvm)/bin
+    # Homebrew system binaries
+    fish_add_path --path (brew --prefix)/sbin
+end
 
 # Local user binaries
 fish_add_path --path $HOME/.local/bin

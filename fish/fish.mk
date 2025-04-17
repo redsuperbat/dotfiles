@@ -4,9 +4,8 @@ FISHER = fish/fisher/functions/fisher.fish
 .PHONY: fish
 fish: $(FISH) $(FISHER)
 
-$(FISH): $(BREW) $(CONFIG_DIR)
+$(FISH): $(CONFIG_DIR)
 	ln -his $(PWD)/fish $(CONFIG_DIR)/fish
-	$(BREW) install fish
 	sudo sh -c 'echo "/opt/homebrew/bin/fish" >> /etc/shells'
 	sudo chsh -s /opt/homebrew/bin/fish $$(whoami)
 
