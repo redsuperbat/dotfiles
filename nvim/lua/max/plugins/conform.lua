@@ -26,6 +26,7 @@ return {
       typescriptreact = { "biome" },
       fish = { "fish_indent" },
       terraform = { "terraform_fmt" },
+      dockerfile = { lsp_format = "prefer" },
       sh = { "shfmt" },
       sql = { "sqlfluff" },
     },
