@@ -29,6 +29,7 @@ brew "bottom"
 brew "neovim"
 brew "fish"
 brew "tmux"
+brew "hadolint"
 brew "tmux-sessionizer"
 
 # Language servers
