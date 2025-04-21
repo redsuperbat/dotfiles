@@ -1,17 +1,17 @@
---- @diagnostic disable: missing-fields
-
 return {
   "folke/snacks.nvim",
+  ---@module "snacks"
   ---@type snacks.Config
   opts = {
     scratch = {
-      ft = nil,
+      ft = "text",
       filekey = {
         cwd = true,
         branch = false,
         count = false,
       },
       win = {
+        relative = "editor",
         height = 0.9,
         width = 0.9,
         backdrop = false,
