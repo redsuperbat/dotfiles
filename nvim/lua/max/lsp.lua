@@ -47,3 +47,9 @@ end, {
 
 vim.keymap.set("n", "<leader>lr", ":LspRestart<CR>", { desc = "Restart LSP" })
 vim.keymap.set("n", "<leader>li", ":LspInfo<CR>", { desc = "LSP Info" })
+vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+vim.keymap.set("n", "<leader>gd", function()
+  vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1 })
+end, { desc = "Next Diagnostic" })

@@ -61,21 +61,6 @@ keymap("v", ">", ">gv")
 
 -- new file
 keymap("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-
--- better movement
-keymap("n", "K", "<C-u>")
-keymap("n", "J", "<C-d>")
-
--- diagnostic
-keymap("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-keymap("n", "<leader>k", vim.lsp.buf.hover, { desc = "Hover over" })
-keymap("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
-keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
-
-keymap("n", "<leader>gd", function()
-  vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1 })
-end, { desc = "Next Diagnostic" })
-
 keymap("n", "<leader>ft", function()
   require("max.utils.terminal").open({
     on_buf_create = function(buf)
