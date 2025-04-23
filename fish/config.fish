@@ -40,7 +40,7 @@ end
 alias kc=kubectl
 alias gap="git add :/ -Ap"
 alias vim=nvim
-alias ls=eza
+alias ls="eza -1a --group-directories-first"
 alias lg=lazygit
 alias htop=btm
 
