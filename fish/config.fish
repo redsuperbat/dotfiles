@@ -40,9 +40,13 @@ end
 alias kc=kubectl
 alias gap="git add :/ -Ap"
 alias vim=nvim
-alias ls="eza -la --group-directories-first --icons"
+alias ls=eza
 alias lg=lazygit
 alias htop=btm
+
+function lsa
+    eza -la --group-directories-first --icons
+end
 
 function cl
     clear
