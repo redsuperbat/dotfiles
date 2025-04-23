@@ -20,6 +20,7 @@ return {
       python = { "isort", "black" },
       rust = { lsp_format = "prefer" },
       ruby = { "rubocop" },
+      yaml = { "prettier", lsp_format = "fallback" },
       javascript = { "biome", "prettier", stop_after_first = true },
       typescript = { "biome" },
       json = { "biome", lsp_format = "fallback" },
