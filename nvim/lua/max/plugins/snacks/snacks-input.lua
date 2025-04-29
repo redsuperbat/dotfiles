@@ -1,5 +1,3 @@
----@diagnostic disable: missing-fields
-
 return {
   "folke/snacks.nvim",
   event = "VeryLazy",

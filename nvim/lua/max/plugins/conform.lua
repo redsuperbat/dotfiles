@@ -23,7 +23,7 @@ return {
       yaml = { "prettier", lsp_format = "fallback" },
       javascript = { "biome", "prettier", stop_after_first = true },
       typescript = { "biome" },
-      json = { "biome", lsp_format = "fallback" },
+      json = { "biome", "prettier", lsp_format = "fallback", stop_after_first = true },
       typescriptreact = { "biome" },
       fish = { "fish_indent" },
       terraform = { "terraform_fmt" },

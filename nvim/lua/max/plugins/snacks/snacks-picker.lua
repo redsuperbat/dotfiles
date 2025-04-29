@@ -1,7 +1,6 @@
----@diagnostic disable: missing-fields
-
 return {
   "folke/snacks.nvim",
+  ---@module "snacks"
   ---@type snacks.Config
   opts = {
     picker = {
@@ -136,9 +135,9 @@ return {
     {
       "<leader>sw",
       function()
-        require("snacks").picker.grep_word()
+        require("snacks").picker.grep({ search = vim.fn.expand("<cword>") })
       end,
-      desc = "Visual selection or word",
+      desc = "Search word under cursor",
       mode = { "n", "x" },
     },
     -- search
