@@ -22,7 +22,7 @@ local function construct_test_name(node)
   return ts.get_node_text(identifier_node, 0)
 end
 
-function M.run_test_under_cursor()
+local function run_test_under_cursor()
   local root = require("max.utils.fs").root()
   local root_node = require("nvim-treesitter.ts_utils").get_node_at_cursor()
   local name = construct_test_name(root_node)
@@ -40,7 +40,7 @@ function M.run_test_under_cursor()
   })
 end
 
-function M.run_current_buffer()
+local function run_current_buffer()
   vim.notify("Not yet implemented", vim.log.levels.ERROR)
   -- local root = require("max.utils.fs").root()
   -- local filepath = trim_path_after_last_paren(vim.api.nvim_buf_get_name(0))
@@ -55,8 +55,8 @@ end
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.rs" },
   callback = function()
-    vim.keymap.set("n", "<leader>tt", M.run_test_under_cursor, { desc = "Run test test on cursor" })
-    vim.keymap.set("n", "<leader>tf", M.run_current_buffer, { desc = "Run test on current buffer" })
+    vim.keymap.set("n", "<leader>tt", run_test_under_cursor, { desc = "Run test test on cursor" })
+    vim.keymap.set("n", "<leader>tf", run_current_buffer, { desc = "Run test on current buffer" })
   end,
 })
 

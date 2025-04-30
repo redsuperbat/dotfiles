@@ -39,12 +39,6 @@ return {
         "class",
         "className",
       },
-      includeLanguages = {
-        eelixir = "html-eex",
-        eruby = "erb",
-        templ = "html",
-        htmlangular = "html",
-      },
     },
   },
 }
