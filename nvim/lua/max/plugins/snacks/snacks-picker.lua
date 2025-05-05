@@ -135,10 +135,19 @@ return {
     {
       "<leader>sw",
       function()
+        local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."))
+        require("snacks").picker.grep({ search = vim.fn.join(lines, " ") })
+      end,
+      desc = "Search text marked by visual",
+      mode = "v",
+    },
+    {
+      "<leader>sw",
+      function()
         require("snacks").picker.grep({ search = vim.fn.expand("<cword>") })
       end,
       desc = "Search word under cursor",
-      mode = { "n", "x" },
+      mode = "n",
     },
     -- search
     {
