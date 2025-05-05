@@ -10,6 +10,12 @@ return {
     "typescript.tsx",
   },
   root_dir = function(buf, cb)
+    local deno_json_found = vim.fs.root(buf, {
+      "deno.json",
+    })
+    if deno_json_found ~= nil then
+      return
+    end
     local found = vim.fs.root(buf, {
       "package.json",
       "tsconfig.json",

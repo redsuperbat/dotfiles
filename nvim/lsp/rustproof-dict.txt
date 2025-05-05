@@ -295,3 +295,6 @@ clsx
 joinpath
 kwargs
 testid
+collapsable
+varchar
+cloudflare
