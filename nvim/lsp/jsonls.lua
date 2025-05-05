@@ -10,6 +10,10 @@ return {
     json = {
       schemas = {
         {
+          fileMatch = { "deno.json", "deno.jsonc" },
+          url = "https://raw.githubusercontent.com/denoland/deno/refs/heads/main/cli/schemas/config-file.v1.json",
+        },
+        {
           fileMatch = { "biome.json" },
           url = "https://biomejs.dev/schemas/latest/schema.json",
         },
