@@ -133,13 +133,23 @@ return {
       desc = "Grep",
     },
     {
-      "<leader>sw",
+      "<leader>sv",
       function()
         local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."))
         require("snacks").picker.grep({ search = vim.fn.join(lines, " ") })
       end,
       desc = "Search text marked by visual",
       mode = "v",
+    },
+    {
+      "<leader>sl",
+      function()
+        local line = vim.fn.getline(".")
+        vim.print({ line = line })
+        require("snacks").picker.grep({ search = line })
+      end,
+      desc = "Search text in current line",
+      mode = "n",
     },
     {
       "<leader>sw",
@@ -212,13 +222,6 @@ return {
         require("snacks").picker.keymaps()
       end,
       desc = "Keymaps",
-    },
-    {
-      "<leader>sl",
-      function()
-        require("snacks").picker.loclist()
-      end,
-      desc = "Location List",
     },
     {
       "<leader>sM",
