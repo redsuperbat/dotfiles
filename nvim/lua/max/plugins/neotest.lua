@@ -11,14 +11,19 @@ return {
     "olimorris/neotest-rspec",
     "nvim-neotest/neotest-jest",
     "rouge8/neotest-rust",
+    "mrcjkb/rustaceanvim",
   },
   event = "VeryLazy",
   config = function()
     require("neotest").setup({
+      quickfix = {
+        open = true,
+      },
       adapters = {
         require("neotest-rspec"),
         require("neotest-jest"),
-        require("neotest-rust"),
+        -- require("neotest-rust"),
+        require("rustaceanvim.neotest"),
       },
     })
     vim.keymap.set("n", "<leader>tt", function()
@@ -28,6 +33,10 @@ return {
     vim.keymap.set("n", "<leader>ta", function()
       require("neotest").run.attach()
     end, { desc = "Attach to nearest test" })
+
+    vim.keymap.set("n", "<leader>to", function()
+      require("neotest").output.open({ enter = true })
+    end, { desc = "Open nearest test" })
 
     vim.keymap.set("n", "<leader>tf", function()
       require("neotest").run.run(vim.fn.expand("%"))

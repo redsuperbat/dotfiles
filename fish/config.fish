@@ -36,6 +36,9 @@ source $HOME/.config/fish/fish_prompt.fish
 function fish_greeting
 end
 
+# Ctrl + y to accept and execute suggestion
+bind -M insert ctrl-y accept-autosuggestion execute
+
 # Aliases
 alias kc=kubectl
 alias gap="git add :/ -Ap"

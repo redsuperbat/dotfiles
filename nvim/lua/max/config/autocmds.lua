@@ -49,6 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "notify",
     "qf",
     "query",
+    "man",
     "spectre_panel",
     "startuptime",
     "codecompanion",
