@@ -10,7 +10,6 @@ return {
     -- Runners
     "olimorris/neotest-rspec",
     "nvim-neotest/neotest-jest",
-    "rouge8/neotest-rust",
     "mrcjkb/rustaceanvim",
   },
   event = "VeryLazy",
@@ -22,7 +21,6 @@ return {
       adapters = {
         require("neotest-rspec"),
         require("neotest-jest"),
-        -- require("neotest-rust"),
         require("rustaceanvim.neotest"),
       },
     })
