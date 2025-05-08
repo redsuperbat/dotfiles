@@ -36,6 +36,10 @@ return {
       require("neotest").output.open({ enter = true })
     end, { desc = "Open nearest test" })
 
+    vim.keymap.set("n", "<leader>ts", function()
+      require("neotest").summary.toggle()
+    end, { desc = "Open nearest test" })
+
     vim.keymap.set("n", "<leader>tf", function()
       require("neotest").run.run(vim.fn.expand("%"))
     end, { desc = "Run all test in current buffer" })

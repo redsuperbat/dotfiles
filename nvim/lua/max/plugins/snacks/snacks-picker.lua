@@ -9,6 +9,11 @@ return {
           hidden = true,
         },
       },
+      formatters = {
+        file = {
+          truncate = 65,
+        },
+      },
       layout = {
         layout = {
           height = 0.95,
