@@ -15,9 +15,6 @@ return {
   event = "VeryLazy",
   config = function()
     require("neotest").setup({
-      quickfix = {
-        open = true,
-      },
       adapters = {
         require("neotest-rspec"),
         require("neotest-jest"),
