@@ -11,7 +11,7 @@ return {
       },
       formatters = {
         file = {
-          truncate = 65,
+          truncate = 80,
         },
       },
       layout = {

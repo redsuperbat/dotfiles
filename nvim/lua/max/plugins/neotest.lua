@@ -23,6 +23,14 @@ return {
         require("neotest-jest"),
         require("rustaceanvim.neotest"),
       },
+      discovery = {
+        filter_dir = function(name, _, _)
+          return name ~= "dist"
+        end,
+      },
+      watch = {
+        enabled = false,
+      },
     })
     vim.keymap.set("n", "<leader>tt", function()
       require("neotest").run.run()
@@ -38,7 +46,7 @@ return {
 
     vim.keymap.set("n", "<leader>ts", function()
       require("neotest").summary.toggle()
-    end, { desc = "Open nearest test" })
+    end, { desc = "Toggle test summary" })
 
     vim.keymap.set("n", "<leader>tf", function()
       require("neotest").run.run(vim.fn.expand("%"))
