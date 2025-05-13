@@ -10,7 +10,7 @@ return {
     -- Runners
     "olimorris/neotest-rspec",
     "nvim-neotest/neotest-jest",
-    "mrcjkb/rustaceanvim",
+    "rouge8/neotest-rust",
   },
   event = "VeryLazy",
   config = function()
@@ -18,7 +18,9 @@ return {
       adapters = {
         require("neotest-rspec"),
         require("neotest-jest"),
-        require("rustaceanvim.neotest"),
+        require("neotest-rust")({
+          args = { "--no-capture" },
+        }),
       },
       discovery = {
         filter_dir = function(name, _, _)
