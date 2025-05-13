@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { "/opt/homebrew/bin/rust-analyzer" },
+  cmd = { "rust-analyzer" },
   filetypes = { "rust" },
   capabilities = {
     experimental = {
