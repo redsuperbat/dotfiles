@@ -18,6 +18,7 @@ return {
       lua = { "stylua" },
       go = { "gofmt" },
       python = { "isort", "black" },
+      toml = { "taplo" },
       rust = { lsp_format = "prefer" },
       ruby = { "rubocop" },
       yaml = { "prettier", lsp_format = "fallback" },
