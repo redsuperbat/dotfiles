@@ -69,8 +69,6 @@ keymap("n", "<leader>ft", function()
   })
 end, { desc = "Floating terminal" })
 
--- quit
-keymap("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 -- Execute lua utils
 keymap("n", "<leader>xx", "<cmd>source %<CR>", { desc = "Source current buffer file" })
 keymap("n", "<leader>x", ":.lua<CR>", { desc = "Execute current line" })

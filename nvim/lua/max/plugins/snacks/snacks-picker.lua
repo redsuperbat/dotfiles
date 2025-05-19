@@ -264,7 +264,7 @@ return {
       desc = "Colorschemes",
     },
     {
-      "<leader>qp",
+      "<leader>pp",
       function()
         require("snacks").picker.projects()
       end,
