@@ -5,9 +5,9 @@ return {
     {
       "<leader>q",
       function()
-        require("quicker").toggle()
+        require("quicker").toggle({ focus = true })
       end,
-      { desc = "Toggle Quickfix" },
+      { desc = "Toggle quick-fix list" },
     },
   },
   ---@module "quicker"
