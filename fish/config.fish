@@ -17,6 +17,8 @@ fish_add_path --path $HOME/.cargo/bin
 
 # Set default editor to neovim
 export EDITOR="nvim"
+# Set default manpage viewer to neovim
+export MANPAGER="nvim +Man!"
 
 # Kill process on port
 function kill_port
