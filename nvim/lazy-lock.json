@@ -16,6 +16,7 @@
   "leap.nvim": { "branch": "main", "commit": "189102b07cdd24de3bd7132e57da8c9614c385fc" },
   "lualine.nvim": { "branch": "master", "commit": "15884cee63a8c205334ab13ab1c891cd4d27101a" },
   "luvit-meta": { "branch": "main", "commit": "1df30b60b1b4aecfebc785aa98943db6c6989716" },
+  "mini.ai": { "branch": "main", "commit": "ebb04799794a7f94628153991e6334c3304961b8" },
   "mini.bufremove": { "branch": "main", "commit": "66019ecebdc5bc0759e04747586994e2e3f98416" },
   "mini.pairs": { "branch": "main", "commit": "69864a2efb36c030877421634487fd90db1e4298" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "f481de16a0eb59c985abac8985e3f2e2f75b4875" },
