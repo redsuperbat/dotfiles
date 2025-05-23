@@ -52,6 +52,8 @@ cask "raycast"
 cask "brave-browser"
 cask "linear-linear"
 cask "bitwarden"
+cask "font-symbols-only-nerd-font"
+cask "font-jetbrains-mono"
 
 tap  "hashicorp/tap"
 brew "hashicorp/tap/terraform"
