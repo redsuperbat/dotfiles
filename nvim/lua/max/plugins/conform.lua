@@ -19,6 +19,7 @@ return {
       go = { "gofmt" },
       python = { "isort", "black" },
       toml = { "taplo" },
+      css = { lsp_format = "prefer" },
       markdown = { "prettier", lsp_format = "fallback" },
       rust = { lsp_format = "prefer" },
       ruby = { "rubocop" },

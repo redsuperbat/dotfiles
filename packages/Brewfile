@@ -33,6 +33,9 @@ brew "hadolint"
 brew "tmux-sessionizer"
 brew "cargo-nextest"
 
+# Python package manager
+brew "uv"
+
 # Language servers
 brew "lua-language-server"
 brew "rust-analyzer"

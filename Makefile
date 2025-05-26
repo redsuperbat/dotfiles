@@ -1,4 +1,4 @@
-default: packages macos git lazygit fish skhd ghostty neovim tmux
+default: packages macos git lazygit ncspot fish skhd ghostty neovim tmux
 
 CONFIG_DIR ?= $(HOME)/.config
 
@@ -31,3 +31,4 @@ include ghostty/ghostty.mk
 include nvim/neovim.mk
 include skhd/skhd.mk
 include lazygit/lazygit.mk
+include ncspot/ncspot.mk

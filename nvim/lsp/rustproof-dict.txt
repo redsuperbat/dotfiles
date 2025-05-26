@@ -301,3 +301,4 @@ cloudflare
 Hono
 Reinvite
 renderer
+monaco
