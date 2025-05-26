@@ -32,6 +32,8 @@ brew "tmux"
 brew "hadolint"
 brew "tmux-sessionizer"
 brew "cargo-nextest"
+# Spotify for the terminal
+brew "ncspot"
 
 # Python package manager
 brew "uv"
