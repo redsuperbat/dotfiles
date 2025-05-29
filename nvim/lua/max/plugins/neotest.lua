@@ -11,6 +11,7 @@ return {
     "olimorris/neotest-rspec",
     "nvim-neotest/neotest-jest",
     "rouge8/neotest-rust",
+    "MarkEmmons/neotest-deno",
   },
   event = "VeryLazy",
   config = function()
@@ -18,6 +19,7 @@ return {
       adapters = {
         require("neotest-rspec"),
         require("neotest-jest"),
+        require("neotest-deno"),
         require("neotest-rust")({
           args = { "--no-capture" },
         }),
