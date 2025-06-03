@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 ---@diagnostic disable: missing-fields
 
 return {

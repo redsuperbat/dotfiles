@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   "RRethy/vim-illuminate",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },

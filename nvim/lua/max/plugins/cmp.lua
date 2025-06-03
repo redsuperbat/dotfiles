@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   { "hrsh7th/cmp-cmdline", lazy = true },
   {

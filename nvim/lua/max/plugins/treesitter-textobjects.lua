@@ -1,5 +1,7 @@
 ---@diagnostic disable: missing-fields
 
+---@module "lazy"
+---@type LazySpec
 return {
   "nvim-treesitter/nvim-treesitter-textobjects",
   event = "VeryLazy",

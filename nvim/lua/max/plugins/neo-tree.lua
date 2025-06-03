@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 local fs = require("max.utils.fs")
 
 return {

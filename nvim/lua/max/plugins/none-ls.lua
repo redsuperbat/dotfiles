@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   "nvimtools/none-ls.nvim",
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },

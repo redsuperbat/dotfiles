@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   "ggandor/leap.nvim",
   dependencies = { "tpope/vim-repeat" },

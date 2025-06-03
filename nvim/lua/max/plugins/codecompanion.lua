@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-treesitter/nvim-treesitter", lazy = true },
