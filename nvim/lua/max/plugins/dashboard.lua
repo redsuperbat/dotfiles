@@ -42,7 +42,7 @@ return {
             },
             {
               action = function()
-                require("snacks").picker.recent()
+                require("snacks").picker.recent({ filter = { cwd = true } })
               end,
               desc = " Recent Files",
               icon = "📁",

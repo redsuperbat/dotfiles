@@ -92,7 +92,7 @@ return {
     {
       "<leader>fr",
       function()
-        require("snacks").picker.recent()
+        require("snacks").picker.recent({ filter = { cwd = true } })
       end,
       desc = "Recent",
     },
