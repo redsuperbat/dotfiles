@@ -1,4 +1,8 @@
 local fs = require("max.utils.fs")
+---@param data { source: string, destination: string }
+local function on_move(data)
+  require("snacks").rename.on_rename_file(data.source, data.destination)
+end
 
 ---@module "lazy"
 ---@type LazySpec
@@ -6,7 +10,9 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
   cmd = "Neotree",
-  dependencies = { "antosha417/nvim-lsp-file-operations", "nvim-lua/plenary.nvim" },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+  },
   keys = {
     {
       "<leader>e",
@@ -41,6 +47,8 @@ return {
             vim.keymap.set("i", "<esc>", vim.cmd.stopinsert, { noremap = true, buffer = args.bufnr })
           end,
         },
+        { event = "file_moved", handler = on_move },
+        { event = "file_renamed", handler = on_move },
       },
       filesystem = {
         bind_to_cwd = false,
@@ -50,10 +58,8 @@ return {
           hide_hidden = false,
           hide_dotfiles = false,
           hide_gitignored = false,
-          never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-            ".DS_Store",
-            ".git",
-          },
+          -- remains hidden even if visible is toggled to true, this overrides always_show
+          never_show = { ".DS_Store", ".git" },
         },
       },
       window = {
@@ -104,8 +110,5 @@ return {
         end
       end,
     })
-
-    -- Plugin to handle file operations like rename etc
-    require("lsp-file-operations").setup()
   end,
 }
