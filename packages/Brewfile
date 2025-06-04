@@ -30,6 +30,7 @@ brew "neovim"
 brew "fish"
 brew "tmux"
 brew "hadolint"
+brew "cowsay"
 brew "tmux-sessionizer"
 brew "cargo-nextest"
 # Spotify for the terminal

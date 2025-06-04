@@ -53,6 +53,23 @@ function lsa
     eza -la --group-directories-first --icons
 end
 
+function cowsay_centered
+    set term_width (tput cols)
+    set output (cowsay $argv)
+
+    set max_length 0
+    for line in $output
+        set line_length (string length --visible -- "$line")
+        if test $line_length -gt $max_length
+            set max_length $line_length
+        end
+    end
+    set padding (math --scale=0 "($term_width - $max_length) / 2")
+    for line in $output
+        printf "%*s%s\n" $padding "" "$line"
+    end
+end
+
 function cl
     clear
     tmux clear-history
