@@ -18,6 +18,7 @@ return {
     format_on_save = {},
     formatters_by_ft = {
       lua = { "stylua" },
+      nix = { "alejandra" },
       go = { "gofmt" },
       python = { "isort", "black" },
       toml = { "taplo" },

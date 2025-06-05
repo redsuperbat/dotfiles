@@ -33,6 +33,7 @@ brew "hadolint"
 brew "cowsay"
 brew "tmux-sessionizer"
 brew "cargo-nextest"
+brew "alejandra"
 # Spotify for the terminal
 brew "ncspot"
 

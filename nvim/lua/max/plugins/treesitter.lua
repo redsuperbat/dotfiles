@@ -25,6 +25,11 @@ return {
           node_decremental = "<bs>",
         },
       },
+      textobjects = {
+        select = {
+          enable = false,
+        },
+      },
       highlight = { enable = true },
       indent = { enable = true },
       ensure_installed = {

@@ -25,9 +25,6 @@ return {
             adapter = "openai",
           },
         },
-        opts = {
-          log_level = "DEBUG",
-        },
       })
 
       vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", {
