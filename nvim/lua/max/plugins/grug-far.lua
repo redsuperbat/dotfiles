@@ -6,7 +6,7 @@ return {
   cmd = "GrugFar",
   keys = {
     {
-      "<leader>sR",
+      "<leader>sr",
       function()
         require("grug-far").open()
       end,
