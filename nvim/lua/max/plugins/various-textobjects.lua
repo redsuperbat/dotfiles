@@ -29,7 +29,7 @@ return {
         end
       end,
       mode = "n",
-      desc = "URL Opener",
+      desc = "File Opener",
     },
     {
       "<leader>gx",
