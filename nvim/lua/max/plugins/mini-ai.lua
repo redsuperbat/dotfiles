@@ -13,6 +13,7 @@ return {
         b = false,
         -- Allow to select inside and outside of function nodes
         f = spec_treesitter({ a = "@function.outer", i = "@function.inner" }),
+        c = spec_treesitter({ a = "@class.outer", i = "@class.inner" }),
       },
     })
   end,
