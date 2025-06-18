@@ -304,3 +304,8 @@ renderer
 monaco
 intl
 Callout
+darwin
+nixpkgs
+pbpaste
+pbcopy
+pkgs

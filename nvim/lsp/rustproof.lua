@@ -8,6 +8,7 @@ return {
     "ruby",
     "javascript",
     "toml",
+    "nix",
     "vue",
     "markdown",
     "json",
