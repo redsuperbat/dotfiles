@@ -1,7 +1,7 @@
----@module "lazy"
----@type LazySpec
 ---@diagnostic disable: missing-fields
 
+---@module "lazy"
+---@type LazySpec
 return {
   "nvim-neotest/neotest",
   dependencies = {
@@ -10,7 +10,6 @@ return {
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
     -- Runners
-    "olimorris/neotest-rspec",
     "nvim-neotest/neotest-jest",
     "rouge8/neotest-rust",
     "MarkEmmons/neotest-deno",
@@ -19,7 +18,6 @@ return {
   config = function()
     require("neotest").setup({
       adapters = {
-        require("neotest-rspec"),
         require("neotest-jest"),
         require("neotest-deno"),
         require("neotest-rust")({
