@@ -1,3 +1,5 @@
+local float = require("max.nuggets.overseer_float")
+
 ---@module "overseer"
 ---@type overseer.ComponentDefinition
 return {
@@ -22,7 +24,7 @@ return {
             if bufnr == vim.api.nvim_get_current_buf() then
               return
             end
-            require("overseer").run_action(task, "open float")
+            float.enter(task)
           end)
         )
       end,

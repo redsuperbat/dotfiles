@@ -1,11 +1,4 @@
----@param task overseer.Task
-local function init_float(task)
-  require("overseer").run_action(task, "open float")
-  vim.cmd("startinsert!")
-  vim.keymap.set("t", "<esc><esc>", function()
-    vim.cmd.close()
-  end)
-end
+local float = require("max.nuggets.overseer_float")
 
 ---@param name string
 local function open_task_if_exists(name)
@@ -15,14 +8,14 @@ local function open_task_if_exists(name)
   local task = overseer.list_tasks({ name = name })[1]
 
   if not task then
-    return overseer.run_template({ name = name }, init_float)
+    return overseer.run_template({ name = name }, float.enter)
   end
 
   if not task:is_running() then
-    return overseer.run_template({ name = name }, init_float)
+    return overseer.run_template({ name = name }, float.enter)
   end
 
-  init_float(task)
+  float.enter(task)
 end
 
 local function lazygit()
@@ -58,7 +51,7 @@ local function codex()
   local name = "codex"
   local desc = "Launches codex"
   vim.keymap.set("n", "<leader>cc", function()
-    overseer.run_template({ name = name }, init_float)
+    overseer.run_template({ name = name }, float.enter)
   end, { desc = desc })
 
   local api_key = require("max.utils.fs").read_file("~/.secrets/openai-api-key")
