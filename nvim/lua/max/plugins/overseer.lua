@@ -1,15 +1,15 @@
+---@param task overseer.Task
+local function init_float(task)
+  require("overseer").run_action(task, "open float")
+  vim.cmd("startinsert!")
+  vim.keymap.set("t", "<esc><esc>", function()
+    vim.cmd.close()
+  end)
+end
+
 ---@param name string
 local function open_task_if_exists(name)
   local overseer = require("overseer")
-
-  ---@param task overseer.Task
-  local function init_float(task)
-    overseer.run_action(task, "open float")
-    vim.cmd("startinsert!")
-    vim.keymap.set("t", "<esc><esc>", function()
-      vim.cmd.close()
-    end)
-  end
 
   ---@type overseer.Task|nil
   local task = overseer.list_tasks({ name = name })[1]
@@ -58,7 +58,7 @@ local function codex()
   local name = "codex"
   local desc = "Launches codex"
   vim.keymap.set("n", "<leader>cc", function()
-    open_task_if_exists(name)
+    overseer.run_template({ name = name }, init_float)
   end, { desc = desc })
 
   local api_key = require("max.utils.fs").read_file("~/.secrets/openai-api-key")
@@ -77,10 +77,7 @@ local function codex()
         env = {
           OPENAI_API_KEY = api_key,
         },
-        components = {
-          "unique",
-          "lazygit.close_on_exit",
-        },
+        components = { "lazygit.close_on_exit", "lazygit.on_input_requested" },
       }
     end,
     desc = desc,
@@ -95,7 +92,13 @@ return {
   event = "VeryLazy",
   config = function()
     local overseer = require("overseer")
-    overseer.setup({ task_win = { border = "none", padding = 3 } })
+    overseer.setup({ task_win = { padding = 3 } })
+
+    vim.keymap.set("n", "<leader>oo", function()
+      overseer.open()
+    end, {
+      desc = "Open overseer",
+    })
 
     lazygit()
     codex()
