@@ -15,6 +15,17 @@ function M.path_exists(path)
   return vim.uv.fs_stat(path) ~= nil
 end
 
+--- @param path string: Path to file
+--- @return string | nil: File contents
+function M.read_file(path)
+  path = vim.fn.expand(path)
+  local ok, data = pcall(vim.fn.readfile, path)
+  if not ok then
+    return nil
+  end
+  return table.concat(data, "\n")
+end
+
 --- This function searches for a file by its name starting from
 --- the directory of the given buffer and traversing upwards
 --- If the file is found, the function returns the path to the

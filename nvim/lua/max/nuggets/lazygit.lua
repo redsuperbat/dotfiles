@@ -33,7 +33,6 @@ function M.reflog()
   lazygit_term(string.format("lazygit -f %s", file))
 end
 
-vim.keymap.set("n", "<leader>gg", M.open, { desc = "Lazygit" })
 vim.keymap.set("n", "<leader>gr", M.reflog, { desc = "Git buffer reflog" })
 
 return M
